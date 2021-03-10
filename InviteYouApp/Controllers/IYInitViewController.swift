@@ -207,18 +207,9 @@ class IYInitViewController: UIViewController {
         self.view.addSubview(registerButton)
         self.setUpConstraintsFunction()
 
-    }
+        self.navigationController?.setNavigationBarHidden(true, animated: false) // убираем NavigationBar
 
-    //убираем NavigationBar
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
-
 
 
     override func viewDidAppear(_ animated: Bool) {
@@ -235,12 +226,6 @@ class IYInitViewController: UIViewController {
             self.view.layoutIfNeeded() // + анимация перемещения текста
         }
     }
-
-// скрытие клавиатуры
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
-//        return true
-//    }
 
     //MARK: - ButtonTapped
 
@@ -259,14 +244,22 @@ class IYInitViewController: UIViewController {
     }
 
     @objc private func registerButtonTapped() {
-        let tabBarController = IYRegistrationViewController()
+        let registerController = IYRegistrationViewController()
 
         if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-            sceneDelegate.changeRootViewController(tabBarController)
+            sceneDelegate.changeRootViewController(registerController)
         }
 
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(registerController)
 
+    }
+
+    // MARK: - textField
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if touches.first != nil {
+            view.endEditing(true)
+        }
     }
 
     //MARK: - Constraints
