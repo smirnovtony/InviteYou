@@ -19,7 +19,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.windowScene = scene
 
         window.rootViewController = UINavigationController(rootViewController: IYInitViewController())
-        
 
         // присвоили window из строки 12 наш window из строки 18
         self.window = window
@@ -35,15 +34,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navBarAppearance.configureWithDefaultBackground() // стиль
         navBarAppearance.backgroundColor = UIColor(named: "systemColor") // цвет фона
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white] // цвет текста
+        
 
         let button = UIBarButtonItemAppearance(style: .plain)
         button.normal.titleTextAttributes = [.foregroundColor: UIColor.gray]
         navBarAppearance.buttonAppearance = button // применение стиля к кнопке, без этого код выше не сработает
 
         UINavigationBar.appearance().standardAppearance = navBarAppearance //  применение для версий iOS ниже 13
-        UINavigationBar.appearance().isTranslucent = true // подсветка
-        UINavigationBar.appearance().tintColor = .brown
-        UINavigationBar.appearance().barStyle = .black // стиль ночной
+//        UINavigationBar.appearance().isTranslucent = true // подсветка
+//        UINavigationBar.appearance().tintColor = .brown
+//        UINavigationBar.appearance().barStyle = .black // стиль ночной
     }
 
     func changeRootViewController(_ vc: UIViewController, animated: Bool = true) { // создание ТabВar

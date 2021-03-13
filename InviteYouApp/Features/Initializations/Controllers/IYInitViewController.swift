@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class IYInitViewController: UIViewController {
 
@@ -22,7 +23,7 @@ class IYInitViewController: UIViewController {
     private lazy var backgroundColor: UIView = {
         let image = UIView()
 
-        image.backgroundColor = UIColor(named: "backgroundColor") // добавляем картинку по имени
+        image.backgroundColor = backgroundСolor // добавляем картинку по имени
         image.contentMode = .scaleAspectFill // заполнение картинкой всего вью
 
         image.translatesAutoresizingMaskIntoConstraints = false // этот флаг обязателен для всех UI элементов
@@ -34,8 +35,8 @@ class IYInitViewController: UIViewController {
         let label = UILabel()
 
         label.text = "Invite.You"
-        label.textColor = .white// цвет
-        label.backgroundColor = UIColor(named: "systemColor")
+        label.textColor = whiteСolor// цвет
+        label.backgroundColor = mainСolor
         label.font = fontFamilyBig // шрифт (размер)
         label.textAlignment = .center // выравнивание текста
 
@@ -45,7 +46,7 @@ class IYInitViewController: UIViewController {
         label.layer.shadowOffset = CGSize(width: 0, height: 5) // с "-" вверх
         label.layer.shadowRadius = 5 // радиус
         label.layer.shadowOpacity = 0.5
-        label.layer.shadowColor = UIColor.black.cgColor // цвет
+        label.layer.shadowColor = UIColor.gray.cgColor // цвет
 
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -56,13 +57,10 @@ class IYInitViewController: UIViewController {
         let label = UILabel()
 
         label.text = "User Name"
-        label.textColor = UIColor(named: "systemColor")// цвет
+        label.textColor = mainСolor// цвет
       
         label.font = fontFamilyLittle // шрифт (размер)
         label.textAlignment = .left // выравнивание текста
-
-        label.layer.masksToBounds = true // без этого не работает радиус, но удаляются тени...
-        label.layer.cornerRadius = 10
 
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -72,8 +70,8 @@ class IYInitViewController: UIViewController {
     private lazy var userNameField: UITextField = {
         let textField = UITextField()
 
-        textField.backgroundColor = .white
-        textField.textColor = UIColor(named: "systemColor")
+        textField.backgroundColor = whiteСolor
+        textField.textColor = mainСolor
         textField.font = fontFamilyLittle // шрифт (размер)
         textField.borderStyle = .roundedRect // закругление поля
         textField.placeholder = "Enter Your Name"
@@ -83,7 +81,7 @@ class IYInitViewController: UIViewController {
         textField.layer.shadowOffset = CGSize(width: 0, height: -5) // с "-" вверх
         textField.layer.shadowRadius = 20 // радиус тени
         textField.layer.shadowOpacity = 0.5
-        textField.layer.shadowColor = UIColor.black.cgColor // цвет тени
+        textField.layer.shadowColor = UIColor.gray.cgColor // цвет тени
 
         textField.translatesAutoresizingMaskIntoConstraints = false
 
@@ -94,13 +92,10 @@ class IYInitViewController: UIViewController {
         let label = UILabel()
 
         label.text = "User Password"
-        label.textColor = UIColor(named: "systemColor")// цвет
+        label.textColor = mainСolor// цвет
 
         label.font = fontFamilyLittle // шрифт (размер)
         label.textAlignment = .left // выравнивание текста
-
-        label.layer.masksToBounds = true // без этого не работает радиус, но удаляются тени...
-        label.layer.cornerRadius = 10
 
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -110,8 +105,8 @@ class IYInitViewController: UIViewController {
     private lazy var userPasswordField: UITextField = {
         let textField = UITextField()
 
-        textField.backgroundColor = .white
-        textField.textColor = UIColor(named: "systemColor")
+        textField.backgroundColor = whiteСolor
+        textField.textColor = mainСolor
         textField.font = fontFamilyLittle // шрифт (размер)
         textField.borderStyle = .roundedRect // закругление поля
         textField.placeholder = "Enter Password"
@@ -122,7 +117,7 @@ class IYInitViewController: UIViewController {
         textField.layer.shadowOffset = CGSize(width: 0, height: -5) // с "-" вверх
         textField.layer.shadowRadius = 20 // радиус тени
         textField.layer.shadowOpacity = 0.5
-        textField.layer.shadowColor = UIColor.black.cgColor // цвет тени
+        textField.layer.shadowColor = UIColor.gray.cgColor // цвет тени
 
         textField.translatesAutoresizingMaskIntoConstraints = false
 
@@ -133,7 +128,7 @@ class IYInitViewController: UIViewController {
         let button = UIButton()
 
         button.setTitle("Forgot Password?", for: UIControl.State()) // для всех состояний кнопки -> for: UIControl.State()
-        button.setTitleColor(UIColor(named: "systemColor"), for: UIControl.State()) // цвет текста
+        button.setTitleColor(mainСolor, for: UIControl.State()) // цвет текста
         button.titleLabel?.font = fontFamilyLittle // шрифт (размер)
 
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -146,7 +141,7 @@ class IYInitViewController: UIViewController {
 
         button.setTitle("Log In", for: UIControl.State()) // для всех состояний кнопки -> for: UIControl.State()
         button.setTitleColor(.white, for: UIControl.State()) // цвет текста
-        button.backgroundColor = UIColor(named: "systemColor")?.withAlphaComponent(1) // цвет кнопки
+        button.backgroundColor = mainСolor?.withAlphaComponent(1) // цвет кнопки
         button.titleLabel?.font = fontFamilyMiddle // шрифт (размер)
         button.layer.masksToBounds = true // без этого не работает радиус, но удаляются тени...
         button.layer.cornerRadius = 5
@@ -162,7 +157,7 @@ class IYInitViewController: UIViewController {
         let label = UILabel()
 
         label.text = "Don't Have An Account?"
-        label.textColor = UIColor(named: "systemColor")// цвет
+        label.textColor = mainСolor// цвет
 
         label.font = fontFamilyLittle // шрифт (размер)
         label.textAlignment = .center // выравнивание текста
@@ -176,7 +171,7 @@ class IYInitViewController: UIViewController {
         let button = UIButton()
 
         button.setTitle("Register", for: UIControl.State()) // для всех состояний кнопки -> for: UIControl.State()
-        button.setTitleColor(UIColor(named: "systemColor"), for: UIControl.State()) // цвет текста
+        button.setTitleColor(mainСolor, for: UIControl.State()) // цвет текста
         button.backgroundColor = UIColor.white.withAlphaComponent(1) // цвет кнопки
         button.titleLabel?.font = fontFamilyMiddle // шрифт (размер)
         button.layer.masksToBounds = true // без этого не работает радиус, но удаляются тени...
@@ -219,7 +214,7 @@ class IYInitViewController: UIViewController {
         self.topAppLabelConstrait.constant = 40
         self.topUserNameLable.constant = 150
         self.bottomRegisterButton.constant = -100
-        self.view.setNeedsUpdateConstraints()
+        setUpConstraintsFunction()
 
         // анимация вью - выцветание
         UIView.animate(withDuration: 1) { // время withDuration: 1.5
@@ -404,6 +399,7 @@ class IYInitViewController: UIViewController {
                                multiplier: 1, constant: 60) //высота
 
         ])
+
     }
 
 

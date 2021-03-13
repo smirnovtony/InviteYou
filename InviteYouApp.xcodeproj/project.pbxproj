@@ -3,11 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA14798625FBDD2900A03DCD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EA14798525FBDD2900A03DCD /* SnapKit */; };
 		EA62074125F8F09E00AF8E01 /* IYTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA62074025F8F09E00AF8E01 /* IYTabBarViewController.swift */; };
+		EAD0EBD125FB890800463EF7 /* IYEditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0EBD025FB890800463EF7 /* IYEditProfileViewController.swift */; };
+		EAD0EBD425FB896400463EF7 /* IYEditDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0EBD325FB896400463EF7 /* IYEditDetailsViewController.swift */; };
+		EAF777DF25FCD57100F8F091 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF777DE25FCD57100F8F091 /* Colors.swift */; };
 		EAFFAA6F25F891AE003A610E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA6E25F891AE003A610E /* AppDelegate.swift */; };
 		EAFFAA7125F891AE003A610E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA7025F891AE003A610E /* SceneDelegate.swift */; };
 		EAFFAA7325F891AE003A610E /* IYInitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA7225F891AE003A610E /* IYInitViewController.swift */; };
@@ -23,6 +27,9 @@
 
 /* Begin PBXFileReference section */
 		EA62074025F8F09E00AF8E01 /* IYTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYTabBarViewController.swift; sourceTree = "<group>"; };
+		EAD0EBD025FB890800463EF7 /* IYEditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYEditProfileViewController.swift; sourceTree = "<group>"; };
+		EAD0EBD325FB896400463EF7 /* IYEditDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYEditDetailsViewController.swift; sourceTree = "<group>"; };
+		EAF777DE25FCD57100F8F091 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		EAFFAA6B25F891AE003A610E /* InviteYouApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InviteYouApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFFAA6E25F891AE003A610E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAFFAA7025F891AE003A610E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,12 +50,132 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA14798625FBDD2900A03DCD /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EAD0EBD625FBA0C100463EF7 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				EAD0EBDE25FBA19500463EF7 /* Registration */,
+				EAD0EBDC25FBA15000463EF7 /* Profile */,
+				EAD0EBDB25FBA14400463EF7 /* Calendar */,
+				EAD0EBDA25FBA13200463EF7 /* Details */,
+				EAD0EBD925FBA0FD00463EF7 /* ActiveInvites */,
+				EAD0EBD725FBA0CE00463EF7 /* Initializations */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		EAD0EBD725FBA0CE00463EF7 /* Initializations */ = {
+			isa = PBXGroup;
+			children = (
+				EAD0EBD825FBA0E300463EF7 /* Controllers */,
+			);
+			path = Initializations;
+			sourceTree = "<group>";
+		};
+		EAD0EBD825FBA0E300463EF7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EAFFAA7225F891AE003A610E /* IYInitViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EAD0EBD925FBA0FD00463EF7 /* ActiveInvites */ = {
+			isa = PBXGroup;
+			children = (
+				EAD0EBEE25FBA31D00463EF7 /* Controllers */,
+			);
+			path = ActiveInvites;
+			sourceTree = "<group>";
+		};
+		EAD0EBDA25FBA13200463EF7 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				EAD0EBEB25FBA30100463EF7 /* Controllers */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		EAD0EBDB25FBA14400463EF7 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				EAD0EBE625FBA2DA00463EF7 /* Controllers */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		EAD0EBDC25FBA15000463EF7 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				EAD0EBE325FBA2AD00463EF7 /* Controllers */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		EAD0EBDD25FBA17400463EF7 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				EA62074025F8F09E00AF8E01 /* IYTabBarViewController.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		EAD0EBDE25FBA19500463EF7 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				EAD0EBE225FBA29B00463EF7 /* Controllers */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		EAD0EBE225FBA29B00463EF7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EAFFAA8625F8CB19003A610E /* IYRegistrationViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EAD0EBE325FBA2AD00463EF7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EAFFAAA125F8EE5C003A610E /* IYProfileViewController.swift */,
+				EAD0EBD025FB890800463EF7 /* IYEditProfileViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EAD0EBE625FBA2DA00463EF7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EAFFAA9E25F8EE14003A610E /* IYCalendarViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EAD0EBEB25FBA30100463EF7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EAFFAA9A25F8EDF8003A610E /* IYDetailsViewController.swift */,
+				EAD0EBD325FB896400463EF7 /* IYEditDetailsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EAD0EBEE25FBA31D00463EF7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EAFFAA9725F8EDCA003A610E /* IYActiveInvitesViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		EAFFAA6225F891AE003A610E = {
 			isa = PBXGroup;
 			children = (
@@ -68,51 +195,14 @@
 		EAFFAA6D25F891AE003A610E /* InviteYouApp */ = {
 			isa = PBXGroup;
 			children = (
-				EAFFAA8D25F8E90F003A610E /* Models */,
-				EAFFAA8E25F8E922003A610E /* Views */,
-				EAFFAA8F25F8E935003A610E /* Controllers */,
-				EAFFAA9025F8E960003A610E /* Extensions */,
-				EAFFAA9125F8E977003A610E /* Resourses */,
-				EAFFAA6E25F891AE003A610E /* AppDelegate.swift */,
 				EAFFAA7025F891AE003A610E /* SceneDelegate.swift */,
+				EAFFAA6E25F891AE003A610E /* AppDelegate.swift */,
+				EAD0EBD625FBA0C100463EF7 /* Features */,
+				EAD0EBDD25FBA17400463EF7 /* Common */,
+				EAFFAA9125F8E977003A610E /* Resourses */,
 				EAFFAA7C25F891B0003A610E /* Info.plist */,
 			);
 			path = InviteYouApp;
-			sourceTree = "<group>";
-		};
-		EAFFAA8D25F8E90F003A610E /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		EAFFAA8E25F8E922003A610E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		EAFFAA8F25F8E935003A610E /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				EAFFAA7225F891AE003A610E /* IYInitViewController.swift */,
-				EAFFAA8625F8CB19003A610E /* IYRegistrationViewController.swift */,
-				EAFFAA9725F8EDCA003A610E /* IYActiveInvitesViewController.swift */,
-				EAFFAA9A25F8EDF8003A610E /* IYDetailsViewController.swift */,
-				EAFFAA9E25F8EE14003A610E /* IYCalendarViewController.swift */,
-				EAFFAAA125F8EE5C003A610E /* IYProfileViewController.swift */,
-				EA62074025F8F09E00AF8E01 /* IYTabBarViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		EAFFAA9025F8E960003A610E /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		EAFFAA9125F8E977003A610E /* Resourses */ = {
@@ -121,6 +211,7 @@
 				EAFFAA7925F891B0003A610E /* LaunchScreen.storyboard */,
 				EAFFAA7725F891AF003A610E /* Assets.xcassets */,
 				EAFFAA8925F8E53F003A610E /* Fonts.swift */,
+				EAF777DE25FCD57100F8F091 /* Colors.swift */,
 			);
 			path = Resourses;
 			sourceTree = "<group>";
@@ -141,6 +232,9 @@
 			dependencies = (
 			);
 			name = InviteYouApp;
+			packageProductDependencies = (
+				EA14798525FBDD2900A03DCD /* SnapKit */,
+			);
 			productName = InviteYouApp;
 			productReference = EAFFAA6B25F891AE003A610E /* InviteYouApp.app */;
 			productType = "com.apple.product-type.application";
@@ -168,6 +262,9 @@
 				Base,
 			);
 			mainGroup = EAFFAA6225F891AE003A610E;
+			packageReferences = (
+				EA14798425FBDD2900A03DCD /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = EAFFAA6C25F891AE003A610E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -202,8 +299,11 @@
 				EAFFAA6F25F891AE003A610E /* AppDelegate.swift in Sources */,
 				EA62074125F8F09E00AF8E01 /* IYTabBarViewController.swift in Sources */,
 				EAFFAA9825F8EDCA003A610E /* IYActiveInvitesViewController.swift in Sources */,
+				EAF777DF25FCD57100F8F091 /* Colors.swift in Sources */,
+				EAD0EBD125FB890800463EF7 /* IYEditProfileViewController.swift in Sources */,
 				EAFFAA7125F891AE003A610E /* SceneDelegate.swift in Sources */,
 				EAFFAA9B25F8EDF8003A610E /* IYDetailsViewController.swift in Sources */,
+				EAD0EBD425FB896400463EF7 /* IYEditDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +499,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EA14798425FBDD2900A03DCD /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EA14798525FBDD2900A03DCD /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA14798425FBDD2900A03DCD /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EAFFAA6325F891AE003A610E /* Project object */;
 }

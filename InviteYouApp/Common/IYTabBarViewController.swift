@@ -70,7 +70,5 @@ class IYTabBarViewController: UITabBarController {
                        }
     }
 
-
-
 }
 
