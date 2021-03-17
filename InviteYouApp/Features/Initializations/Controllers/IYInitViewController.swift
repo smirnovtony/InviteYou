@@ -20,17 +20,6 @@ class IYInitViewController: UIViewController {
 
     //MARK: - var
 
-    private lazy var backgroundColor: UIView = {
-        let image = UIView()
-
-        image.backgroundColor = backgroundСolor // добавляем картинку по имени
-        image.contentMode = .scaleAspectFill // заполнение картинкой всего вью
-
-        image.translatesAutoresizingMaskIntoConstraints = false // этот флаг обязателен для всех UI элементов
-
-        return image
-    }()
-
     private lazy var appLabel: UILabel = {
         let label = UILabel()
 
@@ -188,9 +177,9 @@ class IYInitViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = backgroundСolor
 
-
-        self.view.addSubview(backgroundColor)
         self.view.addSubview(appLabel)
         self.view.addSubview(userNameLable)
         self.view.addSubview(userNameField)
@@ -211,7 +200,7 @@ class IYInitViewController: UIViewController {
         super.viewDidAppear(animated)
 
         // анимация перемещения текста и + self.view.layoutIfNeeded() в UIView.animate см.ниже
-        self.topAppLabelConstrait.constant = 40
+        self.topAppLabelConstrait.constant = 30
         self.topUserNameLable.constant = 150
         self.bottomRegisterButton.constant = -100
         setUpConstraintsFunction()
@@ -228,10 +217,6 @@ class IYInitViewController: UIViewController {
 
         let tabBarController = IYTabBarViewController()
 
-        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-            sceneDelegate.changeRootViewController(tabBarController)
-        }
-
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
 
         // дописать код сохранения данных
@@ -239,13 +224,10 @@ class IYInitViewController: UIViewController {
     }
 
     @objc private func registerButtonTapped() {
+
         let registerController = IYRegistrationViewController()
 
-        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-            sceneDelegate.changeRootViewController(registerController)
-        }
-
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(registerController)
+        self.navigationController?.pushViewController(registerController, animated: true)
 
     }
 
@@ -261,25 +243,10 @@ class IYInitViewController: UIViewController {
 
     func setUpConstraintsFunction() {
         self.view.addConstraints([
-            NSLayoutConstraint(item: self.backgroundColor, attribute: .top, relatedBy: .equal,
-                               toItem: self.view, attribute: .top,
-                               multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: self.backgroundColor, attribute: .left, relatedBy: .equal,
-                               toItem: self.view, attribute: .left,
-                               multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: self.backgroundColor, attribute: .right, relatedBy: .equal,
-                               toItem: self.view, attribute: .right,
-                               multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: self.backgroundColor, attribute: .bottom, relatedBy: .equal,
-                               toItem: self.view, attribute: .bottom,
-                               multiplier: 1, constant: 0)
-        ])
-
-        self.view.addConstraints([
             topAppLabelConstrait,
 //            NSLayoutConstraint(item: self.appLabel, attribute: .top, relatedBy: .equal,
 //                               toItem: self.view.safeAreaLayoutGuide, attribute: .top,
-//                               multiplier: 1, constant: 40),
+//                               multiplier: 1, constant: 30),
             NSLayoutConstraint(item: self.appLabel, attribute: .left, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .left,
                                multiplier: 1, constant: 40),
@@ -344,7 +311,7 @@ class IYInitViewController: UIViewController {
         self.view.addConstraints([
             NSLayoutConstraint(item: self.forgotPasswordButton, attribute: .top, relatedBy: .equal,
                                toItem: self.userPasswordField, attribute: .bottom,
-                               multiplier: 1, constant: 50),
+                               multiplier: 1, constant: 30),
             NSLayoutConstraint(item: self.forgotPasswordButton, attribute: .left, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .left,
                                multiplier: 1, constant: 40),
@@ -359,7 +326,7 @@ class IYInitViewController: UIViewController {
         self.view.addConstraints([
             NSLayoutConstraint(item: self.logInButton, attribute: .top, relatedBy: .equal,
                                toItem: self.forgotPasswordButton, attribute: .bottom,
-                               multiplier: 1, constant: 10),
+                               multiplier: 1, constant: 20),
             NSLayoutConstraint(item: self.logInButton, attribute: .left, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .left,
                                multiplier: 1, constant: 40),
@@ -374,7 +341,7 @@ class IYInitViewController: UIViewController {
         self.view.addConstraints([
             NSLayoutConstraint(item: self.dontHaveAnAccountLable, attribute: .bottom, relatedBy: .equal,
                                toItem: self.registerButton, attribute: .top,
-                               multiplier: 1, constant: -10),
+                               multiplier: 1, constant: -20),
             NSLayoutConstraint(item: self.dontHaveAnAccountLable, attribute: .left, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .left,
                                multiplier: 1, constant: 40),

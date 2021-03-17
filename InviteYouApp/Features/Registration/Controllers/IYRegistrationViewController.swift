@@ -5,17 +5,10 @@
 //  Created by Антон Смирнов on 10.03.21.
 //
 
-
-
-//ХЗ почему так с цветом
-
-
-
-
 import UIKit
 import SnapKit
 
-class IYRegistrationViewController: UIViewController {
+class IYRegistrationViewController: IYViewController {
 
     //MARK: - var
 
@@ -38,17 +31,6 @@ class IYRegistrationViewController: UIViewController {
     private var email: String {
         self.emailField.text ?? ""
     }
-
-    private lazy var backgroundColor: UIView = {
-        let image = UIView()
-
-        image.backgroundColor = backgroundСolor // добавляем картинку по имени
-        image.contentMode = .scaleAspectFill // заполнение картинкой всего вью
-
-        image.translatesAutoresizingMaskIntoConstraints = false // этот флаг обязателен для всех UI элементов
-
-        return image
-    }()
 
     private lazy var registrationLabel: UILabel = {
         let label = UILabel()
@@ -78,9 +60,6 @@ class IYRegistrationViewController: UIViewController {
 
         return label
     }()
-
-
-
 
     private lazy var appleButton: UIButton = {
         let button = UIButton()
@@ -121,9 +100,6 @@ class IYRegistrationViewController: UIViewController {
 
         return button
     }()
-
-
-
 
     private lazy var userNameLable: UILabel = {
         let label = UILabel()
@@ -284,31 +260,49 @@ class IYRegistrationViewController: UIViewController {
         return button
     }()
 
+    private lazy var backToLoginButton: UIButton = {
+        let button = UIButton()
+
+        button.setTitle("Back", for: UIControl.State()) // для всех состояний кнопки -> for: UIControl.State()
+        button.setTitleColor(mainСolor?.withAlphaComponent(1), for: UIControl.State()) // цвет текста
+        button.backgroundColor = whiteСolor // цвет кнопки
+        button.titleLabel?.font = fontFamilyMiddle // шрифт (размер)
+        button.layer.masksToBounds = true // без этого не работает радиус, но удаляются тени...
+        button.layer.cornerRadius = 5
+
+        button.addTarget(self, action: #selector(backToLoginButtonTapped), for: .touchUpInside) // действие кнопки
+
+        button.translatesAutoresizingMaskIntoConstraints = false
+
+        return button
+    }()
+
 
     //MARK: - life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        self.mainView.backgroundColor = backgroundСolor
 
-        self.view.addSubview(backgroundColor)
-        self.view.addSubview(registrationLabel)
-        self.view.addSubview(loginWithLabel)
+        self.mainView.addSubview(self.registrationLabel)
+        self.mainView.addSubview(self.loginWithLabel)
+        self.mainView.addSubview(self.appleButton)
+        self.mainView.addSubview(self.googleButton)
+        self.mainView.addSubview(self.instagramButton)
+        self.mainView.addSubview(self.facebookButton)
 
-        self.view.addSubview(appleButton)
-        self.view.addSubview(googleButton)
-        self.view.addSubview(instagramButton)
-        self.view.addSubview(facebookButton)
+        self.mainView.addSubview(self.userNameLable)
+        self.mainView.addSubview(self.userNameField)
+        self.mainView.addSubview(self.userPasswordLable)
+        self.mainView.addSubview(self.userPasswordField)
+        self.mainView.addSubview(self.confirmPasswordLable)
+        self.mainView.addSubview(self.confirmPasswordField)
+        self.mainView.addSubview(self.emailLable)
+        self.mainView.addSubview(self.emailField)
 
-        self.view.addSubview(userNameLable)
-        self.view.addSubview(userNameField)
-        self.view.addSubview(userPasswordLable)
-        self.view.addSubview(userPasswordField)
-        self.view.addSubview(confirmPasswordLable)
-        self.view.addSubview(confirmPasswordField)
-        self.view.addSubview(emailLable)
-        self.view.addSubview(emailField)
-
-        self.view.addSubview(registerButton)
+        self.mainView.addSubview(self.registerButton)
+        self.mainView.addSubview(self.backToLoginButton)
 
         self.setUpConstraintsFunction()
 
@@ -339,6 +333,11 @@ class IYRegistrationViewController: UIViewController {
         
         // дописать сохранение данных!!!!!!!!
         }
+    }
+
+    @objc private func backToLoginButtonTapped() {
+
+        self.navigationController?.popViewController(animated: true)
     }
 
     // условия регистрации
@@ -385,98 +384,85 @@ class IYRegistrationViewController: UIViewController {
     //MARK: - Constraints
 
     func setUpConstraintsFunction() {
-        self.backgroundColor.snp.updateConstraints { (make) in
-            make.top.left.right.bottom.equalToSuperview()
-        }
-
-        self.registrationLabel.snp.updateConstraints { (make) in
-            make.top.equalTo(self.view.safeAreaLayoutGuide).inset(30)
-            make.centerX.equalTo(self.view.safeAreaLayoutGuide)
+        self.registrationLabel.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(30)
+            make.centerX.equalToSuperview()
             make.height.equalTo(80)
-//            make.width.equalTo(400)
         }
-
-        self.loginWithLabel.snp.updateConstraints { (make) in
+        self.loginWithLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.registrationLabel.snp.bottom).offset(30)
-            make.centerX.equalTo(self.view.safeAreaLayoutGuide)
+            make.centerX.equalToSuperview()
         }
-
-
-
-        self.appleButton.snp.updateConstraints { (make) in
+        self.appleButton.snp.makeConstraints { (make) in
             make.top.equalTo(self.loginWithLabel.snp.bottom).offset(10)
-            make.centerX.equalTo(self.view.safeAreaLayoutGuide).offset(-100)
+            make.centerX.equalToSuperview().offset(-100)
             make.height.width.equalTo(30)
         }
-
-        self.googleButton.snp.updateConstraints { (make) in
+        self.googleButton.snp.makeConstraints { (make) in
             make.top.equalTo(self.loginWithLabel.snp.bottom).offset(10)
-            make.centerX.equalTo(self.view.safeAreaLayoutGuide).offset(-35)
+            make.centerX.equalToSuperview().offset(-35)
             make.height.width.equalTo(30)
         }
-
-        self.instagramButton.snp.updateConstraints { (make) in
+        self.instagramButton.snp.makeConstraints { (make) in
             make.top.equalTo(self.loginWithLabel.snp.bottom).offset(10)
-            make.centerX.equalTo(self.view.safeAreaLayoutGuide).offset(35)
+            make.centerX.equalToSuperview().offset(35)
             make.height.width.equalTo(30)
         }
-
-        self.facebookButton.snp.updateConstraints { (make) in
+        self.facebookButton.snp.makeConstraints { (make) in
             make.top.equalTo(self.loginWithLabel.snp.bottom).offset(10)
-            make.centerX.equalTo(self.view.safeAreaLayoutGuide).offset(100)
+            make.centerX.equalToSuperview().offset(100)
             make.height.width.equalTo(30)
         }
-
-
-
-        self.userNameLable.snp.updateConstraints { (make) in
+        self.userNameLable.snp.makeConstraints { (make) in
             make.top.equalTo(self.appleButton.snp.bottom).offset(30)
-            make.left.equalTo(self.view.safeAreaLayoutGuide).inset(40)
+            make.left.equalToSuperview().inset(40)
         }
-
-        self.userNameField.snp.updateConstraints { (make) in
+        self.userNameField.snp.makeConstraints { (make) in
             make.top.equalTo(self.userNameLable.snp.bottom).offset(10)
-            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(40)
+            make.left.right.equalToSuperview().inset(40)
         }
-
-        self.userPasswordLable.snp.updateConstraints { (make) in
+        self.userPasswordLable.snp.makeConstraints { (make) in
             make.top.equalTo(self.userNameField.snp.bottom).offset(20)
-            make.left.equalTo(self.view.safeAreaLayoutGuide).inset(40)
+            make.left.equalToSuperview().inset(40)
         }
-
-        self.userPasswordField.snp.updateConstraints { (make) in
+        self.userPasswordField.snp.makeConstraints { (make) in
             make.top.equalTo(self.userPasswordLable.snp.bottom).offset(10)
-            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(40)
+            make.left.right.equalToSuperview().inset(40)
         }
-
-        self.confirmPasswordLable.snp.updateConstraints { (make) in
+        self.confirmPasswordLable.snp.makeConstraints { (make) in
             make.top.equalTo(self.userPasswordField.snp.bottom).offset(20)
-            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(40)
+            make.left.right.equalToSuperview().inset(40)
         }
-
-        self.confirmPasswordField.snp.updateConstraints { (make) in
+        self.confirmPasswordField.snp.makeConstraints { (make) in
             make.top.equalTo(self.confirmPasswordLable.snp.bottom).offset(10)
-            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(40)
+            make.left.right.equalToSuperview().inset(40)
         }
-
-        self.emailLable.snp.updateConstraints { (make) in
+        self.emailLable.snp.makeConstraints { (make) in
             make.top.equalTo(self.confirmPasswordField.snp.bottom).offset(20)
-            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(40)
+            make.left.right.equalToSuperview().inset(40)
         }
-
-        self.emailField.snp.updateConstraints { (make) in
+        self.emailField.snp.makeConstraints { (make) in
             make.top.equalTo(self.emailLable.snp.bottom).offset(10)
-            make.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(40)
+            make.left.right.equalToSuperview().inset(40)
+//            make.bottom.greaterThanOrEqualTo(self.registerButton.snp.top).offset(-50)
         }
-
-
-
-
-        self.registerButton.snp.updateConstraints { (make) in
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-50)
+        self.registerButton.snp.makeConstraints { (make) in
+            make.top.equalTo(self.emailField.snp.bottom).offset(50)
+            make.height.equalTo(60)
+            make.left.right.equalToSuperview().inset(40)
+//            make.bottom.greaterThanOrEqualTo(self.registerButton.snp.top).offset(-50)
+        }
+        self.backToLoginButton.snp.makeConstraints { (make) in
+            make.top.greaterThanOrEqualTo(self.registerButton.snp.bottom).offset(50)
             make.left.right.equalToSuperview().inset(40)
             make.height.equalTo(60)
+//            make.bottom.lessThanOrEqualTo((self.view.safeAreaLayoutGuide.snp.bottom).inset(50))
+            make.bottom.equalToSuperview().inset(50)
         }
+//        self.registerButton.setContentHuggingPriority(UILayoutPriority(rawValue: 5), for: .vertical)
+//        self.emailField.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
+//        self.registerButton.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 750), for: .vertical)
+//        self.emailField.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1000), for: .vertical)
     }
 
 }

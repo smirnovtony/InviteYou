@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		EA14798625FBDD2900A03DCD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EA14798525FBDD2900A03DCD /* SnapKit */; };
 		EA62074125F8F09E00AF8E01 /* IYTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA62074025F8F09E00AF8E01 /* IYTabBarViewController.swift */; };
+		EA7B7BB426021ED50006F22E /* IYViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7B7BB326021ED50006F22E /* IYViewController.swift */; };
 		EAD0EBD125FB890800463EF7 /* IYEditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0EBD025FB890800463EF7 /* IYEditProfileViewController.swift */; };
-		EAD0EBD425FB896400463EF7 /* IYEditDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0EBD325FB896400463EF7 /* IYEditDetailsViewController.swift */; };
 		EAF777DF25FCD57100F8F091 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF777DE25FCD57100F8F091 /* Colors.swift */; };
 		EAFFAA6F25F891AE003A610E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA6E25F891AE003A610E /* AppDelegate.swift */; };
 		EAFFAA7125F891AE003A610E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA7025F891AE003A610E /* SceneDelegate.swift */; };
@@ -20,15 +20,15 @@
 		EAFFAA8725F8CB19003A610E /* IYRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA8625F8CB19003A610E /* IYRegistrationViewController.swift */; };
 		EAFFAA8A25F8E53F003A610E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA8925F8E53F003A610E /* Fonts.swift */; };
 		EAFFAA9825F8EDCA003A610E /* IYActiveInvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA9725F8EDCA003A610E /* IYActiveInvitesViewController.swift */; };
-		EAFFAA9B25F8EDF8003A610E /* IYDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA9A25F8EDF8003A610E /* IYDetailsViewController.swift */; };
+		EAFFAA9B25F8EDF8003A610E /* IYCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA9A25F8EDF8003A610E /* IYCreateViewController.swift */; };
 		EAFFAA9F25F8EE14003A610E /* IYCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA9E25F8EE14003A610E /* IYCalendarViewController.swift */; };
 		EAFFAAA225F8EE5C003A610E /* IYProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAAA125F8EE5C003A610E /* IYProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EA62074025F8F09E00AF8E01 /* IYTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYTabBarViewController.swift; sourceTree = "<group>"; };
+		EA7B7BB326021ED50006F22E /* IYViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYViewController.swift; sourceTree = "<group>"; };
 		EAD0EBD025FB890800463EF7 /* IYEditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYEditProfileViewController.swift; sourceTree = "<group>"; };
-		EAD0EBD325FB896400463EF7 /* IYEditDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYEditDetailsViewController.swift; sourceTree = "<group>"; };
 		EAF777DE25FCD57100F8F091 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		EAFFAA6B25F891AE003A610E /* InviteYouApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InviteYouApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFFAA6E25F891AE003A610E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,7 +40,7 @@
 		EAFFAA8625F8CB19003A610E /* IYRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYRegistrationViewController.swift; sourceTree = "<group>"; };
 		EAFFAA8925F8E53F003A610E /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		EAFFAA9725F8EDCA003A610E /* IYActiveInvitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYActiveInvitesViewController.swift; sourceTree = "<group>"; };
-		EAFFAA9A25F8EDF8003A610E /* IYDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYDetailsViewController.swift; sourceTree = "<group>"; };
+		EAFFAA9A25F8EDF8003A610E /* IYCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYCreateViewController.swift; sourceTree = "<group>"; };
 		EAFFAA9E25F8EE14003A610E /* IYCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYCalendarViewController.swift; sourceTree = "<group>"; };
 		EAFFAAA125F8EE5C003A610E /* IYProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				EA62074025F8F09E00AF8E01 /* IYTabBarViewController.swift */,
+				EA7B7BB326021ED50006F22E /* IYViewController.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -162,8 +163,7 @@
 		EAD0EBEB25FBA30100463EF7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EAFFAA9A25F8EDF8003A610E /* IYDetailsViewController.swift */,
-				EAD0EBD325FB896400463EF7 /* IYEditDetailsViewController.swift */,
+				EAFFAA9A25F8EDF8003A610E /* IYCreateViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -301,9 +301,9 @@
 				EAFFAA9825F8EDCA003A610E /* IYActiveInvitesViewController.swift in Sources */,
 				EAF777DF25FCD57100F8F091 /* Colors.swift in Sources */,
 				EAD0EBD125FB890800463EF7 /* IYEditProfileViewController.swift in Sources */,
+				EA7B7BB426021ED50006F22E /* IYViewController.swift in Sources */,
 				EAFFAA7125F891AE003A610E /* SceneDelegate.swift in Sources */,
-				EAFFAA9B25F8EDF8003A610E /* IYDetailsViewController.swift in Sources */,
-				EAD0EBD425FB896400463EF7 /* IYEditDetailsViewController.swift in Sources */,
+				EAFFAA9B25F8EDF8003A610E /* IYCreateViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,7 +453,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = by.tonysmirnov.InviteYouApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -473,7 +473,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = by.tonysmirnov.InviteYouApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
