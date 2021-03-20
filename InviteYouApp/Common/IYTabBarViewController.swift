@@ -19,14 +19,14 @@ class IYTabBarViewController: UITabBarController {
         calendarController.tabBarItem = UITabBarItem(title: "Calendar", image: UIImage(systemName: "calendar"), selectedImage: nil)
 
         let profileController = IYProfileViewController()
-        profileController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "globe"), selectedImage: nil)
+        profileController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), selectedImage: nil)
 
-        let createController = IYCreateViewController()
-        createController.tabBarItem = UITabBarItem(title: "Create", image: UIImage(systemName: "globe"), selectedImage: nil)
+        let subscriptionsController = IYSubscriptionsViewController()
+        subscriptionsController.tabBarItem = UITabBarItem(title: "Subscriptions", image: UIImage(systemName: "bell"), selectedImage: nil)
 
         self.setViewControllers([ // Чтобы был NB. Для того, чтобы пушить контроллер. Без NC можно было бы только презентить.
             UINavigationController(rootViewController: activeInvitesController),
-            UINavigationController(rootViewController: createController),
+            UINavigationController(rootViewController: subscriptionsController),
             UINavigationController(rootViewController: calendarController),
             UINavigationController(rootViewController: profileController)
 
@@ -36,11 +36,10 @@ class IYTabBarViewController: UITabBarController {
     }
 
     func setTabbarAppearance() { // настройка TabBar
-        self.tabBar.barTintColor =  backgroundСolor// цвет фона
-        self.tabBar.tintColor = mainСolor  // цвет подписей и иконок (только системных)
+        self.tabBar.barTintColor =  backgroundСolorWhite// цвет фона
+        self.tabBar.tintColor = mainСolorGreen  // цвет подписей и иконок (только системных)
         self.tabBar.unselectedItemTintColor = .lightGray // цвет для невыбранных подписей и иконок
         self.tabBar.itemPositioning = .fill // расположение иконок. .fill - по ширине всего ТВ
-        //        self.tabBar.isTranslucent = true
 
 //        // настройка тени
 //        self.tabBar.layer.shadowOffset = CGSize(width: 0, height: -5) // с "-" вверх

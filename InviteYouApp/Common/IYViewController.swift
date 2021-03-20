@@ -25,7 +25,7 @@ class IYViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = backgroundСolor
+        self.view.backgroundColor = backgroundСolorWhite
 
         self.view.addSubview(self.mainScrollView)
         self.mainScrollView.addSubview(self.mainView)

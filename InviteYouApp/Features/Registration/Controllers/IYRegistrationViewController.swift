@@ -14,8 +14,6 @@ class IYRegistrationViewController: IYViewController {
 
     private var output: Bool = false
 
-    private var falseColor = UIColor(named: "falseColor")?.withAlphaComponent(0.2)
-
     private var userName: String {
         self.userNameField.text ?? ""
     }
@@ -32,15 +30,26 @@ class IYRegistrationViewController: IYViewController {
         self.emailField.text ?? ""
     }
 
+
+    private lazy var registrationView: UIView = {
+        let view = UIView()
+
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 15
+        view.layer.shadowRadius = 20 // радиус
+        view.layer.shadowOpacity = 0.5
+
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        return view
+    }()
+
     private lazy var registrationLabel: UILabel = {
         let label = UILabel()
 
-        label.text = " Registration "
-        label.backgroundColor = whiteСolor
-        label.textColor = mainСolor// цвет
-        label.layer.masksToBounds = true // без этого не работает радиус, но удаляются тени...
-        label.layer.cornerRadius = 5
-        label.font = fontFamilyBig // шрифт (размер)
+        label.text = "Registration"
+        label.textColor = mainСolorGreen// цвет
+        label.font = fontFamilyBig?.withSize(47) // шрифт (размер)
         label.textAlignment = .center // выравнивание текста
 
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +61,7 @@ class IYRegistrationViewController: IYViewController {
         let label = UILabel()
 
         label.text = "Login With"
-        label.textColor = mainСolor// цвет
+        label.textColor = mainСolorGreen// цвет
         label.font = fontFamilyLittle // шрифт (размер)
         label.textAlignment = .center // выравнивание текста
 
@@ -105,8 +114,7 @@ class IYRegistrationViewController: IYViewController {
         let label = UILabel()
 
         label.text = "User Name"
-        label.textColor = mainСolor// цвет
-
+        label.textColor = mainСolorGreen// цвет
         label.font = fontFamilyLittle // шрифт (размер)
         label.textAlignment = .left // выравнивание текста
 
@@ -118,15 +126,12 @@ class IYRegistrationViewController: IYViewController {
     private lazy var userNameField: UITextField = {
         let textField = UITextField()
 
-        textField.backgroundColor = whiteСolor
-        textField.textColor = mainСolor
+        textField.backgroundColor = .white
+        textField.textColor = mainСolorGreen
         textField.font = fontFamilyLittle // шрифт (размер)
         textField.borderStyle = .roundedRect // закругление поля
-        textField.placeholder = "Enter Your Name"
-
+//        textField.placeholder = "Enter Your Name"
         textField.clearButtonMode = .always //очистка поля
-
-        textField.layer.shadowOffset = CGSize(width: 0, height: -5) // с "-" вверх
         textField.layer.shadowRadius = 20 // радиус тени
         textField.layer.shadowOpacity = 0.5
         textField.layer.shadowColor = UIColor.gray.cgColor // цвет тени
@@ -140,8 +145,7 @@ class IYRegistrationViewController: IYViewController {
         let label = UILabel()
 
         label.text = "User Password"
-        label.textColor = mainСolor// цвет
-
+        label.textColor = mainСolorGreen// цвет
         label.font = fontFamilyLittle // шрифт (размер)
         label.textAlignment = .left // выравнивание текста
 
@@ -153,16 +157,13 @@ class IYRegistrationViewController: IYViewController {
     private lazy var userPasswordField: UITextField = {
         let textField = UITextField()
 
-        textField.backgroundColor = whiteСolor
-        textField.textColor = mainСolor
+        textField.backgroundColor = .white
+        textField.textColor = mainСolorGreen
         textField.font = fontFamilyLittle // шрифт (размер)
         textField.borderStyle = .roundedRect // закругление поля
-        textField.placeholder = "Enter Password"
-
+//        textField.placeholder = "Enter Password"
         textField.clearButtonMode = .always //очистка поля
         textField.isSecureTextEntry = true //сектерность
-
-        textField.layer.shadowOffset = CGSize(width: 0, height: -5) // с "-" вверх
         textField.layer.shadowRadius = 20 // радиус тени
         textField.layer.shadowOpacity = 0.5
         textField.layer.shadowColor = UIColor.gray.cgColor // цвет тени
@@ -176,8 +177,7 @@ class IYRegistrationViewController: IYViewController {
         let label = UILabel()
 
         label.text = "Сonfirm Password"
-        label.textColor = mainСolor// цвет
-
+        label.textColor = mainСolorGreen// цвет
         label.font = fontFamilyLittle // шрифт (размер)
         label.textAlignment = .left // выравнивание текста
 
@@ -189,16 +189,13 @@ class IYRegistrationViewController: IYViewController {
     private lazy var confirmPasswordField: UITextField = {
         let textField = UITextField()
 
-        textField.backgroundColor = whiteСolor
-        textField.textColor = mainСolor
+        textField.backgroundColor = .white
+        textField.textColor = mainСolorGreen
         textField.font = fontFamilyLittle // шрифт (размер)
         textField.borderStyle = .roundedRect // закругление поля
-        textField.placeholder = "Сonfirm Password"
-
+//        textField.placeholder = "Сonfirm Password"
         textField.clearButtonMode = .always //очистка поля
         textField.isSecureTextEntry = true //сектерность
-
-        textField.layer.shadowOffset = CGSize(width: 0, height: -5) // с "-" вверх
         textField.layer.shadowRadius = 20 // радиус тени
         textField.layer.shadowOpacity = 0.5
         textField.layer.shadowColor = UIColor.gray.cgColor // цвет тени
@@ -212,8 +209,7 @@ class IYRegistrationViewController: IYViewController {
         let label = UILabel()
 
         label.text = "Email"
-        label.textColor = mainСolor// цвет
-
+        label.textColor = mainСolorGreen// цве
         label.font = fontFamilyLittle // шрифт (размер)
         label.textAlignment = .left // выравнивание текста
 
@@ -225,15 +221,12 @@ class IYRegistrationViewController: IYViewController {
     private lazy var emailField: UITextField = {
         let textField = UITextField()
 
-        textField.backgroundColor = whiteСolor
-        textField.textColor = mainСolor
+        textField.backgroundColor = .white
+        textField.textColor = mainСolorGreen
         textField.font = fontFamilyLittle // шрифт (размер)
         textField.borderStyle = .roundedRect // закругление поля
-        textField.placeholder = "Enter Your Email adress"
-
+//        textField.placeholder = "Enter Your Email adress"
         textField.clearButtonMode = .always //очистка поля
-
-        textField.layer.shadowOffset = CGSize(width: 0, height: -5) // с "-" вверх
         textField.layer.shadowRadius = 20 // радиус тени
         textField.layer.shadowOpacity = 0.5
         textField.layer.shadowColor = UIColor.gray.cgColor // цвет тени
@@ -247,15 +240,20 @@ class IYRegistrationViewController: IYViewController {
         let button = UIButton()
 
         button.setTitle("Register", for: UIControl.State()) // для всех состояний кнопки -> for: UIControl.State()
-        button.setTitleColor(whiteСolor, for: UIControl.State()) // цвет текста
-        button.backgroundColor = mainСolor?.withAlphaComponent(1) // цвет кнопки
+        button.setTitleColor(.white, for: UIControl.State()) // цвет текста
+        button.backgroundColor = mainСolorGreen?.withAlphaComponent(1) // цвет кнопки
         button.titleLabel?.font = fontFamilyMiddle // шрифт (размер)
-        button.layer.masksToBounds = true // без этого не работает радиус, но удаляются тени...
-        button.layer.cornerRadius = 5
+        button.layer.cornerRadius = 15
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.5
+        button.layer.shadowRadius = 20
+        button.clipsToBounds = false
 
         button.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside) // действие кнопки
 
+
         button.translatesAutoresizingMaskIntoConstraints = false
+
 
         return button
     }()
@@ -264,11 +262,14 @@ class IYRegistrationViewController: IYViewController {
         let button = UIButton()
 
         button.setTitle("Back", for: UIControl.State()) // для всех состояний кнопки -> for: UIControl.State()
-        button.setTitleColor(mainСolor?.withAlphaComponent(1), for: UIControl.State()) // цвет текста
-        button.backgroundColor = whiteСolor // цвет кнопки
+        button.setTitleColor(mainСolorGreen, for: UIControl.State()) // цвет текста
+        button.backgroundColor = .white // цвет кнопки
         button.titleLabel?.font = fontFamilyMiddle // шрифт (размер)
-        button.layer.masksToBounds = true // без этого не работает радиус, но удаляются тени...
-        button.layer.cornerRadius = 5
+        button.layer.cornerRadius = 15
+        button.layer.shadowColor = UIColor.lightGray.cgColor
+        button.layer.shadowOpacity = 0.5
+        button.layer.shadowRadius = 20
+        button.clipsToBounds = false
 
         button.addTarget(self, action: #selector(backToLoginButtonTapped), for: .touchUpInside) // действие кнопки
 
@@ -282,9 +283,8 @@ class IYRegistrationViewController: IYViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.mainView.backgroundColor = backgroundСolor
 
+        self.mainView.addSubview(self.registrationView)
         self.mainView.addSubview(self.registrationLabel)
         self.mainView.addSubview(self.loginWithLabel)
         self.mainView.addSubview(self.appleButton)
@@ -323,74 +323,86 @@ class IYRegistrationViewController: IYViewController {
 
         if registrationConditions() {
 
-            let registerController = IYTabBarViewController()
-
-            if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-                sceneDelegate.changeRootViewController(registerController)
+            let alertController = UIAlertController(title: "Registration completed successfully", message: "", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                let registerController = IYTabBarViewController()
+                if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+                    sceneDelegate.changeRootViewController(registerController)
+                }
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(registerController)
             }
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true)
 
-            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(registerController)
-        
-        // дописать сохранение данных!!!!!!!!
+            // дописать сохранение данных!!!!!!!!
+        } else {
+            let alertController = UIAlertController(title: "Error", message: "Сheck the entered information", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .destructive) { _ in
+                        print("Error action tapped")
+                    }
+                self.present(alertController, animated: true)
+                alertController.addAction(okAction)
         }
     }
 
     @objc private func backToLoginButtonTapped() {
-
         self.navigationController?.popViewController(animated: true)
     }
+
 
     // условия регистрации
     func registrationConditions() -> Bool {
         var counter = 0
         if !self.userName.isEmpty {
             output = true
+            self.userNameField.backgroundColor = .white
         } else {
             counter += 1
-            self.userNameField.backgroundColor = falseColor
+            self.userNameField.backgroundColor = notСolorPink
         }
-
         if !self.userPassword.isEmpty {
 //               , self.userPassword.count > 10
             output = true
+            self.userPasswordField.backgroundColor = .white
         } else {
             counter += 1
-            self.userPasswordField.backgroundColor = falseColor
-
+            self.userPasswordField.backgroundColor = notСolorPink
         }
-
         if !self.confirmPassword.isEmpty, self.userPassword == self.confirmPassword {
             //               , self.userPassword.count > 10
             output = true
+            self.confirmPasswordField.backgroundColor = .white
         } else {
             counter += 1
-            self.confirmPasswordField.backgroundColor = falseColor
+            self.confirmPasswordField.backgroundColor = notСolorPink
         }
-
         if !self.email.isEmpty {
             output = true
+            self.emailField.backgroundColor = .white
         } else {
             counter += 1
-            self.emailField.backgroundColor = falseColor
+            self.emailField.backgroundColor = notСolorPink
         }
-
         if counter > 0 {
             output = false
         }
-
         return output
     }
 
     //MARK: - Constraints
 
     func setUpConstraintsFunction() {
-        self.registrationLabel.snp.makeConstraints { (make) in
+        self.registrationView.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(30)
-            make.centerX.equalToSuperview()
+            make.left.right.equalToSuperview().inset(30)
             make.height.equalTo(80)
         }
+        self.registrationLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.registrationView.snp.centerX)
+            make.centerY.equalTo(self.registrationView.snp.centerY)
+        }
         self.loginWithLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.registrationLabel.snp.bottom).offset(30)
+            make.top.equalTo(self.registrationLabel.snp.bottom).offset(40)
             make.centerX.equalToSuperview()
         }
         self.appleButton.snp.makeConstraints { (make) in
@@ -419,42 +431,42 @@ class IYRegistrationViewController: IYViewController {
         }
         self.userNameField.snp.makeConstraints { (make) in
             make.top.equalTo(self.userNameLable.snp.bottom).offset(10)
-            make.left.right.equalToSuperview().inset(40)
+            make.left.right.equalToSuperview().inset(30)
         }
         self.userPasswordLable.snp.makeConstraints { (make) in
             make.top.equalTo(self.userNameField.snp.bottom).offset(20)
-            make.left.equalToSuperview().inset(40)
+            make.left.equalToSuperview().inset(30)
         }
         self.userPasswordField.snp.makeConstraints { (make) in
             make.top.equalTo(self.userPasswordLable.snp.bottom).offset(10)
-            make.left.right.equalToSuperview().inset(40)
+            make.left.right.equalToSuperview().inset(30)
         }
         self.confirmPasswordLable.snp.makeConstraints { (make) in
             make.top.equalTo(self.userPasswordField.snp.bottom).offset(20)
-            make.left.right.equalToSuperview().inset(40)
+            make.left.right.equalToSuperview().inset(30)
         }
         self.confirmPasswordField.snp.makeConstraints { (make) in
             make.top.equalTo(self.confirmPasswordLable.snp.bottom).offset(10)
-            make.left.right.equalToSuperview().inset(40)
+            make.left.right.equalToSuperview().inset(30)
         }
         self.emailLable.snp.makeConstraints { (make) in
             make.top.equalTo(self.confirmPasswordField.snp.bottom).offset(20)
-            make.left.right.equalToSuperview().inset(40)
+            make.left.right.equalToSuperview().inset(30)
         }
         self.emailField.snp.makeConstraints { (make) in
             make.top.equalTo(self.emailLable.snp.bottom).offset(10)
-            make.left.right.equalToSuperview().inset(40)
+            make.left.right.equalToSuperview().inset(30)
 //            make.bottom.greaterThanOrEqualTo(self.registerButton.snp.top).offset(-50)
         }
         self.registerButton.snp.makeConstraints { (make) in
             make.top.equalTo(self.emailField.snp.bottom).offset(50)
             make.height.equalTo(60)
-            make.left.right.equalToSuperview().inset(40)
+            make.left.right.equalToSuperview().inset(30)
 //            make.bottom.greaterThanOrEqualTo(self.registerButton.snp.top).offset(-50)
         }
         self.backToLoginButton.snp.makeConstraints { (make) in
             make.top.greaterThanOrEqualTo(self.registerButton.snp.bottom).offset(50)
-            make.left.right.equalToSuperview().inset(40)
+            make.left.right.equalToSuperview().inset(30)
             make.height.equalTo(60)
 //            make.bottom.lessThanOrEqualTo((self.view.safeAreaLayoutGuide.snp.bottom).inset(50))
             make.bottom.equalToSuperview().inset(50)

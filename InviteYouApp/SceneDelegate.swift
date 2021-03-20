@@ -33,11 +33,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithDefaultBackground() // стиль
         navBarAppearance.backgroundColor = UIColor(named: "systemColor") // цвет фона
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white] // цвет текста
-        
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white,
+                                                .font: UIFont(name: "Copperplate", size: 30) ?? UIFont.systemFont(ofSize: 30)]
 
         let button = UIBarButtonItemAppearance(style: .plain)
-        button.normal.titleTextAttributes = [.foregroundColor: UIColor.gray]
+        button.normal.titleTextAttributes = [.foregroundColor: UIColor.white,
+                                             .font: UIFont(name: "Copperplate", size: 20) ?? UIFont.systemFont(ofSize: 20)]
         navBarAppearance.buttonAppearance = button // применение стиля к кнопке, без этого код выше не сработает
 
         UINavigationBar.appearance().standardAppearance = navBarAppearance //  применение для версий iOS ниже 13

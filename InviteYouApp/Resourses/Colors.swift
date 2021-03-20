@@ -7,7 +7,8 @@
 
 import UIKit
 
-public var mainСolor = UIColor(named: "systemColor")
-public var backgroundСolor = UIColor(named: "backgroundColor")
-public var whiteСolor = UIColor.white
+public var mainСolorGreen = UIColor(named: "systemColor")
+public var backgroundСolorWhite = UIColor(named: "backgroundColor")
+public var notСolorPink = UIColor(named: "falseColor")?.withAlphaComponent(0.5)
+
 

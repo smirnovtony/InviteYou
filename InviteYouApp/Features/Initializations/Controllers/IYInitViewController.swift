@@ -12,7 +12,7 @@ class IYInitViewController: UIViewController {
 
     //MARK: - var Constrait
 
-    private lazy var topAppLabelConstrait: NSLayoutConstraint = self.appLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 250) // задали Constrait в виде локальной переменной
+    private lazy var topAppLabelConstrait: NSLayoutConstraint = self.appView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 250) // задали Constrait в виде локальной переменной
 
     private lazy var topUserNameLable: NSLayoutConstraint = self.userNameLable.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: -10)
 
@@ -20,22 +20,26 @@ class IYInitViewController: UIViewController {
 
     //MARK: - var
 
+    private lazy var appView: UIView = {
+        let view = UIView()
+
+        view.backgroundColor = mainСolorGreen
+        view.layer.cornerRadius = 15
+        view.layer.shadowRadius = 20 // радиус
+        view.layer.shadowOpacity = 0.5
+
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        return view
+    }()
+
     private lazy var appLabel: UILabel = {
         let label = UILabel()
 
         label.text = "Invite.You"
-        label.textColor = whiteСolor// цвет
-        label.backgroundColor = mainСolor
+        label.textColor = .white
         label.font = fontFamilyBig // шрифт (размер)
         label.textAlignment = .center // выравнивание текста
-
-        label.layer.masksToBounds = true // без этого не работает радиус, но удаляются тени...
-        label.layer.cornerRadius = 5
-
-        label.layer.shadowOffset = CGSize(width: 0, height: 5) // с "-" вверх
-        label.layer.shadowRadius = 5 // радиус
-        label.layer.shadowOpacity = 0.5
-        label.layer.shadowColor = UIColor.gray.cgColor // цвет
 
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -46,8 +50,7 @@ class IYInitViewController: UIViewController {
         let label = UILabel()
 
         label.text = "User Name"
-        label.textColor = mainСolor// цвет
-      
+        label.textColor = mainСolorGreen// цвет
         label.font = fontFamilyLittle // шрифт (размер)
         label.textAlignment = .left // выравнивание текста
 
@@ -59,15 +62,12 @@ class IYInitViewController: UIViewController {
     private lazy var userNameField: UITextField = {
         let textField = UITextField()
 
-        textField.backgroundColor = whiteСolor
-        textField.textColor = mainСolor
+        textField.backgroundColor = .white
+        textField.textColor = mainСolorGreen
         textField.font = fontFamilyLittle // шрифт (размер)
         textField.borderStyle = .roundedRect // закругление поля
-        textField.placeholder = "Enter Your Name"
-
+//        textField.placeholder = "Enter Your Name"
         textField.clearButtonMode = .always //очистка поля
-
-        textField.layer.shadowOffset = CGSize(width: 0, height: -5) // с "-" вверх
         textField.layer.shadowRadius = 20 // радиус тени
         textField.layer.shadowOpacity = 0.5
         textField.layer.shadowColor = UIColor.gray.cgColor // цвет тени
@@ -81,7 +81,7 @@ class IYInitViewController: UIViewController {
         let label = UILabel()
 
         label.text = "User Password"
-        label.textColor = mainСolor// цвет
+        label.textColor = mainСolorGreen// цвет
 
         label.font = fontFamilyLittle // шрифт (размер)
         label.textAlignment = .left // выравнивание текста
@@ -94,16 +94,13 @@ class IYInitViewController: UIViewController {
     private lazy var userPasswordField: UITextField = {
         let textField = UITextField()
 
-        textField.backgroundColor = whiteСolor
-        textField.textColor = mainСolor
+        textField.backgroundColor = .white
+        textField.textColor = mainСolorGreen
         textField.font = fontFamilyLittle // шрифт (размер)
         textField.borderStyle = .roundedRect // закругление поля
-        textField.placeholder = "Enter Password"
-
+//        textField.placeholder = "Enter Password"
         textField.clearButtonMode = .always //очистка поля
         textField.isSecureTextEntry = true //сектерность
-
-        textField.layer.shadowOffset = CGSize(width: 0, height: -5) // с "-" вверх
         textField.layer.shadowRadius = 20 // радиус тени
         textField.layer.shadowOpacity = 0.5
         textField.layer.shadowColor = UIColor.gray.cgColor // цвет тени
@@ -117,7 +114,7 @@ class IYInitViewController: UIViewController {
         let button = UIButton()
 
         button.setTitle("Forgot Password?", for: UIControl.State()) // для всех состояний кнопки -> for: UIControl.State()
-        button.setTitleColor(mainСolor, for: UIControl.State()) // цвет текста
+        button.setTitleColor(mainСolorGreen, for: UIControl.State()) // цвет текста
         button.titleLabel?.font = fontFamilyLittle // шрифт (размер)
 
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -130,10 +127,13 @@ class IYInitViewController: UIViewController {
 
         button.setTitle("Log In", for: UIControl.State()) // для всех состояний кнопки -> for: UIControl.State()
         button.setTitleColor(.white, for: UIControl.State()) // цвет текста
-        button.backgroundColor = mainСolor?.withAlphaComponent(1) // цвет кнопки
+        button.backgroundColor = mainСolorGreen?.withAlphaComponent(1) // цвет кнопки
         button.titleLabel?.font = fontFamilyMiddle // шрифт (размер)
-        button.layer.masksToBounds = true // без этого не работает радиус, но удаляются тени...
-        button.layer.cornerRadius = 5
+        button.layer.cornerRadius = 15
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.5
+        button.layer.shadowRadius = 20
+        button.clipsToBounds = false
 
         button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside) // действие кнопки
 
@@ -146,10 +146,9 @@ class IYInitViewController: UIViewController {
         let label = UILabel()
 
         label.text = "Don't Have An Account?"
-        label.textColor = mainСolor// цвет
-
-        label.font = fontFamilyLittle // шрифт (размер)
-        label.textAlignment = .center // выравнивание текста
+        label.textColor = mainСolorGreen
+        label.font = fontFamilyLittle
+        label.textAlignment = .center
 
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -159,12 +158,15 @@ class IYInitViewController: UIViewController {
     private lazy var registerButton: UIButton = {
         let button = UIButton()
 
-        button.setTitle("Register", for: UIControl.State()) // для всех состояний кнопки -> for: UIControl.State()
-        button.setTitleColor(mainСolor, for: UIControl.State()) // цвет текста
-        button.backgroundColor = UIColor.white.withAlphaComponent(1) // цвет кнопки
-        button.titleLabel?.font = fontFamilyMiddle // шрифт (размер)
-        button.layer.masksToBounds = true // без этого не работает радиус, но удаляются тени...
-        button.layer.cornerRadius = 5
+        button.setTitle("Register", for: UIControl.State())
+        button.setTitleColor(mainСolorGreen, for: UIControl.State())
+        button.backgroundColor = UIColor.white.withAlphaComponent(1)
+        button.titleLabel?.font = fontFamilyMiddle
+        button.layer.cornerRadius = 15
+        button.layer.shadowColor = UIColor.lightGray.cgColor
+        button.layer.shadowOpacity = 5
+        button.layer.shadowRadius = 20
+        button.clipsToBounds = false
 
         button.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside) // действие кнопки
 
@@ -178,8 +180,9 @@ class IYInitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = backgroundСolor
+        self.view.backgroundColor = backgroundСolorWhite
 
+        self.view.addSubview(appView)
         self.view.addSubview(appLabel)
         self.view.addSubview(userNameLable)
         self.view.addSubview(userNameField)
@@ -216,7 +219,6 @@ class IYInitViewController: UIViewController {
     @objc private func logInButtonTapped() {
 
         let tabBarController = IYTabBarViewController()
-
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
 
         // дописать код сохранения данных
@@ -224,11 +226,7 @@ class IYInitViewController: UIViewController {
     }
 
     @objc private func registerButtonTapped() {
-
-        let registerController = IYRegistrationViewController()
-
-        self.navigationController?.pushViewController(registerController, animated: true)
-
+        self.navigationController?.pushViewController(IYRegistrationViewController(), animated: true)
     }
 
     // MARK: - textField
@@ -240,22 +238,31 @@ class IYInitViewController: UIViewController {
     }
 
     //MARK: - Constraints
-
+    
     func setUpConstraintsFunction() {
         self.view.addConstraints([
             topAppLabelConstrait,
 //            NSLayoutConstraint(item: self.appLabel, attribute: .top, relatedBy: .equal,
 //                               toItem: self.view.safeAreaLayoutGuide, attribute: .top,
 //                               multiplier: 1, constant: 30),
-            NSLayoutConstraint(item: self.appLabel, attribute: .left, relatedBy: .equal,
+            NSLayoutConstraint(item: self.appView, attribute: .left, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .left,
-                               multiplier: 1, constant: 40),
-            NSLayoutConstraint(item: self.appLabel, attribute: .right, relatedBy: .equal,
+                               multiplier: 1, constant: 30),
+            NSLayoutConstraint(item: self.appView, attribute: .right, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .right,
-                               multiplier: 1, constant: -40),
-            NSLayoutConstraint(item: self.appLabel, attribute: .height, relatedBy: .equal,
+                               multiplier: 1, constant: -30),
+            NSLayoutConstraint(item: self.appView, attribute: .height, relatedBy: .equal,
                                toItem: nil, attribute: .notAnAttribute,
                                multiplier: 1, constant: 80), //высота
+        ])
+        
+        self.view.addConstraints([
+            NSLayoutConstraint(item: self.appLabel, attribute: .centerX, relatedBy: .equal,
+                               toItem: self.appView, attribute: .centerX,
+                               multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: self.appLabel, attribute: .centerY, relatedBy: .equal,
+                               toItem: self.appView, attribute: .centerY,
+                               multiplier: 1, constant: 0)
         ])
 
         self.view.addConstraints([
@@ -265,10 +272,10 @@ class IYInitViewController: UIViewController {
             topUserNameLable,
             NSLayoutConstraint(item: self.userNameLable, attribute: .left, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .left,
-                               multiplier: 1, constant: 40),
+                               multiplier: 1, constant: 30),
             NSLayoutConstraint(item: self.userNameLable, attribute: .right, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .right,
-                               multiplier: 1, constant: -40)
+                               multiplier: 1, constant: -30)
         ])
 
         self.view.addConstraints([
@@ -277,10 +284,10 @@ class IYInitViewController: UIViewController {
                                multiplier: 1, constant: 20),
             NSLayoutConstraint(item: self.userNameField, attribute: .left, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .left,
-                               multiplier: 1, constant: 40),
+                               multiplier: 1, constant: 30),
             NSLayoutConstraint(item: self.userNameField, attribute: .right, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .right,
-                               multiplier: 1, constant: -40)
+                               multiplier: 1, constant: -30)
         ])
 
         self.view.addConstraints([
@@ -289,10 +296,10 @@ class IYInitViewController: UIViewController {
                                multiplier: 1, constant: 30),
             NSLayoutConstraint(item: self.userPasswordLable, attribute: .left, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .left,
-                               multiplier: 1, constant: 40),
+                               multiplier: 1, constant: 30),
             NSLayoutConstraint(item: self.userPasswordLable, attribute: .right, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .right,
-                               multiplier: 1, constant: -40)
+                               multiplier: 1, constant: -30)
         ])
 
         self.view.addConstraints([
@@ -301,10 +308,10 @@ class IYInitViewController: UIViewController {
                                multiplier: 1, constant: 20),
             NSLayoutConstraint(item: self.userPasswordField, attribute: .left, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .left,
-                               multiplier: 1, constant: 40),
+                               multiplier: 1, constant: 30),
             NSLayoutConstraint(item: self.userPasswordField, attribute: .right, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .right,
-                               multiplier: 1, constant: -40)
+                               multiplier: 1, constant: -30)
 
         ])
 
@@ -314,10 +321,10 @@ class IYInitViewController: UIViewController {
                                multiplier: 1, constant: 30),
             NSLayoutConstraint(item: self.forgotPasswordButton, attribute: .left, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .left,
-                               multiplier: 1, constant: 40),
+                               multiplier: 1, constant: 30),
             NSLayoutConstraint(item: self.forgotPasswordButton, attribute: .right, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .right,
-                               multiplier: 1, constant: -40)
+                               multiplier: 1, constant: -30)
 //            NSLayoutConstraint(item: self.forgotPasswordButton, attribute: .right, relatedBy: .greaterThanOrEqual,
 //                               toItem: self.userPasswordField, attribute: .right,
 //                               multiplier: 1, constant: -40)
@@ -329,10 +336,10 @@ class IYInitViewController: UIViewController {
                                multiplier: 1, constant: 20),
             NSLayoutConstraint(item: self.logInButton, attribute: .left, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .left,
-                               multiplier: 1, constant: 40),
+                               multiplier: 1, constant: 30),
             NSLayoutConstraint(item: self.logInButton, attribute: .right, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .right,
-                               multiplier: 1, constant: -40),
+                               multiplier: 1, constant: -30),
             NSLayoutConstraint(item: self.logInButton, attribute: .height, relatedBy: .equal,
                                toItem: nil, attribute: .notAnAttribute,
                                multiplier: 1, constant: 60), //высота
@@ -344,10 +351,10 @@ class IYInitViewController: UIViewController {
                                multiplier: 1, constant: -20),
             NSLayoutConstraint(item: self.dontHaveAnAccountLable, attribute: .left, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .left,
-                               multiplier: 1, constant: 40),
+                               multiplier: 1, constant: 30),
             NSLayoutConstraint(item: self.dontHaveAnAccountLable, attribute: .right, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .right,
-                               multiplier: 1, constant: -40)
+                               multiplier: 1, constant: -30)
         ])
 
         self.view.addConstraints([
@@ -357,10 +364,10 @@ class IYInitViewController: UIViewController {
 //                               multiplier: 1, constant: -30),
             NSLayoutConstraint(item: self.registerButton, attribute: .left, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .left,
-                               multiplier: 1, constant: 40),
+                               multiplier: 1, constant: 30),
             NSLayoutConstraint(item: self.registerButton, attribute: .right, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .right,
-                               multiplier: 1, constant: -40),
+                               multiplier: 1, constant: -30),
             NSLayoutConstraint(item: self.registerButton, attribute: .height, relatedBy: .equal,
                                toItem: nil, attribute: .notAnAttribute,
                                multiplier: 1, constant: 60) //высота
