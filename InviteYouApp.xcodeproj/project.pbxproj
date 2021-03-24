@@ -8,11 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		EA0315FE260383E6003F1CDD /* IYCreateInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0315FD260383E6003F1CDD /* IYCreateInviteViewController.swift */; };
+		EA04196826063A900060EFAD /* IYNameOfIvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA04196726063A900060EFAD /* IYNameOfIvent.swift */; };
 		EA133FC52604719000241E8B /* IYSubscriptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA133FC42604719000241E8B /* IYSubscriptionsViewController.swift */; };
 		EA14798625FBDD2900A03DCD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EA14798525FBDD2900A03DCD /* SnapKit */; };
+		EA2EA3F326066BC8003BAD23 /* IYInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA3F226066BC8003BAD23 /* IYInfoView.swift */; };
 		EA62074125F8F09E00AF8E01 /* IYTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA62074025F8F09E00AF8E01 /* IYTabBarViewController.swift */; };
 		EA7B7BB426021ED50006F22E /* IYViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7B7BB326021ED50006F22E /* IYViewController.swift */; };
 		EA7B7BD2260320830006F22E /* IYInvitationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7B7BD1260320830006F22E /* IYInvitationCell.swift */; };
+		EAB533AE260B76EE00C0C8C0 /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB533AD260B76EE00C0C8C0 /* UIViewController+Ex.swift */; };
+		EAB533B9260BA9FF00C0C8C0 /* Date+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB533B8260BA9FF00C0C8C0 /* Date+Ex.swift */; };
 		EAD0EBD125FB890800463EF7 /* IYEditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0EBD025FB890800463EF7 /* IYEditProfileViewController.swift */; };
 		EAF777DF25FCD57100F8F091 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF777DE25FCD57100F8F091 /* Colors.swift */; };
 		EAFFAA6F25F891AE003A610E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA6E25F891AE003A610E /* AppDelegate.swift */; };
@@ -30,10 +34,14 @@
 
 /* Begin PBXFileReference section */
 		EA0315FD260383E6003F1CDD /* IYCreateInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYCreateInviteViewController.swift; sourceTree = "<group>"; };
+		EA04196726063A900060EFAD /* IYNameOfIvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYNameOfIvent.swift; sourceTree = "<group>"; };
 		EA133FC42604719000241E8B /* IYSubscriptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYSubscriptionsViewController.swift; sourceTree = "<group>"; };
+		EA2EA3F226066BC8003BAD23 /* IYInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYInfoView.swift; sourceTree = "<group>"; };
 		EA62074025F8F09E00AF8E01 /* IYTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYTabBarViewController.swift; sourceTree = "<group>"; };
 		EA7B7BB326021ED50006F22E /* IYViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYViewController.swift; sourceTree = "<group>"; };
 		EA7B7BD1260320830006F22E /* IYInvitationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYInvitationCell.swift; sourceTree = "<group>"; };
+		EAB533AD260B76EE00C0C8C0 /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
+		EAB533B8260BA9FF00C0C8C0 /* Date+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ex.swift"; sourceTree = "<group>"; };
 		EAD0EBD025FB890800463EF7 /* IYEditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYEditProfileViewController.swift; sourceTree = "<group>"; };
 		EAF777DE25FCD57100F8F091 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		EAFFAA6B25F891AE003A610E /* InviteYouApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InviteYouApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +71,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA04196A26063A9C0060EFAD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EA04196726063A900060EFAD /* IYNameOfIvent.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		EA133FC72604719500241E8B /* Subscriptions */ = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +98,8 @@
 		EA7B7BCF26031FC60006F22E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EA2EA3F226066BC8003BAD23 /* IYInfoView.swift */,
+				EA7B7BD02603205F0006F22E /* Cells */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -92,6 +110,15 @@
 				EA7B7BD1260320830006F22E /* IYInvitationCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		EAB533B4260B793000C0C8C0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EAB533AD260B76EE00C0C8C0 /* UIViewController+Ex.swift */,
+				EAB533B8260BA9FF00C0C8C0 /* Date+Ex.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		EAD0EBD625FBA0C100463EF7 /* Features */ = {
@@ -126,7 +153,7 @@
 		EAD0EBD925FBA0FD00463EF7 /* ActiveInvites */ = {
 			isa = PBXGroup;
 			children = (
-				EA7B7BD02603205F0006F22E /* Cells */,
+				EA04196A26063A9C0060EFAD /* Models */,
 				EA7B7BCF26031FC60006F22E /* Views */,
 				EAD0EBEE25FBA31D00463EF7 /* Controllers */,
 			);
@@ -224,6 +251,7 @@
 				EAFFAA6E25F891AE003A610E /* AppDelegate.swift */,
 				EAD0EBD625FBA0C100463EF7 /* Features */,
 				EAD0EBDD25FBA17400463EF7 /* Common */,
+				EAB533B4260B793000C0C8C0 /* Extensions */,
 				EAFFAA9125F8E977003A610E /* Resourses */,
 				EAFFAA7C25F891B0003A610E /* Info.plist */,
 			);
@@ -319,16 +347,20 @@
 				EA7B7BD2260320830006F22E /* IYInvitationCell.swift in Sources */,
 				EAFFAA7325F891AE003A610E /* IYInitViewController.swift in Sources */,
 				EAFFAA8A25F8E53F003A610E /* Fonts.swift in Sources */,
+				EA04196826063A900060EFAD /* IYNameOfIvent.swift in Sources */,
 				EAFFAA8725F8CB19003A610E /* IYRegistrationViewController.swift in Sources */,
+				EAB533AE260B76EE00C0C8C0 /* UIViewController+Ex.swift in Sources */,
 				EAFFAA9F25F8EE14003A610E /* IYCalendarViewController.swift in Sources */,
 				EAFFAAA225F8EE5C003A610E /* IYProfileViewController.swift in Sources */,
 				EA0315FE260383E6003F1CDD /* IYCreateInviteViewController.swift in Sources */,
+				EAB533B9260BA9FF00C0C8C0 /* Date+Ex.swift in Sources */,
 				EAFFAA6F25F891AE003A610E /* AppDelegate.swift in Sources */,
 				EA62074125F8F09E00AF8E01 /* IYTabBarViewController.swift in Sources */,
 				EAFFAA9825F8EDCA003A610E /* IYActiveInvitesViewController.swift in Sources */,
 				EAF777DF25FCD57100F8F091 /* Colors.swift in Sources */,
 				EAD0EBD125FB890800463EF7 /* IYEditProfileViewController.swift in Sources */,
 				EA7B7BB426021ED50006F22E /* IYViewController.swift in Sources */,
+				EA2EA3F326066BC8003BAD23 /* IYInfoView.swift in Sources */,
 				EAFFAA7125F891AE003A610E /* SceneDelegate.swift in Sources */,
 				EAFFAA9B25F8EDF8003A610E /* IYDetailsViewController.swift in Sources */,
 				EA133FC52604719000241E8B /* IYSubscriptionsViewController.swift in Sources */,
@@ -473,7 +505,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KK3NRV9KDJ;
 				INFOPLIST_FILE = InviteYouApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -493,7 +525,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KK3NRV9KDJ;
 				INFOPLIST_FILE = InviteYouApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

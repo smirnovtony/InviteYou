@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class IYRegistrationViewController: IYViewController {
+class IYRegistrationViewController: IYViewController{
 
     //MARK: - var
 
@@ -30,7 +30,6 @@ class IYRegistrationViewController: IYViewController {
         self.emailField.text ?? ""
     }
 
-
     private lazy var registrationView: UIView = {
         let view = UIView()
 
@@ -38,6 +37,7 @@ class IYRegistrationViewController: IYViewController {
         view.layer.cornerRadius = 15
         view.layer.shadowRadius = 20 // радиус
         view.layer.shadowOpacity = 0.5
+        view.layer.shadowColor = UIColor.gray.cgColor
 
         view.translatesAutoresizingMaskIntoConstraints = false
 
@@ -48,9 +48,9 @@ class IYRegistrationViewController: IYViewController {
         let label = UILabel()
 
         label.text = "Registration"
-        label.textColor = mainСolorGreen// цвет
-        label.font = fontFamilyBig?.withSize(47) // шрифт (размер)
-        label.textAlignment = .center // выравнивание текста
+        label.textColor = mainСolorGreen
+        label.font = fontFamilyBig?.withSize(47)
+        label.textAlignment = .center
 
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -61,9 +61,9 @@ class IYRegistrationViewController: IYViewController {
         let label = UILabel()
 
         label.text = "Login With"
-        label.textColor = mainСolorGreen// цвет
-        label.font = fontFamilyLittle // шрифт (размер)
-        label.textAlignment = .center // выравнивание текста
+        label.textColor = mainСolorGreen
+        label.font = fontFamilyLittle
+        label.textAlignment = .center
 
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -73,8 +73,7 @@ class IYRegistrationViewController: IYViewController {
     private lazy var appleButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named:"apple"), for: .normal)
-        //        сделать картинку Apple button.
-        //        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside) // действие кнопки
+        //        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -82,9 +81,8 @@ class IYRegistrationViewController: IYViewController {
 
     private lazy var googleButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named:"google"), for: .normal)  //!!!!!!!!изменить имя значка
-        //        сделать картинку google button.
-        //        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside) // действие кнопки
+        button.setImage(UIImage(named:"google"), for: .normal)
+        //        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -93,8 +91,7 @@ class IYRegistrationViewController: IYViewController {
     private lazy var instagramButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named:"instagram"), for: .normal)
-        //        сделать картинку instagram button.
-        //        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside) // действие кнопки
+        //        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -102,9 +99,8 @@ class IYRegistrationViewController: IYViewController {
 
     private lazy var facebookButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named:"facebook"), for: .normal)  //!!!!!!!!изменить имя значка
-        //        сделать картинку facebook button.
-        //        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside) // действие кнопки
+        button.setImage(UIImage(named:"facebook"), for: .normal)
+        //        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -114,9 +110,9 @@ class IYRegistrationViewController: IYViewController {
         let label = UILabel()
 
         label.text = "User Name"
-        label.textColor = mainСolorGreen// цвет
-        label.font = fontFamilyLittle // шрифт (размер)
-        label.textAlignment = .left // выравнивание текста
+        label.textColor = mainСolorGreen
+        label.font = fontFamilyLittle
+        label.textAlignment = .left
 
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -128,13 +124,13 @@ class IYRegistrationViewController: IYViewController {
 
         textField.backgroundColor = .white
         textField.textColor = mainСolorGreen
-        textField.font = fontFamilyLittle // шрифт (размер)
-        textField.borderStyle = .roundedRect // закругление поля
+        textField.font = fontFamilyLittle
+        textField.borderStyle = .roundedRect
 //        textField.placeholder = "Enter Your Name"
-        textField.clearButtonMode = .always //очистка поля
-        textField.layer.shadowRadius = 20 // радиус тени
+        textField.clearButtonMode = .always
+        textField.layer.shadowRadius = 20
         textField.layer.shadowOpacity = 0.5
-        textField.layer.shadowColor = UIColor.gray.cgColor // цвет тени
+        textField.layer.shadowColor = UIColor.gray.cgColor
 
         textField.translatesAutoresizingMaskIntoConstraints = false
 
@@ -145,9 +141,9 @@ class IYRegistrationViewController: IYViewController {
         let label = UILabel()
 
         label.text = "User Password"
-        label.textColor = mainСolorGreen// цвет
-        label.font = fontFamilyLittle // шрифт (размер)
-        label.textAlignment = .left // выравнивание текста
+        label.textColor = mainСolorGreen
+        label.font = fontFamilyLittle
+        label.textAlignment = .left
 
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -159,27 +155,53 @@ class IYRegistrationViewController: IYViewController {
 
         textField.backgroundColor = .white
         textField.textColor = mainСolorGreen
-        textField.font = fontFamilyLittle // шрифт (размер)
-        textField.borderStyle = .roundedRect // закругление поля
+        textField.font = fontFamilyLittle
+        textField.borderStyle = .roundedRect
 //        textField.placeholder = "Enter Password"
-        textField.clearButtonMode = .always //очистка поля
-        textField.isSecureTextEntry = true //сектерность
-        textField.layer.shadowRadius = 20 // радиус тени
+        textField.clearButtonMode = .always
+        textField.isSecureTextEntry = true
+        textField.layer.shadowRadius = 20
         textField.layer.shadowOpacity = 0.5
-        textField.layer.shadowColor = UIColor.gray.cgColor // цвет тени
+        textField.layer.shadowColor = UIColor.gray.cgColor
 
         textField.translatesAutoresizingMaskIntoConstraints = false
 
         return textField
     }()
 
+    private lazy var conditionsUserNamePasswordLable: UILabel = {
+        let label = UILabel()
+
+        label.text = "Passwords must not contain your User Name"
+        label.textColor = notСolorPink?.withAlphaComponent(5)
+        label.font = fontFamilyLittle?.withSize(15)
+        label.textAlignment = .right
+
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        return label
+    }()
+
+    private lazy var conditionsPasswordLable: UILabel = {
+        let label = UILabel()
+
+        label.text = "Password must be more than 8 characters"
+        label.textColor = notСolorPink?.withAlphaComponent(5)
+        label.font = fontFamilyLittle?.withSize(15)
+        label.textAlignment = .right
+
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        return label
+    }()
+
     private lazy var confirmPasswordLable: UILabel = {
         let label = UILabel()
 
         label.text = "Сonfirm Password"
-        label.textColor = mainСolorGreen// цвет
-        label.font = fontFamilyLittle // шрифт (размер)
-        label.textAlignment = .left // выравнивание текста
+        label.textColor = mainСolorGreen
+        label.font = fontFamilyLittle
+        label.textAlignment = .left
 
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -191,27 +213,40 @@ class IYRegistrationViewController: IYViewController {
 
         textField.backgroundColor = .white
         textField.textColor = mainСolorGreen
-        textField.font = fontFamilyLittle // шрифт (размер)
-        textField.borderStyle = .roundedRect // закругление поля
+        textField.font = fontFamilyLittle
+        textField.borderStyle = .roundedRect
 //        textField.placeholder = "Сonfirm Password"
-        textField.clearButtonMode = .always //очистка поля
-        textField.isSecureTextEntry = true //сектерность
-        textField.layer.shadowRadius = 20 // радиус тени
+        textField.clearButtonMode = .always
+        textField.isSecureTextEntry = true
+        textField.layer.shadowRadius = 20
         textField.layer.shadowOpacity = 0.5
-        textField.layer.shadowColor = UIColor.gray.cgColor // цвет тени
+        textField.layer.shadowColor = UIColor.gray.cgColor
 
         textField.translatesAutoresizingMaskIntoConstraints = false
 
         return textField
     }()
 
+    private lazy var conditionsConfirmPasswordLable: UILabel = {
+        let label = UILabel()
+
+        label.text = "Invalid password"
+        label.textColor = notСolorPink?.withAlphaComponent(5)
+        label.font = fontFamilyLittle?.withSize(15)
+        label.textAlignment = .right
+
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        return label
+    }()
+
     private lazy var emailLable: UILabel = {
         let label = UILabel()
 
         label.text = "Email"
-        label.textColor = mainСolorGreen// цве
-        label.font = fontFamilyLittle // шрифт (размер)
-        label.textAlignment = .left // выравнивание текста
+        label.textColor = mainСolorGreen
+        label.font = fontFamilyLittle
+        label.textAlignment = .left
 
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -223,13 +258,13 @@ class IYRegistrationViewController: IYViewController {
 
         textField.backgroundColor = .white
         textField.textColor = mainСolorGreen
-        textField.font = fontFamilyLittle // шрифт (размер)
+        textField.font = fontFamilyLittle
         textField.borderStyle = .roundedRect // закругление поля
 //        textField.placeholder = "Enter Your Email adress"
-        textField.clearButtonMode = .always //очистка поля
-        textField.layer.shadowRadius = 20 // радиус тени
+        textField.clearButtonMode = .always
+        textField.layer.shadowRadius = 20
         textField.layer.shadowOpacity = 0.5
-        textField.layer.shadowColor = UIColor.gray.cgColor // цвет тени
+        textField.layer.shadowColor = UIColor.gray.cgColor
 
         textField.translatesAutoresizingMaskIntoConstraints = false
 
@@ -239,17 +274,17 @@ class IYRegistrationViewController: IYViewController {
     private lazy var registerButton: UIButton = {
         let button = UIButton()
 
-        button.setTitle("Register", for: UIControl.State()) // для всех состояний кнопки -> for: UIControl.State()
-        button.setTitleColor(.white, for: UIControl.State()) // цвет текста
-        button.backgroundColor = mainСolorGreen?.withAlphaComponent(1) // цвет кнопки
-        button.titleLabel?.font = fontFamilyMiddle // шрифт (размер)
+        button.setTitle("Register", for: UIControl.State())
+        button.setTitleColor(.white, for: UIControl.State())
+        button.backgroundColor = mainСolorGreen?.withAlphaComponent(1)
+        button.titleLabel?.font = fontFamilyMiddle
         button.layer.cornerRadius = 15
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.5
         button.layer.shadowRadius = 20
         button.clipsToBounds = false
 
-        button.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside) // действие кнопки
+        button.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
 
 
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -258,20 +293,20 @@ class IYRegistrationViewController: IYViewController {
         return button
     }()
 
-    private lazy var backToLoginButton: UIButton = {
+    private lazy var backButton: UIButton = {
         let button = UIButton()
 
-        button.setTitle("Back", for: UIControl.State()) // для всех состояний кнопки -> for: UIControl.State()
-        button.setTitleColor(mainСolorGreen, for: UIControl.State()) // цвет текста
-        button.backgroundColor = .white // цвет кнопки
-        button.titleLabel?.font = fontFamilyMiddle // шрифт (размер)
+        button.setTitle("Back", for: UIControl.State())
+        button.setTitleColor(.white, for: UIControl.State())
+        button.backgroundColor = notСolorPink
+        button.titleLabel?.font = fontFamilyMiddle
         button.layer.cornerRadius = 15
-        button.layer.shadowColor = UIColor.lightGray.cgColor
+        button.layer.shadowColor = UIColor.gray.cgColor
         button.layer.shadowOpacity = 0.5
         button.layer.shadowRadius = 20
         button.clipsToBounds = false
 
-        button.addTarget(self, action: #selector(backToLoginButtonTapped), for: .touchUpInside) // действие кнопки
+        button.addTarget(self, action: #selector(backToLoginButtonTapped), for: .touchUpInside)
 
         button.translatesAutoresizingMaskIntoConstraints = false
 
@@ -284,9 +319,12 @@ class IYRegistrationViewController: IYViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        addTapGestureToHideKeyboard()
+
         self.mainView.addSubview(self.registrationView)
         self.mainView.addSubview(self.registrationLabel)
         self.mainView.addSubview(self.loginWithLabel)
+
         self.mainView.addSubview(self.appleButton)
         self.mainView.addSubview(self.googleButton)
         self.mainView.addSubview(self.instagramButton)
@@ -295,6 +333,7 @@ class IYRegistrationViewController: IYViewController {
         self.mainView.addSubview(self.userNameLable)
         self.mainView.addSubview(self.userNameField)
         self.mainView.addSubview(self.userPasswordLable)
+
         self.mainView.addSubview(self.userPasswordField)
         self.mainView.addSubview(self.confirmPasswordLable)
         self.mainView.addSubview(self.confirmPasswordField)
@@ -302,19 +341,13 @@ class IYRegistrationViewController: IYViewController {
         self.mainView.addSubview(self.emailField)
 
         self.mainView.addSubview(self.registerButton)
-        self.mainView.addSubview(self.backToLoginButton)
+        self.mainView.addSubview(self.backButton)
 
         self.setUpConstraintsFunction()
 
         self.emailField.keyboardType = .emailAddress // клавиатера для email
-    }
 
-    // MARK: - textField
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if touches.first != nil {
-            view.endEditing(true)
-        }
     }
 
     // MARK: - ButtonTapped
@@ -334,7 +367,8 @@ class IYRegistrationViewController: IYViewController {
             alertController.addAction(okAction)
             self.present(alertController, animated: true)
 
-            // дописать сохранение данных!!!!!!!!
+            // дописать сохранение данных!!!!!!!!!!!!!!!!!!!!!!
+
         } else {
             let alertController = UIAlertController(title: "Error", message: "Сheck the entered information", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .destructive) { _ in
@@ -360,20 +394,33 @@ class IYRegistrationViewController: IYViewController {
             counter += 1
             self.userNameField.backgroundColor = notСolorPink
         }
-        if !self.userPassword.isEmpty {
-//               , self.userPassword.count > 10
+        if !self.userPassword.isEmpty, self.userPassword.count >= 8, self.userPassword != self.userName {
             output = true
             self.userPasswordField.backgroundColor = .white
-        } else {
+            conditionsPasswordLable.textColor = backgroundСolorWhite
+            conditionsUserNamePasswordLable.textColor = backgroundСolorWhite
+        } else if self.userPassword == self.userName {
             counter += 1
+            conditionsUserNamePassword()
             self.userPasswordField.backgroundColor = notСolorPink
-        }
-        if !self.confirmPassword.isEmpty, self.userPassword == self.confirmPassword {
-            //               , self.userPassword.count > 10
-            output = true
-            self.confirmPasswordField.backgroundColor = .white
+            self.confirmPasswordField.backgroundColor = notСolorPink
         } else {
             counter += 1
+            conditionsPassword()
+            self.userPasswordField.backgroundColor = notСolorPink
+            self.confirmPasswordField.backgroundColor = notСolorPink
+        }
+        if !self.confirmPassword.isEmpty, self.userPassword == self.confirmPassword, self.userPassword.count >= 8, self.userPassword != self.userName {
+            output = true
+            conditionsConfirmPasswordLable.textColor = backgroundСolorWhite
+            self.confirmPasswordField.backgroundColor = .white
+        } else if !self.confirmPassword.isEmpty, self.userPassword == self.confirmPassword {
+            counter += 1
+            self.confirmPasswordField.backgroundColor = notСolorPink
+            self.userPasswordField.backgroundColor = notСolorPink
+        } else {
+            counter += 1
+            conditionsConfirmPassword()
             self.confirmPasswordField.backgroundColor = notСolorPink
         }
         if !self.email.isEmpty {
@@ -387,6 +434,32 @@ class IYRegistrationViewController: IYViewController {
             output = false
         }
         return output
+    }
+
+    private func conditionsPassword() { // более 8 символов
+        self.mainView.addSubview(self.conditionsPasswordLable)
+
+        self.conditionsPasswordLable.snp.makeConstraints { (make) in
+            make.top.equalTo(self.userPasswordField.snp.bottom).offset(5)
+            make.left.equalToSuperview().inset(30)
+        }
+    }
+    private func conditionsUserNamePassword() { // не совпадает с UserName
+        self.mainView.addSubview(self.conditionsUserNamePasswordLable)
+
+        self.conditionsUserNamePasswordLable.snp.makeConstraints { (make) in
+            make.top.equalTo(self.userPasswordField.snp.bottom).offset(5)
+            make.left.equalToSuperview().inset(30)
+        }
+    }
+
+    private func conditionsConfirmPassword() { // более 8 символов в подтверждении пароля
+        self.mainView.addSubview(self.conditionsConfirmPasswordLable)
+
+        self.conditionsConfirmPasswordLable.snp.makeConstraints { (make) in
+            make.top.equalTo(self.confirmPasswordField.snp.bottom).offset(5)
+            make.left.equalToSuperview().inset(30)
+        }
     }
 
     //MARK: - Constraints
@@ -427,7 +500,7 @@ class IYRegistrationViewController: IYViewController {
         }
         self.userNameLable.snp.makeConstraints { (make) in
             make.top.equalTo(self.appleButton.snp.bottom).offset(30)
-            make.left.equalToSuperview().inset(40)
+            make.left.equalToSuperview().inset(30)
         }
         self.userNameField.snp.makeConstraints { (make) in
             make.top.equalTo(self.userNameLable.snp.bottom).offset(10)
@@ -456,25 +529,18 @@ class IYRegistrationViewController: IYViewController {
         self.emailField.snp.makeConstraints { (make) in
             make.top.equalTo(self.emailLable.snp.bottom).offset(10)
             make.left.right.equalToSuperview().inset(30)
-//            make.bottom.greaterThanOrEqualTo(self.registerButton.snp.top).offset(-50)
         }
         self.registerButton.snp.makeConstraints { (make) in
             make.top.equalTo(self.emailField.snp.bottom).offset(50)
             make.height.equalTo(60)
             make.left.right.equalToSuperview().inset(30)
-//            make.bottom.greaterThanOrEqualTo(self.registerButton.snp.top).offset(-50)
         }
-        self.backToLoginButton.snp.makeConstraints { (make) in
+        self.backButton.snp.makeConstraints { (make) in
             make.top.greaterThanOrEqualTo(self.registerButton.snp.bottom).offset(50)
             make.left.right.equalToSuperview().inset(30)
             make.height.equalTo(60)
-//            make.bottom.lessThanOrEqualTo((self.view.safeAreaLayoutGuide.snp.bottom).inset(50))
             make.bottom.equalToSuperview().inset(50)
         }
-//        self.registerButton.setContentHuggingPriority(UILayoutPriority(rawValue: 5), for: .vertical)
-//        self.emailField.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
-//        self.registerButton.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 750), for: .vertical)
-//        self.emailField.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1000), for: .vertical)
     }
 
 }

@@ -7,14 +7,12 @@
 
 import UIKit
 
-// если SnapKit через СocoPods, то не надо import каждый раз
-
 class IYViewController: UIViewController {
 
     private lazy var mainScrollView: UIScrollView = {
         let scroll = UIScrollView()
 //        scroll.showsVerticalScrollIndicator = false // удалить индиктор скрола
-        scroll.contentInsetAdjustmentBehavior = .never // хз почему, но надо
+        scroll.contentInsetAdjustmentBehavior = .never
         scroll.backgroundColor = .clear
 
         return scroll
@@ -37,7 +35,7 @@ class IYViewController: UIViewController {
         }
 
         self.mainView.snp.makeConstraints { (make) in
-            make.edges.width.equalToSuperview() //  ширина как супервью, чтобы скролилось вертикально
+            make.edges.width.equalToSuperview()
 //            make.height.equalToSuperview() // если так, то скрол выключится
         }
     }

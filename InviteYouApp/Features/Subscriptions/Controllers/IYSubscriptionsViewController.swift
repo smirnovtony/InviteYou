@@ -18,7 +18,4 @@ class IYSubscriptionsViewController: UITableViewController {
         
     }
 
-
-
-
 }
