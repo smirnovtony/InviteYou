@@ -13,6 +13,7 @@ class IYActiveInvitesViewController: UITableViewController {
 
         private var invites: [String] = [ //!!!!!!!!!!!!!!!!!!!!!!
             "Invitation Ex",
+            "Invitation Ex",
             "Invitation Ex"
         ]
     //MARK: - life cycle
@@ -36,6 +37,7 @@ class IYActiveInvitesViewController: UITableViewController {
 
             self.navigationItem.rightBarButtonItems = [self.editButtonItem]
             self.editButtonItem.tintColor = .white
+            self.editButtonItem.setTitleTextAttributes([.font: fontFamilyLittle?.withSize(25) ?? UIFont.systemFont(ofSize: 30)], for: .normal)
         }
 
         override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,9 +52,9 @@ class IYActiveInvitesViewController: UITableViewController {
                                                  for: indexPath) as? IYInvitationCell ?? IYInvitationCell()
 
         // передача данных
-        cell.set(organizerLable: "Event Organizer Event Organizer Event Organizer Event Organizer ",
-                 addressLable: "Name Ivent Name Ivent Name Ivent",
-                 dataLable: "Data")
+        cell.set(organizerLable: "Event Organizer",
+                 addressLable: "Name Ivent",
+                 dataLable: "Date")
 
         return cell
     }

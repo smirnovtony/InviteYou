@@ -7,12 +7,12 @@
 
 import UIKit
 
-class IYSubscriptionsViewController: UITableViewController {
+class IYSearchViewController: UITableViewController {
 
     //MARK: - life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Subscriptions"
+        self.title = "Search"
         self.view.backgroundColor = backgroundСolorWhite
         self.tableView.separatorStyle = .none // убрать разделитель таблицы
         

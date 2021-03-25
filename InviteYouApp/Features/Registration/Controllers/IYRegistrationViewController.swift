@@ -35,7 +35,7 @@ class IYRegistrationViewController: IYViewController{
 
         view.backgroundColor = .white
         view.layer.cornerRadius = 15
-        view.layer.shadowRadius = 20 // радиус
+        view.layer.shadowRadius = 20
         view.layer.shadowOpacity = 0.5
         view.layer.shadowColor = UIColor.gray.cgColor
 
@@ -301,7 +301,7 @@ class IYRegistrationViewController: IYViewController{
         button.backgroundColor = notСolorPink
         button.titleLabel?.font = fontFamilyMiddle
         button.layer.cornerRadius = 15
-        button.layer.shadowColor = UIColor.gray.cgColor
+        button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.5
         button.layer.shadowRadius = 20
         button.clipsToBounds = false

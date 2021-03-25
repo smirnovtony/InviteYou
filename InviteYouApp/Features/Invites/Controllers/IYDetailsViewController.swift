@@ -76,9 +76,28 @@ class IYDetailsViewController: IYViewController {
 
         button.translatesAutoresizingMaskIntoConstraints = false
 
-        button.backgroundColor = mainСolorGreen?.withAlphaComponent(0.5) // сделать его меняющимся в зависимости от даты: красный если прошло или отменено, зеленый если принял, желтый если не знаешь
+        button.backgroundColor = mainСolorGreen?.withAlphaComponent(0.5)
 
-        button.layer.cornerRadius = 70
+        button.layer.cornerRadius = 15
+
+
+        return button
+    }()
+
+    private lazy var timeButton: UIButton = { // переход на календарь
+        let button = UIButton()
+
+        button.setTitle("Time", for: UIControl.State())
+        button.titleLabel?.font = fontFamilyLittle
+        button.setTitleColor(.white, for: UIControl.State())
+
+        button.addTarget(self, action: #selector(calendarButtonTapped), for: .touchUpInside)
+
+        button.translatesAutoresizingMaskIntoConstraints = false
+
+        button.backgroundColor = mainСolorGreen?.withAlphaComponent(0.5)
+
+        button.layer.cornerRadius = 15
 
 
         return button
@@ -125,6 +144,9 @@ class IYDetailsViewController: IYViewController {
         return label
     }()
 
+
+
+
     private lazy var infoAboutEventLabel: UILabel = {
         let label = UILabel()
 
@@ -143,7 +165,21 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
         return label
     }()
 
-    private lazy var subscribeButton: UIButton = { // нажимаешь и открывается карта
+    private lazy var openOrClosedLabel: UILabel = { // перечисление с возможностью ввести свое назвнание!!!!!
+        let label = UILabel()
+
+        label.text = "Open Or Closed"
+        label.numberOfLines = 0
+        label.textColor = mainСolorGreen
+        label.font = fontFamilyLittle
+        label.textAlignment = .center
+
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        return label
+    }()
+
+    private lazy var subscribeButton: UIButton = { // значок даты начинает гореть ярко, а если unsubscribeButton, то красным
         let button = UIButton()
 
         button.setTitle("Subscribe", for: UIControl.State())
@@ -207,8 +243,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
         self.mainView.addSubview(self.infoAboutOrganizerLabel)
         self.mainView.addSubview(self.nameOfEventLabel)
         self.mainView.addSubview(self.typeOfEventLabel)
+        self.mainView.addSubview(self.openOrClosedLabel)
         self.mainView.addSubview(self.addressButton)
         self.mainView.addSubview(self.dateButton)
+        self.mainView.addSubview(self.timeButton)
         self.mainView.addSubview(self.numberOfPersonsLabel)
         self.mainView.addSubview(self.infoAboutEventLabel)
         self.mainView.addSubview(self.subscribeButton)
@@ -266,16 +304,26 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
         }
         self.dateButton.snp.makeConstraints { (make) in
             make.top.equalTo(addressButton.snp.bottom).offset(20)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(140)
-            make.height.equalTo(140)
+            make.centerX.equalToSuperview().offset(-90)
+            make.left.equalToSuperview().inset(40)
+            make.height.equalTo(60)
+        }
+        self.timeButton.snp.makeConstraints { (make) in
+            make.top.equalTo(addressButton.snp.bottom).offset(20)
+            make.centerX.equalToSuperview().offset(90)
+            make.right.equalToSuperview().inset(40)
+            make.height.equalTo(60)
         }
         self.infoAboutEventLabel.snp.makeConstraints { (make) in
             make.top.equalTo(dateButton.snp.bottom).offset(30)
             make.left.right.equalToSuperview().inset(40)
         }
-        self.subscribeButton.snp.makeConstraints { (make) in
+        self.openOrClosedLabel.snp.makeConstraints { (make) in
             make.top.equalTo(infoAboutEventLabel.snp.bottom).offset(30)
+            make.left.right.equalToSuperview().inset(40)
+        }
+        self.subscribeButton.snp.makeConstraints { (make) in
+            make.top.equalTo(openOrClosedLabel.snp.bottom).offset(30)
             make.left.right.equalToSuperview().inset(40)
             make.height.equalTo(60)
         }

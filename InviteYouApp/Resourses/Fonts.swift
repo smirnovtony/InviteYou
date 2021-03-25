@@ -9,7 +9,7 @@ import UIKit
 
 //шрифты
 
-public let fontFamilyBig = UIFont(name: "Copperplate", size: 50) // стиль большого текста
-public let fontFamilyMiddle = UIFont(name: "Copperplate", size: 30) // стиль среднего текста
-public let fontFamilyLittle = UIFont(name: "Copperplate", size: 20) //стиль маленького текста
+public let fontFamilyBig = UIFont(name: "Agency FB Cyrillic", size: 60)// стиль большого текста
+public let fontFamilyMiddle = UIFont(name: "Agency FB Cyrillic", size: 40) // стиль среднего текста
+public let fontFamilyLittle = UIFont(name: "Agency FB Cyrillic", size: 30) //стиль маленького текста
 

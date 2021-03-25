@@ -15,8 +15,8 @@ class IYTabBarViewController: UITabBarController {
         let activeInvitesController = IYActiveInvitesViewController()
         activeInvitesController.tabBarItem = UITabBarItem(title: "Invites", image: UIImage(systemName: "globe"), selectedImage: nil)
 
-        let subscriptionsController = IYSubscriptionsViewController()
-        subscriptionsController.tabBarItem = UITabBarItem(title: "Subscriptions", image: UIImage(systemName: "bell"), selectedImage: nil)
+        let searchController = IYSearchViewController()
+        searchController.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), selectedImage: nil)
 
         let calendarController = IYCalendarViewController()
         calendarController.tabBarItem = UITabBarItem(title: "Calendar", image: UIImage(systemName: "calendar"), selectedImage: nil)
@@ -26,7 +26,7 @@ class IYTabBarViewController: UITabBarController {
 
         self.setViewControllers([
             UINavigationController(rootViewController: activeInvitesController),
-            UINavigationController(rootViewController: subscriptionsController),
+            UINavigationController(rootViewController: searchController),
             UINavigationController(rootViewController: calendarController),
             UINavigationController(rootViewController: profileController)
         ], animated: true)
@@ -39,6 +39,9 @@ class IYTabBarViewController: UITabBarController {
         self.tabBar.tintColor = mainСolorGreen
         self.tabBar.unselectedItemTintColor = .lightGray
         self.tabBar.itemPositioning = .fill
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: fontFamilyLittle?.withSize(15) ?? UIFont.systemFont(ofSize: 15)], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: fontFamilyLittle?.withSize(15) ?? UIFont.systemFont(ofSize: 15)], for: .selected)
+    
     }
 
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

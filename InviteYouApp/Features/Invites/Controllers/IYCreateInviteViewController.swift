@@ -74,9 +74,6 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         return textView
     }()
 
-
-
-
     private lazy var dataImageView: UIImageView = {
         let imageView = UIImageView()
 
@@ -153,21 +150,30 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         return picker
     }()
 
-
-
-
-    private lazy var numberOfPersonsTextField: UITextField = { // пикер колличество
+    lazy var numberOfPersonsTextField: UITextField = { // пикер колличество
         let textField = UITextField()
 
         textField.textColor = mainСolorGreen
         textField.font = fontFamilyLittle
         textField.placeholder = "Persons"
         textField.textAlignment = .center
+        textField.inputView = self.numberOfPersonsPicker
 
         textField.translatesAutoresizingMaskIntoConstraints = false
 
         return textField
     }()
+
+    lazy var numberOfPersonsPicker: UIPickerView = {
+         let picker = UIPickerView()
+
+         picker.delegate = self
+         picker.dataSource = self
+
+         picker.translatesAutoresizingMaskIntoConstraints = false
+
+         return picker
+     }()
 
     private lazy var doneToolBar: UIToolbar = {
         let toolbar = UIToolbar()
@@ -179,41 +185,33 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         return toolbar
     }()
 
-    //    private lazy var numberOfPersonsPicker: UIPickerView = {
-    //        let picker = UIPickerView()
-    //
-    //        picker.delegate = self
-    //        picker.dataSource = self
-    //
-    //        picker.translatesAutoresizingMaskIntoConstraints = false
-    //
-    //        return picker
-    //    }()
 
 
-    private lazy var typeOfEventTextField: UITextField = {
+
+    lazy var typeOfEventTextField: UITextField = {
         let textField = UITextField()
 
         textField.textColor = mainСolorGreen
         textField.font = fontFamilyLittle
         textField.placeholder = "Type Of Event"
         textField.textAlignment = .center
+        textField.inputView = self.typeOfEventPicker
 
         textField.translatesAutoresizingMaskIntoConstraints = false
 
         return textField
     }()
 
-    //    private lazy var typeOfEventPicker: UIPickerView = {
-    //        let picker = UIPickerView()
-    //
-    //        picker.delegate = self
-    //        picker.dataSource = self
-    //
-    //        picker.translatesAutoresizingMaskIntoConstraints = false
-    //
-    //        return picker
-    //    }()
+    lazy var typeOfEventPicker: UIPickerView = {
+        let picker = UIPickerView()
+
+        picker.delegate = self
+        picker.dataSource = self
+
+        picker.translatesAutoresizingMaskIntoConstraints = false
+
+        return picker
+    }()
 
     private lazy var nameOfEventTextView: UITextView = {
         let textView = UITextView()
@@ -249,10 +247,25 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         return textView
     }()
 
+    private lazy var openOrClosedControl: UISegmentedControl = {
+        let control = UISegmentedControl(items: ["Open", "Closed"])
+
+        control.selectedSegmentIndex = 0
+        control.selectedSegmentTintColor = mainСolorGreen?.withAlphaComponent(0.5)
+        control.layer.borderColor = UIColor.black.cgColor
+        control.setTitleTextAttributes([.foregroundColor: UIColor.gray,
+                                        .font: fontFamilyLittle ?? UIFont.systemFont(ofSize: 30)], for: .normal)
+
+        control.translatesAutoresizingMaskIntoConstraints = false
+
+        return control
+    }()
+
+
     private lazy var createButton: UIButton = {
         let button = UIButton()
 
-        button.setTitle("Create", for: UIControl.State())
+        button.setTitle("Create Invitation", for: UIControl.State())
         button.setTitleColor(.white, for: UIControl.State())
         button.backgroundColor = mainСolorGreen
         button.titleLabel?.font = fontFamilyMiddle
@@ -263,26 +276,6 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         button.clipsToBounds = false
 
         button.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
-
-        button.translatesAutoresizingMaskIntoConstraints = false
-
-        return button
-    }()
-
-    private lazy var backButton: UIButton = {
-        let button = UIButton()
-
-        button.setTitle("Back", for: UIControl.State())
-        button.setTitleColor(.white, for: UIControl.State())
-        button.backgroundColor = notСolorPink
-        button.titleLabel?.font = fontFamilyMiddle
-        button.layer.cornerRadius = 15
-        button.layer.shadowColor = UIColor.gray.cgColor
-        button.layer.shadowOpacity = 0.5
-        button.layer.shadowRadius = 20
-        button.clipsToBounds = false
-
-        button.addTarget(self, action: #selector(backToButtonTapped), for: .touchUpInside)
 
         button.translatesAutoresizingMaskIntoConstraints = false
 
@@ -311,9 +304,9 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         self.mainView.addSubview(self.timeImageView)
         self.mainView.addSubview(self.timeTextField)
         self.mainView.addSubview(self.infoAboutEventTextView)
+        self.mainView.addSubview(self.openOrClosedControl)
 
         self.mainView.addSubview(self.createButton)
-        self.mainView.addSubview(self.backButton)
 
         self.setUpConstraintsFunction()
     }
@@ -321,25 +314,50 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
     // MARK: - TextView
 
     func textViewDidBeginEditing (_ textView: UITextView) {
-        switch textView.text {
-        case "Name Organizer", "Name Of Event":
+        switch textView {
+        case self.nameOrganizerTextView:
             textView.text = nil
             textView.textColor = mainСolorGreen
-        default:
+        case self.infoAboutOrganizerTextView:
             textView.text = nil
             textView.textColor = .black
+        case self.nameOfEventTextView:
+            textView.text = nil
+            textView.textColor = mainСolorGreen
+        case self.addressTextView:
+            textView.text = nil
+            textView.textColor = .black
+        case self.infoAboutEventTextView:
+            textView.text = nil
+            textView.textColor = .black
+        default:
+            break
         }
     }
 
     func textViewDidEndEditing (_ textView: UITextView) {
         if textView.text.isEmpty {
+        switch textView {
+        case self.nameOrganizerTextView:
             self.nameOrganizerTextView.text = "Name Organizer"
+            textView.textColor = .lightGray
+        case self.infoAboutOrganizerTextView:
             self.infoAboutOrganizerTextView.text = "Info About Organizer"
+            textView.textColor = .lightGray
+        case self.nameOfEventTextView:
             self.nameOfEventTextView.text = "Name Of Event"
+            textView.textColor = .lightGray
+        case self.addressTextView:
             self.addressTextView.text = "Address"
+            textView.textColor = .lightGray
+        case self.infoAboutEventTextView:
             self.infoAboutEventTextView.text = "Info About Event"
             textView.textColor = .lightGray
+        default:
+            break
         }
+        }
+
     }
 
     //MARK: - ButtonTapped
@@ -420,13 +438,13 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
             make.top.equalTo(dataImageView.snp.bottom).offset(30)
             make.left.right.equalToSuperview().inset(40)
         }
-        self.createButton.snp.makeConstraints { (make) in
+        self.openOrClosedControl.snp.makeConstraints { (make) in
             make.top.equalTo(infoAboutEventTextView.snp.bottom).offset(30)
             make.left.right.equalToSuperview().inset(40)
-            make.height.greaterThanOrEqualTo(60)
+            make.height.equalTo(60)
         }
-        self.backButton.snp.makeConstraints { (make) in
-            make.top.equalTo(createButton.snp.bottom).offset(30)
+        self.createButton.snp.makeConstraints { (make) in
+            make.top.equalTo(openOrClosedControl.snp.bottom).offset(50)
             make.left.right.equalToSuperview().inset(40)
             make.height.equalTo(60)
             make.bottom.equalToSuperview().inset(20)

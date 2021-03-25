@@ -45,7 +45,7 @@ class IYInvitationCell: UITableViewCell {
         let label = UILabel()
 
         label.numberOfLines = 0
-        label.font = fontFamilyLittle?.withSize(17)
+        label.font = fontFamilyMiddle
         label.textColor = mainСolorGreen
         label.textAlignment = .left
         
@@ -54,7 +54,7 @@ class IYInvitationCell: UITableViewCell {
         return label
     }()
 
-    private lazy var nameIventLable: UILabel = {
+    private lazy var nameEventLable: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .black
@@ -69,7 +69,7 @@ class IYInvitationCell: UITableViewCell {
         let label = UILabel()
 
         label.backgroundColor = mainСolorGreen?.withAlphaComponent(0.5) // сделать его меняющимся в зависимости от даты: красный если прошло или отменено, зеленый если принял, желтый если не знаешь!!!!!!!!!!!!!!!!!!!!!!!!
-        label.textColor = .white// цвет
+        label.textColor = .white
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 40
         label.font = fontFamilyLittle
@@ -78,6 +78,16 @@ class IYInvitationCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
+    }()
+
+    private lazy var closedOrOpenEventView: UIImageView = {
+        let imageView = UIImageView()
+
+        imageView.image = UIImage(systemName: "lock") // если мероприятие закрытое, то "lock", если открытое то "lock.open" и .tintColor = mainColorGreen
+        imageView.tintColor = notСolorPink
+
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
 
     override init(style: IYInvitationCell.CellStyle, reuseIdentifier: String?) {
@@ -92,13 +102,18 @@ class IYInvitationCell: UITableViewCell {
 
     func initCell() {
         self.contentView.backgroundColor = backgroundСolorWhite
+
         self.contentView.addSubview(self.cardContainerView)
         self.cardContainerView.addSubview(self.logoView)
         self.cardContainerView.addSubview(self.organizerLable)
-        self.cardContainerView.addSubview(self.nameIventLable)
+        self.cardContainerView.addSubview(self.nameEventLable)
         self.cardContainerView.addSubview(self.dataLable)
 
+        self.cardContainerView.addSubview(self.closedOrOpenEventView)
+
+
         self.updateConstraints()
+
         self.selectionStyle = .none // чтобы при выборе ячейки она не подсвечивалась
     }
 
@@ -118,29 +133,30 @@ class IYInvitationCell: UITableViewCell {
             make.size.equalTo(80)
         }
         self.organizerLable.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().inset(15)
-            make.right.equalToSuperview().offset(-20)
-            make.left.equalTo(self.logoView.snp.right).offset(10)
-            make.bottom.equalTo(self.dataLable.snp.top).offset(-10)
+            make.top.right.equalToSuperview().inset(15)
+            make.left.equalTo(self.logoView.snp.right).offset(15)
         }
-        self.nameIventLable.snp.makeConstraints { (make) in
-            make.top.equalTo(self.logoView.snp.bottom).offset(10)
-            make.right.equalTo(self.dataLable.snp.left).offset(-20)
-            make.left.equalToSuperview().offset(10)
+        self.nameEventLable.snp.makeConstraints { (make) in
+            make.right.equalTo(self.dataLable.snp.left).offset(-15)
+            make.left.equalTo(self.closedOrOpenEventView.snp.right).inset(10)
             make.bottom.equalToSuperview().inset(15)
         }
         self.dataLable.snp.makeConstraints { (make) in
-            make.bottom.equalToSuperview().inset(10)
-            make.right.equalToSuperview().inset(10)
+            make.bottom.right.equalToSuperview().inset(10)
             make.size.equalTo(80)
         }
+        self.closedOrOpenEventView.snp.makeConstraints { (make) in
+            make.bottom.left.equalToSuperview().inset(10)
+            make.size.equalTo(30)
+        }
+
         super.updateConstraints()
     }
 
     func set(organizerLable: String, addressLable: String, dataLable: String) {
 //        self.logoView // передать изобаржение!!!!!!!!!!!!!!
         self.organizerLable.text = organizerLable
-        self.nameIventLable.text = addressLable
+        self.nameEventLable.text = addressLable
         self.dataLable.text = dataLable
 
         self.setNeedsUpdateConstraints()
