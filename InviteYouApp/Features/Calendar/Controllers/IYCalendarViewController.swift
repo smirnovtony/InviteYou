@@ -15,8 +15,4 @@ class IYCalendarViewController: UIViewController {
         self.title = "Calendar"
 
     }
-    
-
-    
-
 }

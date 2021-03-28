@@ -8,7 +8,6 @@
 import UIKit
 import SnapKit
 
-
 class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
 
     //MARK: - var
@@ -17,7 +16,6 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         let imageView = UIImageView()
 
         imageView.image = UIImage(named: "photography") // дeфолтная картинка, сюда логотип организации
-
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         return imageView
@@ -185,9 +183,6 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         return toolbar
     }()
 
-
-
-
     lazy var typeOfEventTextField: UITextField = {
         let textField = UITextField()
 
@@ -261,7 +256,6 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         return control
     }()
 
-
     private lazy var createButton: UIButton = {
         let button = UIButton()
 
@@ -281,7 +275,6 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
 
         return button
     }()
-
 
     //MARK: - life cycle
 
@@ -357,7 +350,6 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
             break
         }
         }
-
     }
 
     //MARK: - ButtonTapped
@@ -394,7 +386,6 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         self.nameOrganizerTextView.snp.makeConstraints { (make) in
             make.top.equalTo(logoView.snp.bottom).offset(10)
             make.left.right.equalToSuperview().inset(40)
-            make.height.width.equalTo(50)
         }
         self.infoAboutOrganizerTextView.snp.makeConstraints { (make) in
             make.top.equalTo(nameOrganizerTextView.snp.bottom).offset(10)
@@ -452,6 +443,3 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
     }
 
 }
-
-
-

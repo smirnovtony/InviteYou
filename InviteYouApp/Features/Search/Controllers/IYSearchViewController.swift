@@ -15,7 +15,6 @@ class IYSearchViewController: UITableViewController {
         self.title = "Search"
         self.view.backgroundColor = backgroundСolorWhite
         self.tableView.separatorStyle = .none // убрать разделитель таблицы
-        
     }
 
 }

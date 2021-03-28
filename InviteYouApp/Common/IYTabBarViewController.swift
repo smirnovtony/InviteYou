@@ -41,7 +41,6 @@ class IYTabBarViewController: UITabBarController {
         self.tabBar.itemPositioning = .fill
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: fontFamilyLittle?.withSize(15) ?? UIFont.systemFont(ofSize: 15)], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: fontFamilyLittle?.withSize(15) ?? UIFont.systemFont(ofSize: 15)], for: .selected)
-    
     }
 
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -65,4 +64,3 @@ class IYTabBarViewController: UITabBarController {
     }
 
 }
-

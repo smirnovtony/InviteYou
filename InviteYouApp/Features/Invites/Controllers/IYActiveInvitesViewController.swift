@@ -22,7 +22,6 @@ class IYActiveInvitesViewController: UITableViewController {
             super.viewDidLoad()
 
             self.title = "Invites"
-            
 //            self.tableView.allowsMultipleSelection = true // выбор нескольких ячеек (появляется выделение)
             self.tableView.separatorStyle = .none // убрать разделитель таблицы
             self.tableView.backgroundColor = backgroundСolorWhite
@@ -52,8 +51,8 @@ class IYActiveInvitesViewController: UITableViewController {
                                                  for: indexPath) as? IYInvitationCell ?? IYInvitationCell()
 
         // передача данных
-        cell.set(organizerLable: "Event Organizer",
-                 addressLable: "Name Ivent",
+        cell.set(organizerLable: "Organizer",
+                 addressLable: "Adsress",
                  dataLable: "Date")
 
         return cell
@@ -67,15 +66,14 @@ class IYActiveInvitesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool { // можно ли двигать ячейки
         return true
     }
-    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) { // как двигать ячейки
-        self.invites.swapAt(sourceIndexPath.row, destinationIndexPath.row) // .swapAt меняет местами два элемента в массиве
-        self.tableView.reloadData() //  обнавляем таблицу
-    }
+//    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) { // как двигать ячейки
+//        self.invites.swapAt(sourceIndexPath.row, destinationIndexPath.row) // .swapAt меняет местами два элемента в массиве
+//        self.tableView.reloadData() //  обнавляем таблицу
+//    }
 
     //MARK: - ButtonTapped
 
     @objc private func createButtonTapped() { // изменить на правильный адрес
         navigationController?.pushViewController(IYCreateInviteViewController(), animated: true)
     }
-    
 }

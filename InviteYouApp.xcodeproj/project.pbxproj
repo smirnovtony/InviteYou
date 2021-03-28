@@ -11,6 +11,7 @@
 		EA04196826063A900060EFAD /* IYNameOfEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA04196726063A900060EFAD /* IYNameOfEvent.swift */; };
 		EA133FC52604719000241E8B /* IYSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA133FC42604719000241E8B /* IYSearchViewController.swift */; };
 		EA14798625FBDD2900A03DCD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EA14798525FBDD2900A03DCD /* SnapKit */; };
+		EA200AE7261083610087E792 /* IYChangeLoginNPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA200AE6261083610087E792 /* IYChangeLoginNPasswordViewController.swift */; };
 		EA29522A260C8F9E00B4523A /* UIPickerView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA295229260C8F9E00B4523A /* UIPickerView+Ex.swift */; };
 		EA29522F260C939F00B4523A /* IYNumberOfPersons.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA29522E260C939F00B4523A /* IYNumberOfPersons.swift */; };
 		EA2B93E7260C9C54007D3AA9 /* IYQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B93E6260C9C54007D3AA9 /* IYQRViewController.swift */; };
@@ -39,6 +40,7 @@
 		EA0315FD260383E6003F1CDD /* IYCreateInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYCreateInviteViewController.swift; sourceTree = "<group>"; };
 		EA04196726063A900060EFAD /* IYNameOfEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYNameOfEvent.swift; sourceTree = "<group>"; };
 		EA133FC42604719000241E8B /* IYSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYSearchViewController.swift; sourceTree = "<group>"; };
+		EA200AE6261083610087E792 /* IYChangeLoginNPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYChangeLoginNPasswordViewController.swift; sourceTree = "<group>"; };
 		EA295229260C8F9E00B4523A /* UIPickerView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPickerView+Ex.swift"; sourceTree = "<group>"; };
 		EA29522E260C939F00B4523A /* IYNumberOfPersons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYNumberOfPersons.swift; sourceTree = "<group>"; };
 		EA2B93E6260C9C54007D3AA9 /* IYQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYQRViewController.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 			children = (
 				EAFFAAA125F8EE5C003A610E /* IYProfileViewController.swift */,
 				EAD0EBD025FB890800463EF7 /* IYEditProfileViewController.swift */,
+				EA200AE6261083610087E792 /* IYChangeLoginNPasswordViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				EAFFAA8725F8CB19003A610E /* IYRegistrationViewController.swift in Sources */,
 				EAB533AE260B76EE00C0C8C0 /* UIViewController+Ex.swift in Sources */,
 				EAFFAA9F25F8EE14003A610E /* IYCalendarViewController.swift in Sources */,
+				EA200AE7261083610087E792 /* IYChangeLoginNPasswordViewController.swift in Sources */,
 				EAFFAAA225F8EE5C003A610E /* IYProfileViewController.swift in Sources */,
 				EA2B93E7260C9C54007D3AA9 /* IYQRViewController.swift in Sources */,
 				EA0315FE260383E6003F1CDD /* IYCreateInviteViewController.swift in Sources */,

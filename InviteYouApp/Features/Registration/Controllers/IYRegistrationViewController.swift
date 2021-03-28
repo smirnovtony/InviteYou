@@ -14,8 +14,8 @@ class IYRegistrationViewController: IYViewController{
 
     private var output: Bool = false
 
-    private var userName: String {
-        self.userNameField.text ?? ""
+    private var userLogin: String {
+        self.userLoginField.text ?? ""
     }
 
     private var userPassword: String {
@@ -72,7 +72,7 @@ class IYRegistrationViewController: IYViewController{
 
     private lazy var appleButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named:"apple"), for: .normal)
+        button.setImage(UIImage(named: "apple"), for: .normal)
         //        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
@@ -81,7 +81,7 @@ class IYRegistrationViewController: IYViewController{
 
     private lazy var googleButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named:"google"), for: .normal)
+        button.setImage(UIImage(named: "google"), for: .normal)
         //        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
@@ -90,7 +90,7 @@ class IYRegistrationViewController: IYViewController{
 
     private lazy var instagramButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named:"instagram"), for: .normal)
+        button.setImage(UIImage(named: "instagram"), for: .normal)
         //        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
@@ -99,17 +99,17 @@ class IYRegistrationViewController: IYViewController{
 
     private lazy var facebookButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named:"facebook"), for: .normal)
+        button.setImage(UIImage(named: "facebook"), for: .normal)
         //        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }()
 
-    private lazy var userNameLable: UILabel = {
+    private lazy var userLoginLable: UILabel = {
         let label = UILabel()
 
-        label.text = "User Name"
+        label.text = "User Login"
         label.textColor = mainСolorGreen
         label.font = fontFamilyLittle
         label.textAlignment = .left
@@ -119,7 +119,7 @@ class IYRegistrationViewController: IYViewController{
         return label
     }()
 
-    private lazy var userNameField: UITextField = {
+    private lazy var userLoginField: UITextField = {
         let textField = UITextField()
 
         textField.backgroundColor = .white
@@ -174,7 +174,7 @@ class IYRegistrationViewController: IYViewController{
 
         label.text = "Passwords must not contain your User Name"
         label.textColor = notСolorPink?.withAlphaComponent(5)
-        label.font = fontFamilyLittle?.withSize(15)
+        label.font = fontFamilyLittle?.withSize(20)
         label.textAlignment = .right
 
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -187,7 +187,7 @@ class IYRegistrationViewController: IYViewController{
 
         label.text = "Password must be more than 8 characters"
         label.textColor = notСolorPink?.withAlphaComponent(5)
-        label.font = fontFamilyLittle?.withSize(15)
+        label.font = fontFamilyLittle?.withSize(20)
         label.textAlignment = .right
 
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -232,7 +232,7 @@ class IYRegistrationViewController: IYViewController{
 
         label.text = "Invalid password"
         label.textColor = notСolorPink?.withAlphaComponent(5)
-        label.font = fontFamilyLittle?.withSize(15)
+        label.font = fontFamilyLittle?.withSize(20)
         label.textAlignment = .right
 
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -286,9 +286,7 @@ class IYRegistrationViewController: IYViewController{
 
         button.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
 
-
         button.translatesAutoresizingMaskIntoConstraints = false
-
 
         return button
     }()
@@ -313,7 +311,6 @@ class IYRegistrationViewController: IYViewController{
         return button
     }()
 
-
     //MARK: - life cycle
 
     override func viewDidLoad() {
@@ -330,8 +327,8 @@ class IYRegistrationViewController: IYViewController{
         self.mainView.addSubview(self.instagramButton)
         self.mainView.addSubview(self.facebookButton)
 
-        self.mainView.addSubview(self.userNameLable)
-        self.mainView.addSubview(self.userNameField)
+        self.mainView.addSubview(self.userLoginLable)
+        self.mainView.addSubview(self.userLoginField)
         self.mainView.addSubview(self.userPasswordLable)
 
         self.mainView.addSubview(self.userPasswordField)
@@ -346,7 +343,6 @@ class IYRegistrationViewController: IYViewController{
         self.setUpConstraintsFunction()
 
         self.emailField.keyboardType = .emailAddress // клавиатера для email
-
 
     }
 
@@ -383,46 +379,46 @@ class IYRegistrationViewController: IYViewController{
         self.navigationController?.popViewController(animated: true)
     }
 
-
     // условия регистрации
     func registrationConditions() -> Bool {
         var counter = 0
-        if !self.userName.isEmpty {
+        if !self.userLogin.isEmpty {
             output = true
-            self.userNameField.backgroundColor = .white
+            self.userLoginField.backgroundColor = .white
         } else {
             counter += 1
-            self.userNameField.backgroundColor = notСolorPink
+            self.userLoginField.backgroundColor = notСolorPink
         }
-        if !self.userPassword.isEmpty, self.userPassword.count >= 8, self.userPassword != self.userName {
+
+        if !self.userPassword.isEmpty,
+           self.userPassword.count >= 8,
+           self.userPassword != self.userLogin {
             output = true
             self.userPasswordField.backgroundColor = .white
+            confirmPasswordField.backgroundColor = .white
             conditionsPasswordLable.textColor = backgroundСolorWhite
             conditionsUserNamePasswordLable.textColor = backgroundСolorWhite
-        } else if self.userPassword == self.userName {
+            conditionsConfirmPasswordLable.textColor = backgroundСolorWhite
+        } else if self.userPassword == self.userLogin {
             counter += 1
             conditionsUserNamePassword()
-            self.userPasswordField.backgroundColor = notСolorPink
-            self.confirmPasswordField.backgroundColor = notСolorPink
         } else {
             counter += 1
             conditionsPassword()
-            self.userPasswordField.backgroundColor = notСolorPink
-            self.confirmPasswordField.backgroundColor = notСolorPink
         }
-        if !self.confirmPassword.isEmpty, self.userPassword == self.confirmPassword, self.userPassword.count >= 8, self.userPassword != self.userName {
+
+        if !self.confirmPassword.isEmpty, self.userPassword == self.confirmPassword, self.userPassword.count >= 8, self.userPassword != self.userLogin {
             output = true
+            self.userPasswordField.backgroundColor = .white
+            confirmPasswordField.backgroundColor = .white
+            conditionsPasswordLable.textColor = backgroundСolorWhite
+            conditionsUserNamePasswordLable.textColor = backgroundСolorWhite
             conditionsConfirmPasswordLable.textColor = backgroundСolorWhite
-            self.confirmPasswordField.backgroundColor = .white
-        } else if !self.confirmPassword.isEmpty, self.userPassword == self.confirmPassword {
-            counter += 1
-            self.confirmPasswordField.backgroundColor = notСolorPink
-            self.userPasswordField.backgroundColor = notСolorPink
-        } else {
+        } else if !self.confirmPassword.isEmpty, self.userPassword != self.confirmPassword {
             counter += 1
             conditionsConfirmPassword()
-            self.confirmPasswordField.backgroundColor = notСolorPink
         }
+
         if !self.email.isEmpty {
             output = true
             self.emailField.backgroundColor = .white
@@ -436,8 +432,16 @@ class IYRegistrationViewController: IYViewController{
         return output
     }
 
-    private func conditionsPassword() { // более 8 символов
+    private func conditionsPassword() { // "Password must be more than 8 characters"
         self.mainView.addSubview(self.conditionsPasswordLable)
+
+        self.userPasswordField.backgroundColor = notСolorPink
+        confirmPasswordField.backgroundColor = .white
+
+
+        conditionsPasswordLable.textColor = notСolorPink
+        self.conditionsUserNamePasswordLable.textColor = backgroundСolorWhite
+        conditionsConfirmPasswordLable.textColor = backgroundСolorWhite
 
         self.conditionsPasswordLable.snp.makeConstraints { (make) in
             make.top.equalTo(self.userPasswordField.snp.bottom).offset(5)
@@ -447,14 +451,28 @@ class IYRegistrationViewController: IYViewController{
     private func conditionsUserNamePassword() { // не совпадает с UserName
         self.mainView.addSubview(self.conditionsUserNamePasswordLable)
 
+        self.userPasswordField.backgroundColor = notСolorPink
+        confirmPasswordField.backgroundColor = .white
+
+        conditionsPasswordLable.textColor = backgroundСolorWhite
+        self.conditionsUserNamePasswordLable.textColor = notСolorPink
+        conditionsConfirmPasswordLable.textColor = backgroundСolorWhite
+
         self.conditionsUserNamePasswordLable.snp.makeConstraints { (make) in
             make.top.equalTo(self.userPasswordField.snp.bottom).offset(5)
             make.left.equalToSuperview().inset(30)
         }
     }
 
-    private func conditionsConfirmPassword() { // более 8 символов в подтверждении пароля
+    private func conditionsConfirmPassword() { // "Invalid password"
         self.mainView.addSubview(self.conditionsConfirmPasswordLable)
+
+        userPasswordField.backgroundColor = .white
+        self.confirmPasswordField.backgroundColor = notСolorPink
+
+        conditionsPasswordLable.textColor = backgroundСolorWhite
+        conditionsUserNamePasswordLable.textColor = backgroundСolorWhite
+        self.conditionsConfirmPasswordLable.textColor = notСolorPink
 
         self.conditionsConfirmPasswordLable.snp.makeConstraints { (make) in
             make.top.equalTo(self.confirmPasswordField.snp.bottom).offset(5)
@@ -479,35 +497,35 @@ class IYRegistrationViewController: IYViewController{
             make.centerX.equalToSuperview()
         }
         self.appleButton.snp.makeConstraints { (make) in
-            make.top.equalTo(self.loginWithLabel.snp.bottom).offset(10)
+            make.top.equalTo(self.loginWithLabel.snp.bottom).offset(20)
             make.centerX.equalToSuperview().offset(-100)
             make.height.width.equalTo(30)
         }
         self.googleButton.snp.makeConstraints { (make) in
-            make.top.equalTo(self.loginWithLabel.snp.bottom).offset(10)
+            make.top.equalTo(self.loginWithLabel.snp.bottom).offset(20)
             make.centerX.equalToSuperview().offset(-35)
             make.height.width.equalTo(30)
         }
         self.instagramButton.snp.makeConstraints { (make) in
-            make.top.equalTo(self.loginWithLabel.snp.bottom).offset(10)
+            make.top.equalTo(self.loginWithLabel.snp.bottom).offset(20)
             make.centerX.equalToSuperview().offset(35)
             make.height.width.equalTo(30)
         }
         self.facebookButton.snp.makeConstraints { (make) in
-            make.top.equalTo(self.loginWithLabel.snp.bottom).offset(10)
+            make.top.equalTo(self.loginWithLabel.snp.bottom).offset(20)
             make.centerX.equalToSuperview().offset(100)
             make.height.width.equalTo(30)
         }
-        self.userNameLable.snp.makeConstraints { (make) in
+        self.userLoginLable.snp.makeConstraints { (make) in
             make.top.equalTo(self.appleButton.snp.bottom).offset(30)
             make.left.equalToSuperview().inset(30)
         }
-        self.userNameField.snp.makeConstraints { (make) in
-            make.top.equalTo(self.userNameLable.snp.bottom).offset(10)
+        self.userLoginField.snp.makeConstraints { (make) in
+            make.top.equalTo(self.userLoginLable.snp.bottom).offset(10)
             make.left.right.equalToSuperview().inset(30)
         }
         self.userPasswordLable.snp.makeConstraints { (make) in
-            make.top.equalTo(self.userNameField.snp.bottom).offset(20)
+            make.top.equalTo(self.userLoginField.snp.bottom).offset(30)
             make.left.equalToSuperview().inset(30)
         }
         self.userPasswordField.snp.makeConstraints { (make) in
@@ -515,7 +533,7 @@ class IYRegistrationViewController: IYViewController{
             make.left.right.equalToSuperview().inset(30)
         }
         self.confirmPasswordLable.snp.makeConstraints { (make) in
-            make.top.equalTo(self.userPasswordField.snp.bottom).offset(20)
+            make.top.equalTo(self.userPasswordField.snp.bottom).offset(30)
             make.left.right.equalToSuperview().inset(30)
         }
         self.confirmPasswordField.snp.makeConstraints { (make) in
@@ -523,7 +541,7 @@ class IYRegistrationViewController: IYViewController{
             make.left.right.equalToSuperview().inset(30)
         }
         self.emailLable.snp.makeConstraints { (make) in
-            make.top.equalTo(self.confirmPasswordField.snp.bottom).offset(20)
+            make.top.equalTo(self.confirmPasswordField.snp.bottom).offset(30)
             make.left.right.equalToSuperview().inset(30)
         }
         self.emailField.snp.makeConstraints { (make) in
@@ -531,12 +549,12 @@ class IYRegistrationViewController: IYViewController{
             make.left.right.equalToSuperview().inset(30)
         }
         self.registerButton.snp.makeConstraints { (make) in
-            make.top.equalTo(self.emailField.snp.bottom).offset(50)
+            make.top.equalTo(self.emailField.snp.bottom).offset(70)
             make.height.equalTo(60)
             make.left.right.equalToSuperview().inset(30)
         }
         self.backButton.snp.makeConstraints { (make) in
-            make.top.greaterThanOrEqualTo(self.registerButton.snp.bottom).offset(50)
+            make.top.equalTo(self.registerButton.snp.bottom).offset(50)
             make.left.right.equalToSuperview().inset(30)
             make.height.equalTo(60)
             make.bottom.equalToSuperview().inset(50)

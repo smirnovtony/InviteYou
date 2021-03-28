@@ -5,7 +5,6 @@
 //  Created by Антон Смирнов on 10.03.21.
 //
 
-
 // это окно красивой инфы
 // отсюда по кнопке Edit будет переход на редактирование
 
@@ -56,15 +55,12 @@ class IYDetailsViewController: IYViewController {
         button.setTitle("Address", for: UIControl.State())
         button.setTitleColor(.black, for: UIControl.State())
         button.titleLabel?.font = fontFamilyLittle
-        
-
 //        button.addTarget(self, action: #selector(mapButtonTapped), for: .touchUpInside) // действие кнопки
 
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }()
-   
     private lazy var dateButton: UIButton = { // переход на календарь
         let button = UIButton()
 
@@ -79,7 +75,6 @@ class IYDetailsViewController: IYViewController {
         button.backgroundColor = mainСolorGreen?.withAlphaComponent(0.5)
 
         button.layer.cornerRadius = 15
-
 
         return button
     }()
@@ -98,7 +93,6 @@ class IYDetailsViewController: IYViewController {
         button.backgroundColor = mainСolorGreen?.withAlphaComponent(0.5)
 
         button.layer.cornerRadius = 15
-
 
         return button
     }()
@@ -143,9 +137,6 @@ class IYDetailsViewController: IYViewController {
 
         return label
     }()
-
-
-
 
     private lazy var infoAboutEventLabel: UILabel = {
         let label = UILabel()
@@ -221,8 +212,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
         return button
     }()
 
-
-
     //MARK: - life cycle
 
     override func viewDidLoad() {
@@ -269,7 +258,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
     @objc private func calendarButtonTapped() {
         self.navigationController?.pushViewController(IYCalendarViewController(), animated: true)
     }
-    
     //MARK: - Constraints
 
     func setUpConstraintsFunction() {
@@ -334,5 +322,4 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
             make.bottom.equalToSuperview().inset(20)
         }
     }
-    
 }

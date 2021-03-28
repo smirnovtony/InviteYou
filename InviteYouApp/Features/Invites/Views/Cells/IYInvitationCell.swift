@@ -28,7 +28,6 @@ class IYInvitationCell: UITableViewCell {
         view.layer.shadowOffset = CGSize(width: 0, height: 0)
 
         view.translatesAutoresizingMaskIntoConstraints = false
-        
         return view
     }()
 
@@ -48,7 +47,6 @@ class IYInvitationCell: UITableViewCell {
         label.font = fontFamilyMiddle
         label.textColor = mainСolorGreen
         label.textAlignment = .left
-        
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -58,7 +56,7 @@ class IYInvitationCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .black
-        label.font = fontFamilyLittle?.withSize(17)
+        label.font = fontFamilyLittle
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -68,7 +66,7 @@ class IYInvitationCell: UITableViewCell {
     private lazy var dataLable: UILabel = {
         let label = UILabel()
 
-        label.backgroundColor = mainСolorGreen?.withAlphaComponent(0.5) // сделать его меняющимся в зависимости от даты: красный если прошло или отменено, зеленый если принял, желтый если не знаешь!!!!!!!!!!!!!!!!!!!!!!!!
+        label.backgroundColor = mainСolorGreen?.withAlphaComponent(0.5) // сделать его меняющимся в зависимости от даты!!!!!!!!!!!!!!!!!!!!!!!!
         label.textColor = .white
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 40
@@ -110,7 +108,6 @@ class IYInvitationCell: UITableViewCell {
         self.cardContainerView.addSubview(self.dataLable)
 
         self.cardContainerView.addSubview(self.closedOrOpenEventView)
-
 
         self.updateConstraints()
 
@@ -163,4 +160,3 @@ class IYInvitationCell: UITableViewCell {
     }
 
 }
-

@@ -14,7 +14,7 @@ class IYInitViewController: UIViewController {
 
     private lazy var topAppLabelConstrait: NSLayoutConstraint = self.appView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 250) // задали Constrait в виде локальной переменной
 
-    private lazy var topUserNameLable: NSLayoutConstraint = self.userNameLable.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: -10)
+    private lazy var topUserNameLable: NSLayoutConstraint = self.userLoginLable.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: -10)
 
     private lazy var bottomRegisterButton: NSLayoutConstraint = self.registerButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 50)
 
@@ -46,10 +46,10 @@ class IYInitViewController: UIViewController {
         return label
     }()
 
-    private lazy var userNameLable: UILabel = {
+    private lazy var userLoginLable: UILabel = {
         let label = UILabel()
 
-        label.text = "User Name"
+        label.text = "User Login"
         label.textColor = mainСolorGreen
         label.font = fontFamilyLittle
         label.textAlignment = .left
@@ -59,7 +59,7 @@ class IYInitViewController: UIViewController {
         return label
     }()
 
-    private lazy var userNameField: UITextField = {
+    private lazy var userLoginField: UITextField = {
         let textField = UITextField()
 
         textField.backgroundColor = .white
@@ -180,20 +180,18 @@ class IYInitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addTapGestureToHideKeyboard()
-        
         self.view.backgroundColor = backgroundСolorWhite
 
         self.view.addSubview(appView)
         self.view.addSubview(appLabel)
-        self.view.addSubview(userNameLable)
-        self.view.addSubview(userNameField)
+        self.view.addSubview(userLoginLable)
+        self.view.addSubview(userLoginField)
         self.view.addSubview(userPasswordLable)
         self.view.addSubview(userPasswordField)
         self.view.addSubview(forgotPasswordButton)
         self.view.addSubview(logInButton)
         self.view.addSubview(dontHaveAnAccountLable)
         self.view.addSubview(registerButton)
-        
         self.setUpConstraintsFunction()
 
         self.navigationController?.setNavigationBarHidden(true, animated: false)
@@ -208,7 +206,7 @@ class IYInitViewController: UIViewController {
         self.bottomRegisterButton.constant = -100
         setUpConstraintsFunction()
 
-        UIView.animate(withDuration: 1) { 
+        UIView.animate(withDuration: 1) {
             self.view.layoutIfNeeded()
         }
     }
@@ -229,7 +227,6 @@ class IYInitViewController: UIViewController {
     }
 
     //MARK: - Constraints
-    
     func setUpConstraintsFunction() {
         self.view.addConstraints([
             topAppLabelConstrait,
@@ -244,9 +241,8 @@ class IYInitViewController: UIViewController {
                                multiplier: 1, constant: -30),
             NSLayoutConstraint(item: self.appView, attribute: .height, relatedBy: .equal,
                                toItem: nil, attribute: .notAnAttribute,
-                               multiplier: 1, constant: 80), //высота
+                               multiplier: 1, constant: 80)
         ])
-        
         self.view.addConstraints([
             NSLayoutConstraint(item: self.appLabel, attribute: .centerX, relatedBy: .equal,
                                toItem: self.appView, attribute: .centerX,
@@ -261,29 +257,29 @@ class IYInitViewController: UIViewController {
 //                               toItem: self.view.safeAreaLayoutGuide, attribute: .top,
 //                               multiplier: 1, constant: 150),
             topUserNameLable,
-            NSLayoutConstraint(item: self.userNameLable, attribute: .left, relatedBy: .equal,
+            NSLayoutConstraint(item: self.userLoginLable, attribute: .left, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .left,
                                multiplier: 1, constant: 30),
-            NSLayoutConstraint(item: self.userNameLable, attribute: .right, relatedBy: .equal,
+            NSLayoutConstraint(item: self.userLoginLable, attribute: .right, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .right,
                                multiplier: 1, constant: -30)
         ])
 
         self.view.addConstraints([
-            NSLayoutConstraint(item: self.userNameField, attribute: .top, relatedBy: .equal,
-                               toItem: self.userNameLable, attribute: .bottom,
+            NSLayoutConstraint(item: self.userLoginField, attribute: .top, relatedBy: .equal,
+                               toItem: self.userLoginLable, attribute: .bottom,
                                multiplier: 1, constant: 20),
-            NSLayoutConstraint(item: self.userNameField, attribute: .left, relatedBy: .equal,
+            NSLayoutConstraint(item: self.userLoginField, attribute: .left, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .left,
                                multiplier: 1, constant: 30),
-            NSLayoutConstraint(item: self.userNameField, attribute: .right, relatedBy: .equal,
+            NSLayoutConstraint(item: self.userLoginField, attribute: .right, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .right,
                                multiplier: 1, constant: -30)
         ])
 
         self.view.addConstraints([
             NSLayoutConstraint(item: self.userPasswordLable, attribute: .top, relatedBy: .equal,
-                               toItem: self.userNameField, attribute: .bottom,
+                               toItem: self.userLoginField, attribute: .bottom,
                                multiplier: 1, constant: 20),
             NSLayoutConstraint(item: self.userPasswordLable, attribute: .left, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .left,
@@ -333,7 +329,7 @@ class IYInitViewController: UIViewController {
                                multiplier: 1, constant: -30),
             NSLayoutConstraint(item: self.logInButton, attribute: .height, relatedBy: .equal,
                                toItem: nil, attribute: .notAnAttribute,
-                               multiplier: 1, constant: 60), //высота
+                               multiplier: 1, constant: 60)
         ])
 
         self.view.addConstraints([
@@ -367,10 +363,4 @@ class IYInitViewController: UIViewController {
 
     }
 
-
-
 }
-
-
-
-

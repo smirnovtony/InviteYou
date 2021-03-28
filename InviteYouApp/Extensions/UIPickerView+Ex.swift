@@ -49,10 +49,6 @@ extension IYCreateInviteViewController: UIPickerViewDelegate, UIPickerViewDataSo
         default:
             break
         }
-
-
     }
 
 }
-
-

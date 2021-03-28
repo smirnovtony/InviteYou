@@ -32,8 +32,4 @@ class IYLaunchScreen: UIViewController {
         super.viewDidLoad()
 
     }
-
-
-
-
 }
