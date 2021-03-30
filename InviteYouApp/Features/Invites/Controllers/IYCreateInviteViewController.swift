@@ -14,16 +14,13 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
 
     private lazy var logoView: UIImageView = {
         let imageView = UIImageView()
-
         imageView.image = UIImage(named: "photography") // дeфолтная картинка, сюда логотип организации
         imageView.translatesAutoresizingMaskIntoConstraints = false
-
         return imageView
     }()
 
     private lazy var nameOrganizerTextView: UITextView = {
         let textView = UITextView()
-
         textView.textColor = .lightGray
         textView.font = fontFamilyMiddle
         textView.text = "Name Organizer"
@@ -32,15 +29,12 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         textView.isScrollEnabled = false
         textView.sizeToFit()
         textView.delegate = self
-
         textView.translatesAutoresizingMaskIntoConstraints = false
-
         return textView
     }()
 
     private lazy var infoAboutOrganizerTextView: UITextView = {
         let textView = UITextView()
-
         textView.textColor = .lightGray
         textView.font = fontFamilyLittle
         textView.text = "Info About The Organizer"
@@ -49,15 +43,12 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         textView.isScrollEnabled = false
         textView.sizeToFit()
         textView.delegate = self
-
         textView.translatesAutoresizingMaskIntoConstraints = false
-
         return textView
     }()
 
     private lazy var addressTextView: UITextView = { // связать с картой!!!!!!!!!!!!!!!!!!!!!!!!!!
         let textView = UITextView()
-
         textView.textColor = .lightGray
         textView.font = fontFamilyLittle
         textView.text = "Address"
@@ -66,110 +57,84 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         textView.isScrollEnabled = false
         textView.sizeToFit()
         textView.delegate = self
-
         textView.translatesAutoresizingMaskIntoConstraints = false
-
         return textView
     }()
 
     private lazy var dataImageView: UIImageView = {
         let imageView = UIImageView()
-
         imageView.backgroundColor = mainСolorGreen?.withAlphaComponent(0.5)
         imageView.layer.cornerRadius = 15
-
         imageView.translatesAutoresizingMaskIntoConstraints = false
-
         return imageView
     }()
 
     private lazy var dataTextField: UITextField = {
         let textField = UITextField()
-
         textField.textColor = .white
         textField.font = fontFamilyLittle
         textField.placeholder = "Date"
         textField.textAlignment = .center
         textField.inputView = self.datePicker
         textField.inputAccessoryView = self.doneToolBar
-
         textField.translatesAutoresizingMaskIntoConstraints = false
-
         return textField
     }()
 
     private lazy var datePicker: UIDatePicker = {
         let picker = UIDatePicker()
-
         picker.datePickerMode = .date
         picker.preferredDatePickerStyle = .wheels
         picker.minimumDate = Date()
-
         picker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
-
         return picker
     }()
 
     private lazy var timeImageView: UIImageView = {
         let imageView = UIImageView()
-
         imageView.backgroundColor = mainСolorGreen?.withAlphaComponent(0.5)
         imageView.layer.cornerRadius = 15
-
         imageView.translatesAutoresizingMaskIntoConstraints = false
-
         return imageView
     }()
 
     private lazy var timeTextField: UITextField = {
         let textField = UITextField()
-
         textField.textColor = .white
         textField.font = fontFamilyLittle
         textField.placeholder = "Time"
         textField.textAlignment = .center
         textField.inputView = self.timePicker
         textField.inputAccessoryView = self.doneToolBar
-
         textField.translatesAutoresizingMaskIntoConstraints = false
-
         return textField
     }()
 
     private lazy var timePicker: UIDatePicker = {
         let picker = UIDatePicker()
-
         picker.datePickerMode = .time
         picker.preferredDatePickerStyle = .wheels
         picker.minimumDate = Date()
-
         picker.addTarget(self, action: #selector(timePickerValueChanged), for: .valueChanged)
-
         return picker
     }()
 
     lazy var numberOfPersonsTextField: UITextField = { // пикер колличество
         let textField = UITextField()
-
         textField.textColor = mainСolorGreen
         textField.font = fontFamilyLittle
         textField.placeholder = "Persons"
         textField.textAlignment = .center
         textField.inputView = self.numberOfPersonsPicker
-
         textField.translatesAutoresizingMaskIntoConstraints = false
-
         return textField
     }()
 
     lazy var numberOfPersonsPicker: UIPickerView = {
          let picker = UIPickerView()
-
          picker.delegate = self
          picker.dataSource = self
-
          picker.translatesAutoresizingMaskIntoConstraints = false
-
          return picker
      }()
 
@@ -185,26 +150,20 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
 
     lazy var typeOfEventTextField: UITextField = {
         let textField = UITextField()
-
         textField.textColor = mainСolorGreen
         textField.font = fontFamilyLittle
         textField.placeholder = "Type Of Event"
         textField.textAlignment = .center
         textField.inputView = self.typeOfEventPicker
-
         textField.translatesAutoresizingMaskIntoConstraints = false
-
         return textField
     }()
 
     lazy var typeOfEventPicker: UIPickerView = {
         let picker = UIPickerView()
-
         picker.delegate = self
         picker.dataSource = self
-
         picker.translatesAutoresizingMaskIntoConstraints = false
-
         return picker
     }()
 
@@ -244,15 +203,12 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
 
     private lazy var openOrClosedControl: UISegmentedControl = {
         let control = UISegmentedControl(items: ["Open", "Closed"])
-
         control.selectedSegmentIndex = 0
         control.selectedSegmentTintColor = mainСolorGreen?.withAlphaComponent(0.5)
         control.layer.borderColor = UIColor.black.cgColor
         control.setTitleTextAttributes([.foregroundColor: UIColor.gray,
                                         .font: fontFamilyLittle ?? UIFont.systemFont(ofSize: 30)], for: .normal)
-
         control.translatesAutoresizingMaskIntoConstraints = false
-
         return control
     }()
 
@@ -262,17 +218,8 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         button.setTitle("Create Invitation", for: UIControl.State())
         button.setTitleColor(.white, for: UIControl.State())
         button.backgroundColor = mainСolorGreen
-        button.titleLabel?.font = fontFamilyMiddle
-        button.layer.cornerRadius = 15
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.5
-        button.layer.shadowRadius = 20
-        button.clipsToBounds = false
-
+        customButton(button)
         button.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
-
-        button.translatesAutoresizingMaskIntoConstraints = false
-
         return button
     }()
 

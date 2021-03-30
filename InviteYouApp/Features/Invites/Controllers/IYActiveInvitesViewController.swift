@@ -16,6 +16,20 @@ class IYActiveInvitesViewController: UITableViewController {
             "Invitation Ex",
             "Invitation Ex"
         ]
+
+    private lazy var filteredInvites: [String] = self.invites //
+
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController()
+        searchController.hidesNavigationBarDuringPresentation = false // скрытие
+        self.navigationItem.hidesSearchBarWhenScrolling = false // скрол
+//        searchController.obscuresBackgroundDuringPresentation = false // затемнение экрана
+//        searchController.searchBar.placeholder = "Tap to start searching"
+        searchController.searchBar.searchTextField.backgroundColor = .white
+
+        return searchController
+    }()
+
     //MARK: - life cycle
 
         override func viewDidLoad() {
@@ -37,7 +51,11 @@ class IYActiveInvitesViewController: UITableViewController {
             self.navigationItem.rightBarButtonItems = [self.editButtonItem]
             self.editButtonItem.tintColor = .white
             self.editButtonItem.setTitleTextAttributes([.font: fontFamilyLittle?.withSize(25) ?? UIFont.systemFont(ofSize: 30)], for: .normal)
-        }
+            self.searchController.searchResultsUpdater = self // подчиненпие протоколу
+            self.navigationItem.searchController = self.searchController // добавление searchController на NB
+            }
+
+
 
         override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return self.invites.count
@@ -75,5 +93,15 @@ class IYActiveInvitesViewController: UITableViewController {
 
     @objc private func createButtonTapped() { // изменить на правильный адрес
         navigationController?.pushViewController(IYCreateInviteViewController(), animated: true)
+    }
+}
+
+extension IYActiveInvitesViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text else { return }
+        self.filteredInvites = searchText.isEmpty
+            ? self.invites
+            : self.invites.filter { $0.lowercased().contains(searchText.lowercased()) } // изменить!!!!!!!!!!!!!!!!!
+        self.tableView.reloadData()
     }
 }

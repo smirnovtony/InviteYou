@@ -22,6 +22,7 @@ class IYViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addTapGestureToHideKeyboard()
 
         self.view.backgroundColor = backgroundСolorWhite
 

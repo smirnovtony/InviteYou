@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class IYRegistrationViewController: IYViewController{
+class IYRegistrationViewController: IYViewController {
 
     //MARK: - var
 
@@ -17,41 +17,36 @@ class IYRegistrationViewController: IYViewController{
     private var userLogin: String {
         self.userLoginField.text ?? ""
     }
-
     private var userPassword: String {
         self.userPasswordField.text ?? ""
     }
-
     private var confirmPassword: String {
         self.confirmPasswordField.text ?? ""
     }
-
     private var email: String {
         self.emailField.text ?? ""
     }
+    private var conditionsPassEqualToLogin: String = "Passwords Must Not Contain Your User Name"
+    private var conditionsInvalidPassword: String = "Invalid Password"
+    private var conditionsPassCharacters: String = "Password Must Be More Than 8 Characters"
 
     private lazy var registrationView: UIView = {
         let view = UIView()
-
         view.backgroundColor = .white
         view.layer.cornerRadius = 15
         view.layer.shadowRadius = 20
         view.layer.shadowOpacity = 0.5
         view.layer.shadowColor = UIColor.gray.cgColor
-
         view.translatesAutoresizingMaskIntoConstraints = false
-
         return view
     }()
 
     private lazy var registrationLabel: UILabel = {
         let label = UILabel()
-
         label.text = "Registration"
         label.textColor = mainСolorGreen
-        label.font = fontFamilyBig?.withSize(47)
+        label.font = fontFamilyBig
         label.textAlignment = .center
-
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -59,14 +54,11 @@ class IYRegistrationViewController: IYViewController{
 
     private lazy var loginWithLabel: UILabel = {
         let label = UILabel()
-
         label.text = "Login With"
         label.textColor = mainСolorGreen
         label.font = fontFamilyLittle
         label.textAlignment = .center
-
         label.translatesAutoresizingMaskIntoConstraints = false
-
         return label
     }()
 
@@ -75,7 +67,6 @@ class IYRegistrationViewController: IYViewController{
         button.setImage(UIImage(named: "apple"), for: .normal)
         //        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-
         return button
     }()
 
@@ -84,7 +75,6 @@ class IYRegistrationViewController: IYViewController{
         button.setImage(UIImage(named: "google"), for: .normal)
         //        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-
         return button
     }()
 
@@ -93,7 +83,6 @@ class IYRegistrationViewController: IYViewController{
         button.setImage(UIImage(named: "instagram"), for: .normal)
         //        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-
         return button
     }()
 
@@ -102,170 +91,77 @@ class IYRegistrationViewController: IYViewController{
         button.setImage(UIImage(named: "facebook"), for: .normal)
         //        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-
         return button
     }()
 
     private lazy var userLoginLable: UILabel = {
         let label = UILabel()
-
         label.text = "User Login"
-        label.textColor = mainСolorGreen
-        label.font = fontFamilyLittle
-        label.textAlignment = .left
-
-        label.translatesAutoresizingMaskIntoConstraints = false
-
+        customLable(label)
         return label
     }()
 
     private lazy var userLoginField: UITextField = {
         let textField = UITextField()
-
-        textField.backgroundColor = .white
-        textField.textColor = mainСolorGreen
-        textField.font = fontFamilyLittle
-        textField.borderStyle = .roundedRect
-//        textField.placeholder = "Enter Your Name"
-        textField.clearButtonMode = .always
-        textField.layer.shadowRadius = 20
-        textField.layer.shadowOpacity = 0.5
-        textField.layer.shadowColor = UIColor.gray.cgColor
-
-        textField.translatesAutoresizingMaskIntoConstraints = false
-
+        customTextField(textField)
         return textField
     }()
 
     private lazy var userPasswordLable: UILabel = {
         let label = UILabel()
-
         label.text = "User Password"
-        label.textColor = mainСolorGreen
-        label.font = fontFamilyLittle
-        label.textAlignment = .left
-
-        label.translatesAutoresizingMaskIntoConstraints = false
-
+        customLable(label)
         return label
     }()
 
     private lazy var userPasswordField: UITextField = {
         let textField = UITextField()
-
-        textField.backgroundColor = .white
-        textField.textColor = mainСolorGreen
-        textField.font = fontFamilyLittle
-        textField.borderStyle = .roundedRect
-//        textField.placeholder = "Enter Password"
-        textField.clearButtonMode = .always
+        customTextField(textField)
         textField.isSecureTextEntry = true
-        textField.layer.shadowRadius = 20
-        textField.layer.shadowOpacity = 0.5
-        textField.layer.shadowColor = UIColor.gray.cgColor
-
-        textField.translatesAutoresizingMaskIntoConstraints = false
-
         return textField
-    }()
-
-    private lazy var conditionsUserNamePasswordLable: UILabel = {
-        let label = UILabel()
-
-        label.text = "Passwords must not contain your User Name"
-        label.textColor = notСolorPink?.withAlphaComponent(5)
-        label.font = fontFamilyLittle?.withSize(20)
-        label.textAlignment = .right
-
-        label.translatesAutoresizingMaskIntoConstraints = false
-
-        return label
-    }()
-
-    private lazy var conditionsPasswordLable: UILabel = {
-        let label = UILabel()
-
-        label.text = "Password must be more than 8 characters"
-        label.textColor = notСolorPink?.withAlphaComponent(5)
-        label.font = fontFamilyLittle?.withSize(20)
-        label.textAlignment = .right
-
-        label.translatesAutoresizingMaskIntoConstraints = false
-
-        return label
     }()
 
     private lazy var confirmPasswordLable: UILabel = {
         let label = UILabel()
-
         label.text = "Сonfirm Password"
-        label.textColor = mainСolorGreen
-        label.font = fontFamilyLittle
-        label.textAlignment = .left
-
-        label.translatesAutoresizingMaskIntoConstraints = false
-
+        customLable(label)
         return label
     }()
 
     private lazy var confirmPasswordField: UITextField = {
         let textField = UITextField()
-
-        textField.backgroundColor = .white
-        textField.textColor = mainСolorGreen
-        textField.font = fontFamilyLittle
-        textField.borderStyle = .roundedRect
-//        textField.placeholder = "Сonfirm Password"
-        textField.clearButtonMode = .always
+        customTextField(textField)
         textField.isSecureTextEntry = true
-        textField.layer.shadowRadius = 20
-        textField.layer.shadowOpacity = 0.5
-        textField.layer.shadowColor = UIColor.gray.cgColor
-
-        textField.translatesAutoresizingMaskIntoConstraints = false
-
         return textField
     }()
 
-    private lazy var conditionsConfirmPasswordLable: UILabel = {
+    private lazy var conditionsPass: UILabel = {
         let label = UILabel()
-
-        label.text = "Invalid password"
-        label.textColor = notСolorPink?.withAlphaComponent(5)
-        label.font = fontFamilyLittle?.withSize(20)
-        label.textAlignment = .right
-
+        label.textColor = notСolorPink
+        label.font = fontFamilyLittle?.withSize(18)
+        label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
-
+        return label
+    }()
+    private lazy var conditionsConfirmPass: UILabel = {
+        let label = UILabel()
+        label.textColor = notСolorPink
+        label.font = fontFamilyLittle?.withSize(18)
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     private lazy var emailLable: UILabel = {
         let label = UILabel()
-
         label.text = "Email"
-        label.textColor = mainСolorGreen
-        label.font = fontFamilyLittle
-        label.textAlignment = .left
-
-        label.translatesAutoresizingMaskIntoConstraints = false
-
+        customLable(label)
         return label
     }()
 
     private lazy var emailField: UITextField = {
         let textField = UITextField()
-
-        textField.backgroundColor = .white
-        textField.textColor = mainСolorGreen
-        textField.font = fontFamilyLittle
-        textField.borderStyle = .roundedRect // закругление поля
-//        textField.placeholder = "Enter Your Email adress"
-        textField.clearButtonMode = .always
-        textField.layer.shadowRadius = 20
-        textField.layer.shadowOpacity = 0.5
-        textField.layer.shadowColor = UIColor.gray.cgColor
-
+        customTextField(textField)
         textField.translatesAutoresizingMaskIntoConstraints = false
 
         return textField
@@ -273,41 +169,21 @@ class IYRegistrationViewController: IYViewController{
 
     private lazy var registerButton: UIButton = {
         let button = UIButton()
-
         button.setTitle("Register", for: UIControl.State())
         button.setTitleColor(.white, for: UIControl.State())
-        button.backgroundColor = mainСolorGreen?.withAlphaComponent(1)
-        button.titleLabel?.font = fontFamilyMiddle
-        button.layer.cornerRadius = 15
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.5
-        button.layer.shadowRadius = 20
-        button.clipsToBounds = false
-
+        button.backgroundColor = mainСolorGreen
+        customButton(button)
         button.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
-
-        button.translatesAutoresizingMaskIntoConstraints = false
-
         return button
     }()
 
     private lazy var backButton: UIButton = {
         let button = UIButton()
-
         button.setTitle("Back", for: UIControl.State())
         button.setTitleColor(.white, for: UIControl.State())
         button.backgroundColor = notСolorPink
-        button.titleLabel?.font = fontFamilyMiddle
-        button.layer.cornerRadius = 15
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.5
-        button.layer.shadowRadius = 20
-        button.clipsToBounds = false
-
+        customButton(button)
         button.addTarget(self, action: #selector(backToLoginButtonTapped), for: .touchUpInside)
-
-        button.translatesAutoresizingMaskIntoConstraints = false
-
         return button
     }()
 
@@ -342,7 +218,7 @@ class IYRegistrationViewController: IYViewController{
 
         self.setUpConstraintsFunction()
 
-        self.emailField.keyboardType = .emailAddress // клавиатера для email
+        self.emailField.keyboardType = .emailAddress
 
     }
 
@@ -352,7 +228,9 @@ class IYRegistrationViewController: IYViewController{
 
         if registrationConditions() {
 
-            let alertController = UIAlertController(title: "Registration completed successfully", message: "", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Registration Completed Successfully",
+                                                    message: "",
+                                                    preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default) { _ in
                 let registerController = IYTabBarViewController()
                 if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
@@ -366,10 +244,10 @@ class IYRegistrationViewController: IYViewController{
             // дописать сохранение данных!!!!!!!!!!!!!!!!!!!!!!
 
         } else {
-            let alertController = UIAlertController(title: "Error", message: "Сheck the entered information", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .destructive) { _ in
-                        print("Error action tapped")
-                    }
+            let alertController = UIAlertController(title: "Error",
+                                                    message: "Сheck The Entered Information",
+                                                    preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .destructive)
                 self.present(alertController, animated: true)
                 alertController.addAction(okAction)
         }
@@ -391,34 +269,41 @@ class IYRegistrationViewController: IYViewController{
         }
 
         if !self.userPassword.isEmpty,
+           !self.confirmPassword.isEmpty,
            self.userPassword.count >= 8,
-           self.userPassword != self.userLogin {
+           self.userPassword != self.userLogin,
+           self.userPassword == self.confirmPassword {
             output = true
-            self.userPasswordField.backgroundColor = .white
+            conditionsPass.text = ""
+            conditionsConfirmPass.text = ""
+            userPasswordField.backgroundColor = .white
             confirmPasswordField.backgroundColor = .white
-            conditionsPasswordLable.textColor = backgroundСolorWhite
-            conditionsUserNamePasswordLable.textColor = backgroundСolorWhite
-            conditionsConfirmPasswordLable.textColor = backgroundСolorWhite
-        } else if self.userPassword == self.userLogin {
+        } else if !self.userPassword.isEmpty,
+                  self.userPassword == self.userLogin {
             counter += 1
-            conditionsUserNamePassword()
-        } else {
+            conditionsPass.text = conditionsPassEqualToLogin
+            conditionsConfirmPass.text = ""
+            conditionsUserPassConstraints()
+        } else if !self.userPassword.isEmpty,
+                  self.userPassword.count < 8 {
+                counter += 1
+                conditionsPass.text = conditionsPassCharacters
+                conditionsConfirmPass.text = ""
+                conditionsUserPassConstraints()
+        } else if !self.confirmPassword.isEmpty,
+                  self.userPassword != self.confirmPassword {
             counter += 1
-            conditionsPassword()
+            userPasswordField.backgroundColor = .white
+            conditionsConfirmPass.text = conditionsInvalidPassword
+            conditionsPass.text = ""
+            conditionsConfirmPassConstraints()
         }
-
-        if !self.confirmPassword.isEmpty, self.userPassword == self.confirmPassword, self.userPassword.count >= 8, self.userPassword != self.userLogin {
-            output = true
-            self.userPasswordField.backgroundColor = .white
-            confirmPasswordField.backgroundColor = .white
-            conditionsPasswordLable.textColor = backgroundСolorWhite
-            conditionsUserNamePasswordLable.textColor = backgroundСolorWhite
-            conditionsConfirmPasswordLable.textColor = backgroundСolorWhite
-        } else if !self.confirmPassword.isEmpty, self.userPassword != self.confirmPassword {
-            counter += 1
-            conditionsConfirmPassword()
+        if self.confirmPassword.isEmpty {
+            confirmPasswordField.backgroundColor = notСolorPink
         }
-
+        if self.userPassword.isEmpty {
+            userPasswordField.backgroundColor = notСolorPink
+        }
         if !self.email.isEmpty {
             output = true
             self.emailField.backgroundColor = .white
@@ -431,52 +316,20 @@ class IYRegistrationViewController: IYViewController{
         }
         return output
     }
-
-    private func conditionsPassword() { // "Password must be more than 8 characters"
-        self.mainView.addSubview(self.conditionsPasswordLable)
-
-        self.userPasswordField.backgroundColor = notСolorPink
-        confirmPasswordField.backgroundColor = .white
-
-
-        conditionsPasswordLable.textColor = notСolorPink
-        self.conditionsUserNamePasswordLable.textColor = backgroundСolorWhite
-        conditionsConfirmPasswordLable.textColor = backgroundСolorWhite
-
-        self.conditionsPasswordLable.snp.makeConstraints { (make) in
-            make.top.equalTo(self.userPasswordField.snp.bottom).offset(5)
-            make.left.equalToSuperview().inset(30)
+    private func conditionsUserPassConstraints() {
+        userPasswordField.backgroundColor = notСolorPink
+        self.mainView.addSubview(self.conditionsPass)
+        self.conditionsPass.snp.makeConstraints { (make) in
+          make.top.equalTo(self.userPasswordField.snp.bottom).offset(5)
+            make.left.right.equalToSuperview().inset(30)
         }
     }
-    private func conditionsUserNamePassword() { // не совпадает с UserName
-        self.mainView.addSubview(self.conditionsUserNamePasswordLable)
-
-        self.userPasswordField.backgroundColor = notСolorPink
-        confirmPasswordField.backgroundColor = .white
-
-        conditionsPasswordLable.textColor = backgroundСolorWhite
-        self.conditionsUserNamePasswordLable.textColor = notСolorPink
-        conditionsConfirmPasswordLable.textColor = backgroundСolorWhite
-
-        self.conditionsUserNamePasswordLable.snp.makeConstraints { (make) in
-            make.top.equalTo(self.userPasswordField.snp.bottom).offset(5)
-            make.left.equalToSuperview().inset(30)
-        }
-    }
-
-    private func conditionsConfirmPassword() { // "Invalid password"
-        self.mainView.addSubview(self.conditionsConfirmPasswordLable)
-
-        userPasswordField.backgroundColor = .white
-        self.confirmPasswordField.backgroundColor = notСolorPink
-
-        conditionsPasswordLable.textColor = backgroundСolorWhite
-        conditionsUserNamePasswordLable.textColor = backgroundСolorWhite
-        self.conditionsConfirmPasswordLable.textColor = notСolorPink
-
-        self.conditionsConfirmPasswordLable.snp.makeConstraints { (make) in
-            make.top.equalTo(self.confirmPasswordField.snp.bottom).offset(5)
-            make.left.equalToSuperview().inset(30)
+    private func conditionsConfirmPassConstraints() {
+        confirmPasswordField.backgroundColor = notСolorPink
+        self.mainView.addSubview(self.conditionsConfirmPass)
+        self.conditionsConfirmPass.snp.makeConstraints { (make) in
+          make.top.equalTo(self.confirmPasswordField.snp.bottom).offset(5)
+            make.left.right.equalToSuperview().inset(30)
         }
     }
 

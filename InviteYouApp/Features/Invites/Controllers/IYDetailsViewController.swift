@@ -158,13 +158,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
 
     private lazy var openOrClosedLabel: UILabel = { // перечисление с возможностью ввести свое назвнание!!!!!
         let label = UILabel()
-
         label.text = "Open Or Closed"
         label.numberOfLines = 0
         label.textColor = mainСolorGreen
         label.font = fontFamilyLittle
         label.textAlignment = .center
-
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -176,39 +174,18 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
         button.setTitle("Subscribe", for: UIControl.State())
         button.setTitleColor(.white, for: UIControl.State()) // цвет текста
         button.backgroundColor = mainСolorGreen // цвет кнопки
-        button.titleLabel?.font = fontFamilyMiddle // шрифт (размер)
-        button.layer.cornerRadius = 15
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.5
-        button.layer.shadowRadius = 20
-        button.layer.shadowOffset = CGSize(width: 0, height: 0)
-        button.clipsToBounds = false
-
+        customButton(button)
 //        button.addTarget(self, action: #selector(subscribeButtonTapped), for: .touchUpInside) // действие кнопки
-
-        button.translatesAutoresizingMaskIntoConstraints = false
-
         return button
     }()
 
     private lazy var unsubscribeButton: UIButton = { // нажимаешь и открывается карта
         let button = UIButton()
-
         button.setTitle("Unsubscribe", for: UIControl.State())
         button.setTitleColor(.white, for: UIControl.State()) // цвет текста
         button.backgroundColor = notСolorPink // цвет кнопки
-        button.titleLabel?.font = fontFamilyMiddle // шрифт (размер)
-        button.layer.cornerRadius = 15
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.5
-        button.layer.shadowRadius = 20
-        button.layer.shadowOffset = CGSize(width: 0, height: 0)
-        button.clipsToBounds = false
-
+        customButton(button)
 //        button.addTarget(self, action: #selector(unsubscribeButtonTapped), for: .touchUpInside) // действие кнопки
-
-        button.translatesAutoresizingMaskIntoConstraints = false
-
         return button
     }()
 

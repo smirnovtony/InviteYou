@@ -22,134 +22,76 @@ class IYInitViewController: UIViewController {
 
     private lazy var appView: UIView = {
         let view = UIView()
-
         view.backgroundColor = mainСolorGreen
         view.layer.cornerRadius = 15
         view.layer.shadowRadius = 20
         view.layer.shadowOpacity = 0.5
-
         view.translatesAutoresizingMaskIntoConstraints = false
-
         return view
     }()
 
     private lazy var appLabel: UILabel = {
         let label = UILabel()
-
         label.text = "Invite.You"
         label.textColor = .white
         label.font = fontFamilyBig
         label.textAlignment = .center
-
         label.translatesAutoresizingMaskIntoConstraints = false
-
         return label
     }()
 
     private lazy var userLoginLable: UILabel = {
         let label = UILabel()
-
         label.text = "User Login"
-        label.textColor = mainСolorGreen
-        label.font = fontFamilyLittle
-        label.textAlignment = .left
-
-        label.translatesAutoresizingMaskIntoConstraints = false
-
+        customLable(label)
         return label
     }()
 
     private lazy var userLoginField: UITextField = {
         let textField = UITextField()
-
-        textField.backgroundColor = .white
-        textField.textColor = mainСolorGreen
-        textField.font = fontFamilyLittle
-        textField.borderStyle = .roundedRect
-//        textField.placeholder = "Enter Your Name"
-        textField.clearButtonMode = .always
-        textField.layer.shadowRadius = 20
-        textField.layer.shadowOpacity = 0.5
-        textField.layer.shadowColor = UIColor.gray.cgColor
-
-        textField.translatesAutoresizingMaskIntoConstraints = false
-
+        customTextField(textField)
         return textField
     }()
 
     private lazy var userPasswordLable: UILabel = {
         let label = UILabel()
-
         label.text = "User Password"
-        label.textColor = mainСolorGreen
-
-        label.font = fontFamilyLittle
-        label.textAlignment = .left
-
-        label.translatesAutoresizingMaskIntoConstraints = false
-
+        customLable(label)
         return label
     }()
 
     private lazy var userPasswordField: UITextField = {
         let textField = UITextField()
-
-        textField.backgroundColor = .white
-        textField.textColor = mainСolorGreen
-        textField.font = fontFamilyLittle
-        textField.borderStyle = .roundedRect
-//        textField.placeholder = "Enter Password"
-        textField.clearButtonMode = .always
+        customTextField(textField)
         textField.isSecureTextEntry = true
-        textField.layer.shadowRadius = 20
-        textField.layer.shadowOpacity = 0.5
-        textField.layer.shadowColor = UIColor.gray.cgColor
-
-        textField.translatesAutoresizingMaskIntoConstraints = false
-
         return textField
     }()
 
     private lazy var forgotPasswordButton: UIButton = {
         let button = UIButton()
-
         button.setTitle("Forgot Password?", for: UIControl.State())
         button.setTitleColor(mainСolorGreen, for: UIControl.State())
         button.titleLabel?.font = fontFamilyLittle
-
         button.translatesAutoresizingMaskIntoConstraints = false
-
         return button
     }()
 
     private lazy var logInButton: UIButton = {
         let button = UIButton()
-
         button.setTitle("Log In", for: UIControl.State())
         button.setTitleColor(.white, for: UIControl.State())
         button.backgroundColor = mainСolorGreen?.withAlphaComponent(1)
-        button.titleLabel?.font = fontFamilyMiddle
-        button.layer.cornerRadius = 15
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.5
-        button.layer.shadowRadius = 20
-        button.clipsToBounds = false
-
+        customButton(button)
         button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
-
-        button.translatesAutoresizingMaskIntoConstraints = false
-
         return button
     }()
 
     private lazy var dontHaveAnAccountLable: UILabel = {
         let label = UILabel()
-
         label.text = "Don't Have An Account?"
         label.textColor = mainСolorGreen
         label.font = fontFamilyLittle
         label.textAlignment = .center
-
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -157,21 +99,11 @@ class IYInitViewController: UIViewController {
 
     private lazy var registerButton: UIButton = {
         let button = UIButton()
-
         button.setTitle("Register", for: UIControl.State())
         button.setTitleColor(mainСolorGreen, for: UIControl.State())
         button.backgroundColor = UIColor.white.withAlphaComponent(1)
-        button.titleLabel?.font = fontFamilyMiddle
-        button.layer.cornerRadius = 15
-        button.layer.shadowColor = UIColor.lightGray.cgColor
-        button.layer.shadowOpacity = 5
-        button.layer.shadowRadius = 20
-        button.clipsToBounds = false
-
+        customButton(button)
         button.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
-
-        button.translatesAutoresizingMaskIntoConstraints = false
-
         return button
     }()
 
