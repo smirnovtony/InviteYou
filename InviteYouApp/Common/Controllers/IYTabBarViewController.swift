@@ -9,6 +9,7 @@ import UIKit
 
 class IYTabBarViewController: UITabBarController {
 
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,7 +36,7 @@ class IYTabBarViewController: UITabBarController {
     }
 
     func setTabbarAppearance() {
-        self.tabBar.barTintColor =  backgroundСolorWhite
+        self.tabBar.barTintColor =  .white
         self.tabBar.tintColor = mainСolorGreen
         self.tabBar.unselectedItemTintColor = .lightGray
         self.tabBar.itemPositioning = .fill

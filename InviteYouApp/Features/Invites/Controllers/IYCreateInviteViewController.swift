@@ -10,7 +10,7 @@ import SnapKit
 
 class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
 
-    //MARK: - var
+    //MARK: - Variables
 
     private lazy var logoView: UIImageView = {
         let imageView = UIImageView()
@@ -19,118 +19,56 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         return imageView
     }()
 
-    private lazy var nameOrganizerTextView: UITextView = {
-        let textView = UITextView()
-        textView.textColor = .lightGray
-        textView.font = fontFamilyMiddle
-        textView.text = "Name Organizer"
-        textView.textAlignment = .center
-        textView.backgroundColor = backgroundСolorWhite
-        textView.isScrollEnabled = false
-        textView.sizeToFit()
-        textView.delegate = self
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        return textView
+    private lazy var nameOrganizerLable: UILabel = {
+        let label = UILabel()
+        label.text = "Name Organizer"
+        customLable(label)
+        return label
     }()
 
-    private lazy var infoAboutOrganizerTextView: UITextView = {
-        let textView = UITextView()
-        textView.textColor = .lightGray
-        textView.font = fontFamilyLittle
-        textView.text = "Info About The Organizer"
-        textView.textAlignment = .center
-        textView.backgroundColor = backgroundСolorWhite
-        textView.isScrollEnabled = false
-        textView.sizeToFit()
-        textView.delegate = self
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        return textView
-    }()
-
-    private lazy var addressTextView: UITextView = { // связать с картой!!!!!!!!!!!!!!!!!!!!!!!!!!
-        let textView = UITextView()
-        textView.textColor = .lightGray
-        textView.font = fontFamilyLittle
-        textView.text = "Address"
-        textView.textAlignment = .center
-        textView.backgroundColor = backgroundСolorWhite
-        textView.isScrollEnabled = false
-        textView.sizeToFit()
-        textView.delegate = self
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        return textView
-    }()
-
-    private lazy var dataImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = mainСolorGreen?.withAlphaComponent(0.5)
-        imageView.layer.cornerRadius = 15
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-
-    private lazy var dataTextField: UITextField = {
+    private lazy var nameOrganizerTextField: UITextField = {
         let textField = UITextField()
-        textField.textColor = .white
-        textField.font = fontFamilyLittle
-        textField.placeholder = "Date"
-        textField.textAlignment = .center
-        textField.inputView = self.datePicker
-        textField.inputAccessoryView = self.doneToolBar
-        textField.translatesAutoresizingMaskIntoConstraints = false
+        customTextField(textField)
+        return textField
+    }()
+    private lazy var infoAboutOrganizerLable: UILabel = {
+        let label = UILabel()
+        label.text = "Info About The Organizer"
+        customLable(label)
+        return label
+    }()
+    private lazy var infoAboutOrganizerTextField: UITextField = {
+        let textField = UITextField()
+        customTextField(textField)
+        return textField
+    }()
+    private lazy var addressLable: UILabel = { // связать с картой!!!!!!!!!!!!!!!!!!!!!!!!!!
+        let label = UILabel()
+        label.text = "Address"
+        customLable(label)
+        return label
+    }()
+    private lazy var addressTextField: UITextField = {
+        let textField = UITextField()
+        customTextField(textField)
         return textField
     }()
 
-    private lazy var datePicker: UIDatePicker = {
-        let picker = UIDatePicker()
-        picker.datePickerMode = .date
-        picker.preferredDatePickerStyle = .wheels
-        picker.minimumDate = Date()
-        picker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
-        return picker
+    private lazy var numberOfPersonsLable: UILabel = {
+        let label = UILabel()
+        label.text = "Persons"
+        customLable(label)
+        return label
     }()
-
-    private lazy var timeImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = mainСolorGreen?.withAlphaComponent(0.5)
-        imageView.layer.cornerRadius = 15
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-
-    private lazy var timeTextField: UITextField = {
+    private lazy var numberOfPersonsTextField: UITextField = {
         let textField = UITextField()
-        textField.textColor = .white
-        textField.font = fontFamilyLittle
-        textField.placeholder = "Time"
-        textField.textAlignment = .center
-        textField.inputView = self.timePicker
-        textField.inputAccessoryView = self.doneToolBar
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
-    }()
-
-    private lazy var timePicker: UIDatePicker = {
-        let picker = UIDatePicker()
-        picker.datePickerMode = .time
-        picker.preferredDatePickerStyle = .wheels
-        picker.minimumDate = Date()
-        picker.addTarget(self, action: #selector(timePickerValueChanged), for: .valueChanged)
-        return picker
-    }()
-
-    lazy var numberOfPersonsTextField: UITextField = { // пикер колличество
-        let textField = UITextField()
-        textField.textColor = mainСolorGreen
-        textField.font = fontFamilyLittle
-        textField.placeholder = "Persons"
-        textField.textAlignment = .center
+        customTextField(textField)
         textField.inputView = self.numberOfPersonsPicker
-        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.inputAccessoryView = self.doneToolBar
         return textField
     }()
 
-    lazy var numberOfPersonsPicker: UIPickerView = {
+    private lazy var numberOfPersonsPicker: UIPickerView = {
          let picker = UIPickerView()
          picker.delegate = self
          picker.dataSource = self
@@ -147,57 +85,94 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         ]
         return toolbar
     }()
-
-    lazy var typeOfEventTextField: UITextField = {
+    private lazy var typeOfEventLable: UILabel = {
+        let label = UILabel()
+        label.text = "Type Of Event"
+        customLable(label)
+        return label
+    }()
+    private lazy var typeOfEventTextField: UITextField = {
         let textField = UITextField()
-        textField.textColor = mainСolorGreen
-        textField.font = fontFamilyLittle
-        textField.placeholder = "Type Of Event"
-        textField.textAlignment = .center
+        customTextField(textField)
         textField.inputView = self.typeOfEventPicker
-        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.inputAccessoryView = self.doneToolBar
         return textField
     }()
 
-    lazy var typeOfEventPicker: UIPickerView = {
+    private lazy var typeOfEventPicker: UIPickerView = {
         let picker = UIPickerView()
         picker.delegate = self
         picker.dataSource = self
         picker.translatesAutoresizingMaskIntoConstraints = false
         return picker
     }()
-
-    private lazy var nameOfEventTextView: UITextView = {
-        let textView = UITextView()
-
-        textView.textColor = .lightGray
-        textView.font = fontFamilyLittle
-        textView.text = "Name Of Event"
-        textView.textAlignment = .center
-        textView.backgroundColor = backgroundСolorWhite
-        textView.isScrollEnabled = false
-        textView.sizeToFit()
-        textView.delegate = self
-
-        textView.translatesAutoresizingMaskIntoConstraints = false
-
-        return textView
+    private lazy var nameOfEventLable: UILabel = {
+        let label = UILabel()
+        label.text = "Name Of Event"
+        customLable(label)
+        return label
+    }()
+    private lazy var nameOfEventTextField: UITextField = {
+        let textField = UITextField()
+        customTextField(textField)
+        return textField
+    }()
+    private lazy var dataLable: UILabel = {
+        let label = UILabel()
+        label.text = "Data"
+        customLable(label)
+        return label
+    }()
+    private lazy var dataTextField: UITextField = {
+        let textField = UITextField()
+        customTextField(textField)
+        textField.inputView = self.datePicker
+        textField.inputAccessoryView = self.doneToolBar
+        return textField
+    }()
+    private lazy var datePicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.datePickerMode = .date
+        picker.preferredDatePickerStyle = .wheels
+        picker.minimumDate = Date()
+        picker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+        return picker
+    }()
+    private lazy var timeLable: UILabel = {
+        let label = UILabel()
+        label.text = "Time"
+        customLable(label)
+        return label
+    }()
+    private lazy var timeTextField: UITextField = {
+        let textField = UITextField()
+        customTextField(textField)
+        textField.inputView = self.timePicker
+        textField.inputAccessoryView = self.doneToolBar
+        return textField
     }()
 
-    private lazy var infoAboutEventTextView: UITextView = { // сделать, чтобы удалялась надпись
+    private lazy var timePicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.datePickerMode = .time
+        picker.preferredDatePickerStyle = .wheels
+        picker.addTarget(self, action: #selector(timePickerValueChanged), for: .valueChanged)
+        return picker
+    }()
+
+    private lazy var infoAboutEventLable: UILabel = {
+        let label = UILabel()
+        label.text = "Info about Event"
+        customLable(label)
+        return label
+    }()
+    private lazy var infoAboutEventTextView: UITextView = {
         let textView = UITextView()
-
-        textView.textColor = .lightGray
-        textView.font = fontFamilyLittle
-        textView.text = "Info about Event"
-        textView.backgroundColor = backgroundСolorWhite
-        textView.textAlignment = .justified
-        textView.isScrollEnabled = false
+        textView.backgroundColor = .white
         textView.sizeToFit()
-        textView.delegate = self
-
-        textView.translatesAutoresizingMaskIntoConstraints = false
-
+        textView.isScrollEnabled = false
+        textView.font = fontFamilyLittle
+        textView.textColor = mainСolorGreen
         return textView
     }()
 
@@ -206,7 +181,7 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         control.selectedSegmentIndex = 0
         control.selectedSegmentTintColor = mainСolorGreen?.withAlphaComponent(0.5)
         control.layer.borderColor = UIColor.black.cgColor
-        control.setTitleTextAttributes([.foregroundColor: UIColor.gray,
+        control.setTitleTextAttributes([.foregroundColor: UIColor.white,
                                         .font: fontFamilyLittle ?? UIFont.systemFont(ofSize: 30)], for: .normal)
         control.translatesAutoresizingMaskIntoConstraints = false
         return control
@@ -214,7 +189,6 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
 
     private lazy var createButton: UIButton = {
         let button = UIButton()
-
         button.setTitle("Create Invitation", for: UIControl.State())
         button.setTitleColor(.white, for: UIControl.State())
         button.backgroundColor = mainСolorGreen
@@ -223,7 +197,7 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         return button
     }()
 
-    //MARK: - life cycle
+    //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -233,17 +207,34 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         self.navigationController?.navigationBar.tintColor = .white // цвет стрелки "назад"
 
         self.mainView.addSubview(self.logoView)
-        self.mainView.addSubview(self.nameOrganizerTextView)
-        self.mainView.addSubview(self.infoAboutOrganizerTextView)
-        self.mainView.addSubview(self.nameOfEventTextView)
+
+        self.mainView.addSubview(self.nameOrganizerLable)
+        self.mainView.addSubview(self.nameOrganizerTextField)
+
+        self.mainView.addSubview(self.infoAboutOrganizerLable)
+        self.mainView.addSubview(self.infoAboutOrganizerTextField)
+
+        self.mainView.addSubview(self.nameOfEventLable)
+        self.mainView.addSubview(self.nameOfEventTextField)
+
+        self.mainView.addSubview(self.typeOfEventLable)
         self.mainView.addSubview(self.typeOfEventTextField)
+
+        self.mainView.addSubview(self.numberOfPersonsLable)
         self.mainView.addSubview(self.numberOfPersonsTextField)
-        self.mainView.addSubview(self.addressTextView)
-        self.mainView.addSubview(self.dataImageView)
+
+        self.mainView.addSubview(self.addressLable)
+        self.mainView.addSubview(self.addressTextField)
+
+        self.mainView.addSubview(self.dataLable)
         self.mainView.addSubview(self.dataTextField)
-        self.mainView.addSubview(self.timeImageView)
+
+        self.mainView.addSubview(self.timeLable)
         self.mainView.addSubview(self.timeTextField)
+
+        self.mainView.addSubview(self.infoAboutEventLable)
         self.mainView.addSubview(self.infoAboutEventTextView)
+
         self.mainView.addSubview(self.openOrClosedControl)
 
         self.mainView.addSubview(self.createButton)
@@ -251,57 +242,11 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         self.setUpConstraintsFunction()
     }
 
-    // MARK: - TextView
-
-    func textViewDidBeginEditing (_ textView: UITextView) {
-        switch textView {
-        case self.nameOrganizerTextView:
-            textView.text = nil
-            textView.textColor = mainСolorGreen
-        case self.infoAboutOrganizerTextView:
-            textView.text = nil
-            textView.textColor = .black
-        case self.nameOfEventTextView:
-            textView.text = nil
-            textView.textColor = mainСolorGreen
-        case self.addressTextView:
-            textView.text = nil
-            textView.textColor = .black
-        case self.infoAboutEventTextView:
-            textView.text = nil
-            textView.textColor = .black
-        default:
-            break
-        }
-    }
-
-    func textViewDidEndEditing (_ textView: UITextView) {
-        if textView.text.isEmpty {
-        switch textView {
-        case self.nameOrganizerTextView:
-            self.nameOrganizerTextView.text = "Name Organizer"
-            textView.textColor = .lightGray
-        case self.infoAboutOrganizerTextView:
-            self.infoAboutOrganizerTextView.text = "Info About Organizer"
-            textView.textColor = .lightGray
-        case self.nameOfEventTextView:
-            self.nameOfEventTextView.text = "Name Of Event"
-            textView.textColor = .lightGray
-        case self.addressTextView:
-            self.addressTextView.text = "Address"
-            textView.textColor = .lightGray
-        case self.infoAboutEventTextView:
-            self.infoAboutEventTextView.text = "Info About Event"
-            textView.textColor = .lightGray
-        default:
-            break
-        }
-        }
-    }
-
     //MARK: - ButtonTapped
 
     @objc private func createButtonTapped() {
+//        sendLikeActionNotification(name: self.nameOrganizerLable.text ?? "")
+        self.navigationController?.pushViewController(IYDetailsViewController(), animated: true)
 // сохрание данных и передача их на предыдущий контроллер и в ячейку !!!!!!!!!!!!!!!!
     }
 
@@ -310,7 +255,7 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
     }
 
     @objc func timePickerValueChanged() {
-        self.timeTextField.text = datePicker.date.timeToString
+        self.timeTextField.text = timePicker.date.timeToString
     }
 
     @objc private func doneTapped() {
@@ -322,6 +267,13 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         self.navigationController?.popViewController(animated: true)
     }
 
+//    private func sendLikeActionNotification(name: String) { // (2.1 из 3 действий (содание) для передачи данных через Notification)
+//        let text: String = nameOrganizerLable.text ?? ""
+//        NotificationCenter.default.post(Notification(name: .createInvite,
+//                                                     object: text,
+//                                                     userInfo: nil))
+//    }
+
     //MARK: - Constraints
 
     func setUpConstraintsFunction() {
@@ -330,63 +282,152 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
             make.centerX.equalToSuperview()
             make.height.width.equalTo(140)
         }
-        self.nameOrganizerTextView.snp.makeConstraints { (make) in
+        self.nameOrganizerLable.snp.makeConstraints { (make) in
             make.top.equalTo(logoView.snp.bottom).offset(10)
-            make.left.right.equalToSuperview().inset(40)
+            make.left.right.equalToSuperview().inset(30)
         }
-        self.infoAboutOrganizerTextView.snp.makeConstraints { (make) in
-            make.top.equalTo(nameOrganizerTextView.snp.bottom).offset(10)
-            make.left.right.equalToSuperview().inset(40)
+        self.nameOrganizerTextField.snp.makeConstraints { (make) in
+            make.top.equalTo(nameOrganizerLable.snp.bottom).offset(10)
+            make.left.right.equalToSuperview().inset(30)
         }
-        self.nameOfEventTextView.snp.makeConstraints { (make) in
-            make.top.equalTo(infoAboutOrganizerTextView.snp.bottom).offset(30)
-            make.left.right.equalToSuperview().inset(40)
+        self.infoAboutOrganizerLable.snp.makeConstraints { (make) in
+            make.top.equalTo(nameOrganizerTextField.snp.bottom).offset(30)
+            make.left.right.equalToSuperview().inset(30)
+        }
+        self.infoAboutOrganizerTextField.snp.makeConstraints { (make) in
+            make.top.equalTo(infoAboutOrganizerLable.snp.bottom).offset(10)
+            make.left.right.equalToSuperview().inset(30)
+        }
+        self.nameOfEventLable.snp.makeConstraints { (make) in
+            make.top.equalTo(infoAboutOrganizerTextField.snp.bottom).offset(30)
+            make.left.right.equalToSuperview().inset(30)
+        }
+        self.nameOfEventTextField.snp.makeConstraints { (make) in
+            make.top.equalTo(nameOfEventLable.snp.bottom).offset(10)
+            make.left.right.equalToSuperview().inset(30)
+        }
+        self.typeOfEventLable.snp.makeConstraints { (make) in
+            make.top.equalTo(nameOfEventTextField.snp.bottom).offset(30)
+            make.left.right.equalToSuperview().inset(30)
         }
         self.typeOfEventTextField.snp.makeConstraints { (make) in
-            make.top.equalTo(nameOfEventTextView.snp.bottom).offset(10)
-            make.left.right.equalToSuperview().inset(40)
+            make.top.equalTo(typeOfEventLable.snp.bottom).offset(10)
+            make.left.right.equalToSuperview().inset(30)
+        }
+        self.numberOfPersonsLable.snp.makeConstraints { (make) in
+            make.top.equalTo(typeOfEventTextField.snp.bottom).offset(30)
+            make.left.right.equalToSuperview().inset(30)
         }
         self.numberOfPersonsTextField.snp.makeConstraints { (make) in
-            make.top.equalTo(typeOfEventTextField.snp.bottom).offset(30)
-            make.left.right.equalToSuperview().inset(40)
+            make.top.equalTo(numberOfPersonsLable.snp.bottom).offset(10)
+            make.left.right.equalToSuperview().inset(30)
         }
-        self.addressTextView.snp.makeConstraints { (make) in
+        self.addressLable.snp.makeConstraints { (make) in
             make.top.equalTo(numberOfPersonsTextField.snp.bottom).offset(30)
-            make.left.right.equalToSuperview().inset(40)
+            make.left.right.equalToSuperview().inset(30)
         }
-        self.dataImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(addressTextView.snp.bottom).offset(20)
-            make.centerX.equalToSuperview().offset(-90)
-            make.left.equalToSuperview().inset(40)
-            make.height.equalTo(60)
+        self.addressTextField.snp.makeConstraints { (make) in
+            make.top.equalTo(addressLable.snp.bottom).offset(10)
+            make.left.right.equalToSuperview().inset(30)
+        }
+        self.dataLable.snp.makeConstraints { (make) in
+            make.top.equalTo(addressTextField.snp.bottom).offset(30)
+            make.left.equalToSuperview().inset(30)
         }
         self.dataTextField.snp.makeConstraints { (make) in
-            make.center.equalTo(dataImageView.snp.center)
+            make.top.equalTo(dataLable.snp.bottom).offset(10)
+            make.left.equalToSuperview().inset(30)
+            make.width.equalTo(170)
         }
-        self.timeImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(addressTextView.snp.bottom).offset(20)
-            make.centerX.equalToSuperview().offset(90)
-            make.right.equalToSuperview().inset(40)
-            make.height.equalTo(60)
+        self.timeLable.snp.makeConstraints { (make) in
+            make.top.equalTo(addressTextField.snp.bottom).offset(30)
+            make.right.equalToSuperview().inset(90)
         }
         self.timeTextField.snp.makeConstraints { (make) in
-            make.center.equalTo(timeImageView.snp.center)
+            make.top.equalTo(timeLable.snp.bottom).offset(10)
+            make.right.equalToSuperview().inset(30)
+            make.width.equalTo(100)
+        }
+        self.infoAboutEventLable.snp.makeConstraints { (make) in
+            make.top.equalTo(timeTextField.snp.bottom).offset(30)
+            make.left.right.equalToSuperview().inset(30)
         }
         self.infoAboutEventTextView.snp.makeConstraints { (make) in
-            make.top.equalTo(dataImageView.snp.bottom).offset(30)
-            make.left.right.equalToSuperview().inset(40)
+            make.top.equalTo(infoAboutEventLable.snp.bottom).offset(10)
+            make.left.right.equalToSuperview().inset(30)
         }
         self.openOrClosedControl.snp.makeConstraints { (make) in
             make.top.equalTo(infoAboutEventTextView.snp.bottom).offset(30)
-            make.left.right.equalToSuperview().inset(40)
+            make.left.right.equalToSuperview().inset(30)
             make.height.equalTo(60)
         }
         self.createButton.snp.makeConstraints { (make) in
             make.top.equalTo(openOrClosedControl.snp.bottom).offset(50)
-            make.left.right.equalToSuperview().inset(40)
+            make.left.right.equalToSuperview().inset(30)
             make.height.equalTo(60)
             make.bottom.equalToSuperview().inset(20)
         }
     }
 
+}
+
+    //MARK: - Extensions
+
+extension IYCreateInviteViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        var picker: Int = 0
+        switch pickerView {
+        case typeOfEventPicker:
+            picker = IYNameOfEvent.allCases.count
+        case numberOfPersonsPicker:
+            picker = IYNumberOfPersons.allCases.count
+        default:
+            break
+        }
+        return picker
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        var picker: String? = nil
+        switch pickerView {
+        case typeOfEventPicker:
+            picker = IYNameOfEvent.allCases[row].rawValue
+        case numberOfPersonsPicker:
+            picker = IYNumberOfPersons.allCases[row].rawValue
+        default:
+            break
+        }
+        return picker
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch pickerView {
+        case typeOfEventPicker:
+            self.typeOfEventTextField.text = IYNameOfEvent.allCases[row].rawValue
+        case numberOfPersonsPicker:
+            self.numberOfPersonsTextField.text = IYNumberOfPersons.allCases[row].rawValue
+        default:
+            break
+        }
+    }
+}
+
+extension Date {
+    var toString: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM yyyy"
+        return formatter.string(from: self)
+    }
+}
+
+extension Date {
+    var timeToString: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: self)
+    }
 }

@@ -10,7 +10,7 @@ import SnapKit
 
 class IYRegistrationViewController: IYViewController {
 
-    //MARK: - var
+    //MARK: - Variables
 
     private var output: Bool = false
 
@@ -187,7 +187,7 @@ class IYRegistrationViewController: IYViewController {
         return button
     }()
 
-    //MARK: - life cycle
+    //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()

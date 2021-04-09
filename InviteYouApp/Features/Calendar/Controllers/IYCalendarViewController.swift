@@ -9,10 +9,14 @@ import UIKit
 
 class IYCalendarViewController: UIViewController {
 
-    //MARK: - life cycle
+    //MARK: - Variables
+
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Calendar"
-
     }
+    //MARK: - ButtonTapped
+
+    //MARK: - Constraints
 }

@@ -9,17 +9,19 @@ import UIKit
 
 class IYViewController: UIViewController {
 
+    //MARK: - Variables
+
     private lazy var mainScrollView: UIScrollView = {
         let scroll = UIScrollView()
 //        scroll.showsVerticalScrollIndicator = false // удалить индиктор скрола
         scroll.contentInsetAdjustmentBehavior = .never
         scroll.backgroundColor = .clear
-
         return scroll
     }()
 
     private(set) lazy var mainView = UIView() // самая самая главная view. На нее все будет ложиться
 
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         addTapGestureToHideKeyboard()

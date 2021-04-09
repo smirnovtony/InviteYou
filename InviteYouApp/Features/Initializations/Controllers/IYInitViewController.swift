@@ -10,7 +10,7 @@ import SnapKit
 
 class IYInitViewController: UIViewController {
 
-    //MARK: - var Constrait
+    //MARK: - Variables Constrait
 
     private lazy var topAppLabelConstrait: NSLayoutConstraint = self.appView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 250) // задали Constrait в виде локальной переменной
 
@@ -18,7 +18,7 @@ class IYInitViewController: UIViewController {
 
     private lazy var bottomRegisterButton: NSLayoutConstraint = self.registerButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 50)
 
-    //MARK: - var
+    //MARK: - Variables
 
     private lazy var appView: UIView = {
         let view = UIView()
@@ -107,7 +107,7 @@ class IYInitViewController: UIViewController {
         return button
     }()
 
-    //MARK: - life cycle
+    //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()

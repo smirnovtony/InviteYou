@@ -12,7 +12,7 @@ import UIKit
 
 class IYDetailsViewController: IYViewController {
 
-    //MARK: - var
+    //MARK: - Variables
 
     private lazy var logoView: UIImageView = {
         let imageView = UIImageView()
@@ -23,124 +23,93 @@ class IYDetailsViewController: IYViewController {
 
     private lazy var nameOrganizerLabel: UILabel = {
         let label = UILabel()
-
         label.text = "Name Organizer"
         label.numberOfLines = 0
         label.textColor = mainСolorGreen
         label.font = fontFamilyMiddle
         label.textAlignment = .center
-
         label.translatesAutoresizingMaskIntoConstraints = false
-
         return label
     }()
 
     private lazy var infoAboutOrganizerLabel: UILabel = {
         let label = UILabel()
-
         label.text = "Info About The Organizer"
         label.numberOfLines = 0
         label.textColor = .black
         label.font = fontFamilyLittle
         label.textAlignment = .center
-
         label.translatesAutoresizingMaskIntoConstraints = false
-
         return label
     }()
 
     private lazy var addressButton: UIButton = { // нажимаешь и открывается карта!!!!!!!!!!!!!!
         let button = UIButton()
-
         button.setTitle("Address", for: UIControl.State())
         button.setTitleColor(.black, for: UIControl.State())
         button.titleLabel?.font = fontFamilyLittle
 //        button.addTarget(self, action: #selector(mapButtonTapped), for: .touchUpInside) // действие кнопки
-
         button.translatesAutoresizingMaskIntoConstraints = false
-
         return button
     }()
     private lazy var dateButton: UIButton = { // переход на календарь
         let button = UIButton()
-
         button.setTitle("Date", for: UIControl.State())
         button.titleLabel?.font = fontFamilyLittle
         button.setTitleColor(.white, for: UIControl.State())
-
         button.addTarget(self, action: #selector(calendarButtonTapped), for: .touchUpInside)
-
         button.translatesAutoresizingMaskIntoConstraints = false
-
         button.backgroundColor = mainСolorGreen?.withAlphaComponent(0.5)
-
         button.layer.cornerRadius = 15
-
         return button
     }()
 
     private lazy var timeButton: UIButton = { // переход на календарь
         let button = UIButton()
-
         button.setTitle("Time", for: UIControl.State())
         button.titleLabel?.font = fontFamilyLittle
         button.setTitleColor(.white, for: UIControl.State())
-
         button.addTarget(self, action: #selector(calendarButtonTapped), for: .touchUpInside)
-
         button.translatesAutoresizingMaskIntoConstraints = false
-
         button.backgroundColor = mainСolorGreen?.withAlphaComponent(0.5)
-
         button.layer.cornerRadius = 15
-
         return button
     }()
 
     private lazy var numberOfPersonsLabel: UILabel = {
         let label = UILabel()
-
         label.text = "** person"
         label.textColor = mainСolorGreen
         label.font = fontFamilyLittle
         label.textAlignment = .center
-
         label.translatesAutoresizingMaskIntoConstraints = false
-
         return label
     }()
 
     private lazy var nameOfEventLabel: UILabel = {
         let label = UILabel()
-
         label.text = "Name of event"
         label.numberOfLines = 0
         label.textColor = mainСolorGreen
         label.font = fontFamilyLittle
         label.textAlignment = .center
-
         label.translatesAutoresizingMaskIntoConstraints = false
-
         return label
     }()
 
     private lazy var typeOfEventLabel: UILabel = { // перечисление с возможностью ввести свое назвнание!!!!!
         let label = UILabel()
-
         label.text = "Type of event"
         label.numberOfLines = 0
         label.textColor = mainСolorGreen
         label.font = fontFamilyLittle
         label.textAlignment = .center
-
         label.translatesAutoresizingMaskIntoConstraints = false
-
         return label
     }()
 
     private lazy var infoAboutEventLabel: UILabel = {
         let label = UILabel()
-
         label.numberOfLines = 0
         // swiftlint:disable line_length
         label.text = """
@@ -150,9 +119,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
         label.textColor = .black
         label.font = fontFamilyLittle
         label.textAlignment = .justified
-
         label.translatesAutoresizingMaskIntoConstraints = false
-
         return label
     }()
 
@@ -164,32 +131,40 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
         label.font = fontFamilyLittle
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-
         return label
     }()
 
-    private lazy var subscribeButton: UIButton = { // значок даты начинает гореть ярко, а если unsubscribeButton, то красным
+    private lazy var subscribeButton: UIButton = {
         let button = UIButton()
-
         button.setTitle("Subscribe", for: UIControl.State())
-        button.setTitleColor(.white, for: UIControl.State()) // цвет текста
-        button.backgroundColor = mainСolorGreen // цвет кнопки
+        button.setTitleColor(.white, for: UIControl.State())
+        button.backgroundColor = mainСolorGreen
         customButton(button)
 //        button.addTarget(self, action: #selector(subscribeButtonTapped), for: .touchUpInside) // действие кнопки
         return button
     }()
 
-    private lazy var unsubscribeButton: UIButton = { // нажимаешь и открывается карта
+    private lazy var unsubscribeButton: UIButton = {
         let button = UIButton()
         button.setTitle("Unsubscribe", for: UIControl.State())
-        button.setTitleColor(.white, for: UIControl.State()) // цвет текста
-        button.backgroundColor = notСolorPink // цвет кнопки
+        button.setTitleColor(.white, for: UIControl.State())
+        button.backgroundColor = notСolorPink
         customButton(button)
 //        button.addTarget(self, action: #selector(unsubscribeButtonTapped), for: .touchUpInside) // действие кнопки
         return button
     }()
 
-    //MARK: - life cycle
+    private lazy var thinkButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Think", for: UIControl.State())
+        button.setTitleColor(yellowСolor, for: UIControl.State())
+        button.backgroundColor = .white
+        customButton(button)
+//        button.addTarget(self, action: #selector(unsubscribeButtonTapped), for: .touchUpInside) // действие кнопки
+        return button
+    }()
+
+    //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -217,8 +192,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
         self.mainView.addSubview(self.infoAboutEventLabel)
         self.mainView.addSubview(self.subscribeButton)
         self.mainView.addSubview(self.unsubscribeButton)
+        self.mainView.addSubview(self.thinkButton)
 
         self.setUpConstraintsFunction()
+
+//        subscribeToNotification()
     }
 
     //MARK: - ButtonTapped
@@ -235,6 +213,20 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
     @objc private func calendarButtonTapped() {
         self.navigationController?.pushViewController(IYCalendarViewController(), animated: true)
     }
+
+    //MARK: - Func
+
+//    private func subscribeToNotification() { // (3.1 из 3 действий (подписка) для передачи данных через Notification)
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(createInvite),
+//                                               name: .createInvite,
+//                                               object: nil)
+//    }
+
+//    @objc private func createInvite(_ name: Notification) {
+////        self.nameOrganizerLabel.text = name
+//    }
+
     //MARK: - Constraints
 
     func setUpConstraintsFunction() {
@@ -294,6 +286,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
         }
         self.unsubscribeButton.snp.makeConstraints { (make) in
             make.top.equalTo(subscribeButton.snp.bottom).offset(30)
+            make.left.right.equalToSuperview().inset(40)
+            make.height.equalTo(60)
+        }
+        self.thinkButton.snp.makeConstraints { (make) in
+            make.top.equalTo(unsubscribeButton.snp.bottom).offset(30)
             make.left.right.equalToSuperview().inset(40)
             make.height.equalTo(60)
             make.bottom.equalToSuperview().inset(20)
