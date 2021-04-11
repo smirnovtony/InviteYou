@@ -43,7 +43,7 @@ class IYInitViewController: UIViewController, UITextFieldDelegate {
 
     private lazy var userLoginLable: UILabel = {
         let label = UILabel()
-        label.text = "User Login"
+        label.text = "User Email"
         customLable(label)
         return label
     }()
@@ -149,13 +149,24 @@ class IYInitViewController: UIViewController, UITextFieldDelegate {
     //MARK: - ButtonTapped
 
     @objc private func logInButtonTapped() {
-//        if let login = userLoginField.text?.isEmpty, let password = userPasswordField.text?.isEmpty {
-//
-//        } else {
-//
-//        }
-    let tabBarController = IYTabBarViewController()
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+        let logIn = userLoginField.text ?? ""
+        let password = userPasswordField.text ?? ""
+        if !logIn.isEmpty, !password.isEmpty {
+            Auth.auth().signIn(withEmail: logIn, password: password) { (result, error) in
+                if error == nil {
+                    let tabBarController = IYTabBarViewController()
+                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+                } else {
+                    let alertController = UIAlertController(title: "Check your email or password!",
+                                                            message: "",
+                                                            preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default)
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true)
+                }
+
+            }
+        }
     }
     @objc private func registerButtonTapped() {
         self.navigationController?.pushViewController(IYRegistrationViewController(), animated: true)
@@ -299,16 +310,3 @@ class IYInitViewController: UIViewController, UITextFieldDelegate {
     }
 
 }
-
-//extension IYInitViewController: UITextFieldDelegate {
-//    func entryWasTapped(_ logInButton: UIButton) -> Bool {
-//        let login = userLoginField.text ?? ""
-//        let password = userPasswordField.text ?? ""
-//
-//        if
-//        if (!login.isEmpty && !password.isEmpty){
-//
-//        }
-//        return true
-//    }
-//}

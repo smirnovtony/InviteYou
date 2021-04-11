@@ -245,6 +245,10 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
                 if error == nil {
                     if let result = result, !result.user.uid.isEmpty {
                         print(result.user.uid)
+                        let reference = Database.database().reference().child("users")
+                        reference.child(result.user.uid).updateChildValues(["name": self.userLogin,
+                                                                            "email": self.email])
+
                         let alertController = UIAlertController(title: "Registration Completed Successfully",
                                                                 message: "",
                                                                 preferredStyle: .alert)
