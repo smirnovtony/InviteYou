@@ -115,8 +115,8 @@ class IYInitViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         addTapGestureToHideKeyboard()
+        self.userAlreadylogged()
         self.view.backgroundColor = backgroundСolorWhite
-
         self.view.addSubview(appView)
         self.view.addSubview(appLabel)
         self.view.addSubview(userLoginLable)
@@ -128,24 +128,30 @@ class IYInitViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(dontHaveAnAccountLable)
         self.view.addSubview(registerButton)
         self.setUpConstraintsFunction()
-
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
         self.topAppLabelConstrait.constant = 30
         self.topUserNameLable.constant = 150
         self.bottomRegisterButton.constant = -100
         setUpConstraintsFunction()
-
         UIView.animate(withDuration: 1) {
             self.view.layoutIfNeeded()
         }
     }
 
+    //MARK: - Methods
+    private func userAlreadylogged() {
+
+        if UserDefaults.standard.bool(forKey: "userLoggedBool") == true {
+            let tabBarController = IYTabBarViewController()
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+        } else {
+            print(IYDefault.sh.userLogged)
+        }
+    }
     //MARK: - ButtonTapped
 
     @objc private func logInButtonTapped() {
@@ -156,6 +162,7 @@ class IYInitViewController: UIViewController, UITextFieldDelegate {
                 if error == nil {
                     let tabBarController = IYTabBarViewController()
                         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+                    UserDefaults.standard.set(true, forKey: "userLoggedBool")
                 } else {
                     let alertController = UIAlertController(title: "Check your email or password!",
                                                             message: "",
@@ -164,7 +171,6 @@ class IYInitViewController: UIViewController, UITextFieldDelegate {
                     alertController.addAction(okAction)
                     self.present(alertController, animated: true)
                 }
-
             }
         }
     }

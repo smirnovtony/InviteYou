@@ -245,6 +245,7 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
                 if error == nil {
                     if let result = result, !result.user.uid.isEmpty {
                         print(result.user.uid)
+                        IYDefault.sh.userLogged = true
                         let reference = Database.database().reference().child("users")
                         reference.child(result.user.uid).updateChildValues(["name": self.userLogin,
                                                                             "email": self.email])
