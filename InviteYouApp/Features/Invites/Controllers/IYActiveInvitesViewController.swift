@@ -192,7 +192,6 @@ extension IYActiveInvitesViewController: UISearchResultsUpdating {
         } else {
             notificationLabel.text = ""
         }
-
         self.tableView.reloadData()
     }
 }

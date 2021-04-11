@@ -7,8 +7,9 @@
 
 import UIKit
 import SnapKit
+import Firebase
 
-class IYInitViewController: UIViewController {
+class IYInitViewController: UIViewController, UITextFieldDelegate {
 
     //MARK: - Variables Constrait
 
@@ -50,6 +51,7 @@ class IYInitViewController: UIViewController {
     private lazy var userLoginField: UITextField = {
         let textField = UITextField()
         customTextField(textField)
+        textField.delegate = self
         return textField
     }()
 
@@ -64,6 +66,7 @@ class IYInitViewController: UIViewController {
         let textField = UITextField()
         customTextField(textField)
         textField.isSecureTextEntry = true
+        textField.delegate = self
         return textField
     }()
 
@@ -146,14 +149,14 @@ class IYInitViewController: UIViewController {
     //MARK: - ButtonTapped
 
     @objc private func logInButtonTapped() {
-
-        let tabBarController = IYTabBarViewController()
+//        if let login = userLoginField.text?.isEmpty, let password = userPasswordField.text?.isEmpty {
+//
+//        } else {
+//
+//        }
+    let tabBarController = IYTabBarViewController()
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
-
-        // дописать код сохранения данных!!!!!!!!!!!!!!!!
-
     }
-
     @objc private func registerButtonTapped() {
         self.navigationController?.pushViewController(IYRegistrationViewController(), animated: true)
     }
@@ -296,3 +299,16 @@ class IYInitViewController: UIViewController {
     }
 
 }
+
+//extension IYInitViewController: UITextFieldDelegate {
+//    func entryWasTapped(_ logInButton: UIButton) -> Bool {
+//        let login = userLoginField.text ?? ""
+//        let password = userPasswordField.text ?? ""
+//
+//        if
+//        if (!login.isEmpty && !password.isEmpty){
+//
+//        }
+//        return true
+//    }
+//}

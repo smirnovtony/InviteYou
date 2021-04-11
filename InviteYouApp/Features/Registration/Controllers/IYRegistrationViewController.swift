@@ -7,8 +7,9 @@
 
 import UIKit
 import SnapKit
+import Firebase
 
-class IYRegistrationViewController: IYViewController {
+class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
 
     //MARK: - Variables
 
@@ -26,9 +27,10 @@ class IYRegistrationViewController: IYViewController {
     private var email: String {
         self.emailField.text ?? ""
     }
-    private var conditionsPassEqualToLogin: String = "Passwords Must Not Contain Your User Name"
-    private var conditionsInvalidPassword: String = "Invalid Password"
-    private var conditionsPassCharacters: String = "Password Must Be More Than 8 Characters"
+    private var conditionsPassEqualToLogin: String = "Passwords must not contain your user name"
+    private var conditionsInvalidPassword: String = "Invalid password"
+    private var conditionsPassCharacters: String = "Password must be more than 8 characters"
+    private var conditionsEmailCharacters: String = "Check your email"
 
     private lazy var registrationView: UIView = {
         let view = UIView()
@@ -104,6 +106,7 @@ class IYRegistrationViewController: IYViewController {
     private lazy var userLoginField: UITextField = {
         let textField = UITextField()
         customTextField(textField)
+        textField.delegate = self
         return textField
     }()
 
@@ -118,6 +121,7 @@ class IYRegistrationViewController: IYViewController {
         let textField = UITextField()
         customTextField(textField)
         textField.isSecureTextEntry = true
+        textField.delegate = self
         return textField
     }()
 
@@ -143,6 +147,7 @@ class IYRegistrationViewController: IYViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+
     private lazy var conditionsConfirmPass: UILabel = {
         let label = UILabel()
         label.textColor = notСolorPink
@@ -158,12 +163,20 @@ class IYRegistrationViewController: IYViewController {
         customLable(label)
         return label
     }()
+    private lazy var conditionsEmail: UILabel = {
+        let label = UILabel()
+        label.textColor = notСolorPink
+        label.font = fontFamilyLittle?.withSize(18)
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
     private lazy var emailField: UITextField = {
         let textField = UITextField()
         customTextField(textField)
         textField.translatesAutoresizingMaskIntoConstraints = false
-
+        textField.delegate = self
         return textField
     }()
 
@@ -227,25 +240,29 @@ class IYRegistrationViewController: IYViewController {
     @objc private func registerButtonTapped() {
 
         if registrationConditions() {
-
-            let alertController = UIAlertController(title: "Registration Completed Successfully",
-                                                    message: "",
-                                                    preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-                let registerController = IYTabBarViewController()
-                if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-                    sceneDelegate.changeRootViewController(registerController)
+//            var userInApp = true
+            Auth.auth().createUser(withEmail: email, password: userPassword) { (result, error) in
+                if error == nil {
+                    if let result = result, !result.user.uid.isEmpty {
+                        print(result.user.uid)
+                        let alertController = UIAlertController(title: "Registration Completed Successfully",
+                                                                message: "",
+                                                                preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                            let registerController = IYTabBarViewController()
+                            if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+                                sceneDelegate.changeRootViewController(registerController)
+                            }
+                            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(registerController)
+                        }
+                        alertController.addAction(okAction)
+                        self.present(alertController, animated: true)
+                    }
                 }
-                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(registerController)
             }
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true)
-
-            // дописать сохранение данных!!!!!!!!!!!!!!!!!!!!!!
-
         } else {
             let alertController = UIAlertController(title: "Error",
-                                                    message: "Сheck The Entered Information",
+                                                    message: "Сheck the entered information",
                                                     preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .destructive)
                 self.present(alertController, animated: true)
@@ -259,12 +276,12 @@ class IYRegistrationViewController: IYViewController {
 
     // условия регистрации
     func registrationConditions() -> Bool {
-        var counter = 0
+        var counter = true
         if !self.userLogin.isEmpty {
             output = true
             self.userLoginField.backgroundColor = .white
         } else {
-            counter += 1
+            counter = false
             self.userLoginField.backgroundColor = notСolorPink
         }
 
@@ -280,19 +297,19 @@ class IYRegistrationViewController: IYViewController {
             confirmPasswordField.backgroundColor = .white
         } else if !self.userPassword.isEmpty,
                   self.userPassword == self.userLogin {
-            counter += 1
+            counter = false
             conditionsPass.text = conditionsPassEqualToLogin
             conditionsConfirmPass.text = ""
             conditionsUserPassConstraints()
         } else if !self.userPassword.isEmpty,
                   self.userPassword.count < 8 {
-                counter += 1
+                counter = false
                 conditionsPass.text = conditionsPassCharacters
                 conditionsConfirmPass.text = ""
                 conditionsUserPassConstraints()
         } else if !self.confirmPassword.isEmpty,
                   self.userPassword != self.confirmPassword {
-            counter += 1
+            counter = false
             userPasswordField.backgroundColor = .white
             conditionsConfirmPass.text = conditionsInvalidPassword
             conditionsPass.text = ""
@@ -304,14 +321,16 @@ class IYRegistrationViewController: IYViewController {
         if self.userPassword.isEmpty {
             userPasswordField.backgroundColor = notСolorPink
         }
-        if !self.email.isEmpty {
+        if !self.email.isEmpty, isValid(e: email) == true {
             output = true
             self.emailField.backgroundColor = .white
+            conditionsEmail.text = ""
         } else {
-            counter += 1
-            self.emailField.backgroundColor = notСolorPink
+            counter = false
+            conditionsEmail.text = conditionsEmailCharacters
+            conditionsEmailConstraints()
         }
-        if counter > 0 {
+        if counter == false {
             output = false
         }
         return output
@@ -331,6 +350,21 @@ class IYRegistrationViewController: IYViewController {
           make.top.equalTo(self.confirmPasswordField.snp.bottom).offset(5)
             make.left.right.equalToSuperview().inset(30)
         }
+    }
+    private func conditionsEmailConstraints() {
+        emailField.backgroundColor = notСolorPink
+        self.mainView.addSubview(self.conditionsEmail)
+        self.conditionsEmail.snp.makeConstraints { (make) in
+          make.top.equalTo(self.emailField.snp.bottom).offset(5)
+            make.left.right.equalToSuperview().inset(30)
+        }
+    }
+    private func isValid(e email: String) -> Bool {
+        // swiftlint:disable line_length
+        let emailRegEx = "(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"+"~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\"+"x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-"+"z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5"+"]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-"+"9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"+"-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
+
+        let emailTest = NSPredicate(format: "SELF MATCHES[c] %@", emailRegEx)
+        return emailTest.evaluate(with: email)
     }
 
     //MARK: - Constraints
