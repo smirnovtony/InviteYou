@@ -261,6 +261,8 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
     @objc private func doneTapped() {
         self.dataTextField.resignFirstResponder()
         self.timeTextField.resignFirstResponder()
+        self.numberOfPersonsTextField.resignFirstResponder()
+        self.typeOfEventTextField.resignFirstResponder()
     }
 
     @objc private func backToButtonTapped() {
@@ -382,7 +384,7 @@ extension IYCreateInviteViewController: UIPickerViewDelegate, UIPickerViewDataSo
         var picker: Int = 0
         switch pickerView {
         case typeOfEventPicker:
-            picker = IYNameOfEvent.allCases.count
+            picker = IYTypeOfEvent.allCases.count
         case numberOfPersonsPicker:
             picker = IYNumberOfPersons.allCases.count
         default:
@@ -395,7 +397,7 @@ extension IYCreateInviteViewController: UIPickerViewDelegate, UIPickerViewDataSo
         var picker: String? = nil
         switch pickerView {
         case typeOfEventPicker:
-            picker = IYNameOfEvent.allCases[row].rawValue
+            picker = IYTypeOfEvent.allCases[row].rawValue
         case numberOfPersonsPicker:
             picker = IYNumberOfPersons.allCases[row].rawValue
         default:
@@ -407,7 +409,7 @@ extension IYCreateInviteViewController: UIPickerViewDelegate, UIPickerViewDataSo
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView {
         case typeOfEventPicker:
-            self.typeOfEventTextField.text = IYNameOfEvent.allCases[row].rawValue
+            self.typeOfEventTextField.text = IYTypeOfEvent.allCases[row].rawValue
         case numberOfPersonsPicker:
             self.numberOfPersonsTextField.text = IYNumberOfPersons.allCases[row].rawValue
         default:

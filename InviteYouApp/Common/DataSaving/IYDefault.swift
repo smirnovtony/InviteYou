@@ -18,14 +18,12 @@ class IYDefault {
     private struct Keys { // хранение всех ключей
         static let userStatus = "userLoggedBool"
     }
-
     lazy var userLogged: Bool = self.loadTestValue()
-
     func saveTestValue() {
-        UserDefaults.standard.setValue(userLogged, forKey: "userLoggedBool") // сохранение значения
+        UserDefaults.standard.setValue(userLogged, forKey: "userLoggedBool")
     }
     func loadTestValue() -> Bool {
-        let value = UserDefaults.standard.value(forKey: "userLoggedBool") as? Bool // возвращение значения
+        let value = UserDefaults.standard.value(forKey: "userLoggedBool") as? Bool
         return value ?? true
     }
 }

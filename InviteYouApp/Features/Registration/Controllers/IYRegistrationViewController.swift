@@ -175,7 +175,7 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
     private lazy var emailField: UITextField = {
         let textField = UITextField()
         customTextField(textField)
-        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.autocapitalizationType = UITextAutocapitalizationType.none
         textField.delegate = self
         return textField
     }()

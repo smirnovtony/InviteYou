@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		52E8AABA8ED62975FABDC34B /* Pods_InviteYouApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306C279F90194F15AD9A4075 /* Pods_InviteYouApp.framework */; };
 		EA0315FE260383E6003F1CDD /* IYCreateInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0315FD260383E6003F1CDD /* IYCreateInviteViewController.swift */; };
-		EA04196826063A900060EFAD /* IYNameOfEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA04196726063A900060EFAD /* IYNameOfEvent.swift */; };
+		EA04196826063A900060EFAD /* IYTypeOfEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA04196726063A900060EFAD /* IYTypeOfEvent.swift */; };
 		EA0CB6362611A208003F92DD /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0CB6352611A208003F92DD /* CustomTextField.swift */; };
 		EA133FC52604719000241E8B /* IYSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA133FC42604719000241E8B /* IYSearchViewController.swift */; };
 		EA13484E261B14640022E78E /* NotificationName+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA13484D261B14640022E78E /* NotificationName+Ex.swift */; };
 		EA13486B261DA5750022E78E /* ExampleInvites.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA13486A261DA5750022E78E /* ExampleInvites.swift */; };
 		EA13486E261DE5550022E78E /* IYIvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA13486D261DE5550022E78E /* IYIvent.swift */; };
-		EA14798625FBDD2900A03DCD /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = EA14798525FBDD2900A03DCD /* SwiftPackageProductDependency */; };
+		EA14798625FBDD2900A03DCD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EA14798525FBDD2900A03DCD /* SnapKit */; };
 		EA200AE7261083610087E792 /* IYChangeLoginNPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA200AE6261083610087E792 /* IYChangeLoginNPasswordViewController.swift */; };
 		EA281A0A2611A64D00674722 /* СustomLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA281A092611A64D00674722 /* СustomLable.swift */; };
 		EA281A0D2611AB7700674722 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA281A0C2611AB7700674722 /* CustomButton.swift */; };
@@ -47,7 +47,7 @@
 		58C6CA89B6C9DA8F5235FE61 /* Pods-InviteYouApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InviteYouApp.debug.xcconfig"; path = "Target Support Files/Pods-InviteYouApp/Pods-InviteYouApp.debug.xcconfig"; sourceTree = "<group>"; };
 		6E905028421ED4B97E9A08B7 /* Pods-InviteYouApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InviteYouApp.release.xcconfig"; path = "Target Support Files/Pods-InviteYouApp/Pods-InviteYouApp.release.xcconfig"; sourceTree = "<group>"; };
 		EA0315FD260383E6003F1CDD /* IYCreateInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYCreateInviteViewController.swift; sourceTree = "<group>"; };
-		EA04196726063A900060EFAD /* IYNameOfEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYNameOfEvent.swift; sourceTree = "<group>"; };
+		EA04196726063A900060EFAD /* IYTypeOfEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYTypeOfEvent.swift; sourceTree = "<group>"; };
 		EA0CB6352611A208003F92DD /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		EA133FC42604719000241E8B /* IYSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYSearchViewController.swift; sourceTree = "<group>"; };
 		EA13484D261B14640022E78E /* NotificationName+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+Ex.swift"; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA14798625FBDD2900A03DCD /* BuildFile in Frameworks */,
+				EA14798625FBDD2900A03DCD /* SnapKit in Frameworks */,
 				52E8AABA8ED62975FABDC34B /* Pods_InviteYouApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,7 +100,6 @@
 				58C6CA89B6C9DA8F5235FE61 /* Pods-InviteYouApp.debug.xcconfig */,
 				6E905028421ED4B97E9A08B7 /* Pods-InviteYouApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -115,7 +114,7 @@
 		EA04196A26063A9C0060EFAD /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EA04196726063A900060EFAD /* IYNameOfEvent.swift */,
+				EA04196726063A900060EFAD /* IYTypeOfEvent.swift */,
 				EA29522E260C939F00B4523A /* IYNumberOfPersons.swift */,
 				EA13486A261DA5750022E78E /* ExampleInvites.swift */,
 				EA13486D261DE5550022E78E /* IYIvent.swift */,
@@ -373,7 +372,7 @@
 			);
 			name = InviteYouApp;
 			packageProductDependencies = (
-				EA14798525FBDD2900A03DCD /* SwiftPackageProductDependency */,
+				EA14798525FBDD2900A03DCD /* SnapKit */,
 			);
 			productName = InviteYouApp;
 			productReference = EAFFAA6B25F891AE003A610E /* InviteYouApp.app */;
@@ -403,7 +402,7 @@
 			);
 			mainGroup = EAFFAA6225F891AE003A610E;
 			packageReferences = (
-				EA14798425FBDD2900A03DCD /* RemoteSwiftPackageReference */,
+				EA14798425FBDD2900A03DCD /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = EAFFAA6C25F891AE003A610E /* Products */;
 			projectDirPath = "";
@@ -497,7 +496,7 @@
 				EAFFAA7325F891AE003A610E /* IYInitViewController.swift in Sources */,
 				EA0CB6362611A208003F92DD /* CustomTextField.swift in Sources */,
 				EAFFAA8A25F8E53F003A610E /* Fonts.swift in Sources */,
-				EA04196826063A900060EFAD /* IYNameOfEvent.swift in Sources */,
+				EA04196826063A900060EFAD /* IYTypeOfEvent.swift in Sources */,
 				EAFFAA8725F8CB19003A610E /* IYRegistrationViewController.swift in Sources */,
 				EAB533AE260B76EE00C0C8C0 /* UIViewController+Ex.swift in Sources */,
 				EAFFAA9F25F8EE14003A610E /* IYCalendarViewController.swift in Sources */,
@@ -718,7 +717,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		EA14798425FBDD2900A03DCD /* RemoteSwiftPackageReference */ = {
+		EA14798425FBDD2900A03DCD /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
 			requirement = {
@@ -729,9 +728,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		EA14798525FBDD2900A03DCD /* SwiftPackageProductDependency */ = {
+		EA14798525FBDD2900A03DCD /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = EA14798425FBDD2900A03DCD /* RemoteSwiftPackageReference */;
+			package = EA14798425FBDD2900A03DCD /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */

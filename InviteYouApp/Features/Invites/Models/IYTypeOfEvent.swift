@@ -5,7 +5,7 @@
 //  Created by Антон Смирнов on 20.03.21.
 //
 
-enum IYNameOfEvent: String, CaseIterable {
+enum IYTypeOfEvent: String, CaseIterable {
     case relax = "Relax"
     case friends = "Friends"
     case work = "Work"

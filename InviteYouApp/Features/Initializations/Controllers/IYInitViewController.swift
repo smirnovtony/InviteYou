@@ -15,7 +15,7 @@ class IYInitViewController: UIViewController, UITextFieldDelegate {
 
     private lazy var topAppLabelConstrait: NSLayoutConstraint = self.appView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 250) // задали Constrait в виде локальной переменной
 
-    private lazy var topUserNameLable: NSLayoutConstraint = self.userLoginLable.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: -10)
+    private lazy var topUserNameLable: NSLayoutConstraint = self.userEmailLable.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: -10)
 
     private lazy var bottomRegisterButton: NSLayoutConstraint = self.registerButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 50)
 
@@ -41,16 +41,17 @@ class IYInitViewController: UIViewController, UITextFieldDelegate {
         return label
     }()
 
-    private lazy var userLoginLable: UILabel = {
+    private lazy var userEmailLable: UILabel = {
         let label = UILabel()
         label.text = "User Email"
         customLable(label)
         return label
     }()
 
-    private lazy var userLoginField: UITextField = {
+    private lazy var userEmailField: UITextField = {
         let textField = UITextField()
         customTextField(textField)
+        textField.autocapitalizationType = UITextAutocapitalizationType.none
         textField.delegate = self
         return textField
     }()
@@ -114,13 +115,13 @@ class IYInitViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         addTapGestureToHideKeyboard()
-        self.userAlreadylogged()
         self.view.backgroundColor = backgroundСolorWhite
         self.view.addSubview(appView)
         self.view.addSubview(appLabel)
-        self.view.addSubview(userLoginLable)
-        self.view.addSubview(userLoginField)
+        self.view.addSubview(userEmailLable)
+        self.view.addSubview(userEmailField)
         self.view.addSubview(userPasswordLable)
         self.view.addSubview(userPasswordField)
         self.view.addSubview(forgotPasswordButton)
@@ -128,9 +129,8 @@ class IYInitViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(dontHaveAnAccountLable)
         self.view.addSubview(registerButton)
         self.setUpConstraintsFunction()
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.userAlreadylogged()
     }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.topAppLabelConstrait.constant = 30
@@ -141,21 +141,20 @@ class IYInitViewController: UIViewController, UITextFieldDelegate {
             self.view.layoutIfNeeded()
         }
     }
-
     //MARK: - Methods
     private func userAlreadylogged() {
-
         if UserDefaults.standard.bool(forKey: "userLoggedBool") == true {
             let tabBarController = IYTabBarViewController()
                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
         } else {
             print(IYDefault.sh.userLogged)
+            self.tabBarController?.tabBar.isHidden = true
         }
     }
     //MARK: - ButtonTapped
 
     @objc private func logInButtonTapped() {
-        let logIn = userLoginField.text ?? ""
+        let logIn = userEmailField.text ?? ""
         let password = userPasswordField.text ?? ""
         if !logIn.isEmpty, !password.isEmpty {
             Auth.auth().signIn(withEmail: logIn, password: password) { (result, error) in
@@ -209,29 +208,29 @@ class IYInitViewController: UIViewController, UITextFieldDelegate {
 //                               toItem: self.view.safeAreaLayoutGuide, attribute: .top,
 //                               multiplier: 1, constant: 150),
             topUserNameLable,
-            NSLayoutConstraint(item: self.userLoginLable, attribute: .left, relatedBy: .equal,
+            NSLayoutConstraint(item: self.userEmailLable, attribute: .left, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .left,
                                multiplier: 1, constant: 30),
-            NSLayoutConstraint(item: self.userLoginLable, attribute: .right, relatedBy: .equal,
+            NSLayoutConstraint(item: self.userEmailLable, attribute: .right, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .right,
                                multiplier: 1, constant: -30)
         ])
 
         self.view.addConstraints([
-            NSLayoutConstraint(item: self.userLoginField, attribute: .top, relatedBy: .equal,
-                               toItem: self.userLoginLable, attribute: .bottom,
+            NSLayoutConstraint(item: self.userEmailField, attribute: .top, relatedBy: .equal,
+                               toItem: self.userEmailLable, attribute: .bottom,
                                multiplier: 1, constant: 20),
-            NSLayoutConstraint(item: self.userLoginField, attribute: .left, relatedBy: .equal,
+            NSLayoutConstraint(item: self.userEmailField, attribute: .left, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .left,
                                multiplier: 1, constant: 30),
-            NSLayoutConstraint(item: self.userLoginField, attribute: .right, relatedBy: .equal,
+            NSLayoutConstraint(item: self.userEmailField, attribute: .right, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .right,
                                multiplier: 1, constant: -30)
         ])
 
         self.view.addConstraints([
             NSLayoutConstraint(item: self.userPasswordLable, attribute: .top, relatedBy: .equal,
-                               toItem: self.userLoginField, attribute: .bottom,
+                               toItem: self.userEmailField, attribute: .bottom,
                                multiplier: 1, constant: 20),
             NSLayoutConstraint(item: self.userPasswordLable, attribute: .left, relatedBy: .equal,
                                toItem: self.view.safeAreaLayoutGuide, attribute: .left,

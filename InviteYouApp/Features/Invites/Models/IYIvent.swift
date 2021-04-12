@@ -8,15 +8,14 @@
 class IYIvent: Decodable { // для передачи. есть еще две модели для приема и приема-передачи
     let id: Int
     let logo: String?
-    let qr: String?
     let nameOrganizer: String
-    let infoAboutOrganizer: String
+    let infoAboutOrganizer: String?
     let nameOfEvent: String
-    let typeOfIvent: String
-    let person: String?
+    let typeOfIvent: String //picker
+    let person: String? //picker
     let address: String
-    let date: String
-    let time: String?
+    let date: String? //picker
+    let time: String? //picker
     let infoAboutEvent: String?
     let closedOrOpen: Bool
     let subscribe: Bool

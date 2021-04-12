@@ -14,7 +14,7 @@ class IYTabBarViewController: UITabBarController {
         super.viewDidLoad()
 
         let activeInvitesController = IYActiveInvitesViewController()
-        activeInvitesController.tabBarItem = UITabBarItem(title: "Invites", image: UIImage(systemName: "globe"), selectedImage: nil)
+        activeInvitesController.tabBarItem = UITabBarItem(title: "Invites", image: UIImage(systemName: "house"), selectedImage: nil)
 
         let searchController = IYSearchViewController()
         searchController.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), selectedImage: nil)
@@ -36,7 +36,7 @@ class IYTabBarViewController: UITabBarController {
     }
 
     func setTabbarAppearance() {
-        self.tabBar.barTintColor =  .white
+        self.tabBar.barTintColor = .white
         self.tabBar.tintColor = mainСolorGreen
         self.tabBar.unselectedItemTintColor = .lightGray
         self.tabBar.itemPositioning = .fill

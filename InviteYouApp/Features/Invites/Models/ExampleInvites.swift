@@ -10,7 +10,6 @@ import Foundation
 struct ExampleInvites {//: Codable { // подчинили протоколу кодирования и декодирования
 //    var id = UUID() // уникальный идентификатор. UUID() присваивает уникальное 16значное значение
     var logo: String // можно из галереи брать для внутренних мероприятий
-//    var qr: String? //????????
     var nameOrganizer: String
 //    var infoAboutOrganizer: String
     var nameOfEvent: String
