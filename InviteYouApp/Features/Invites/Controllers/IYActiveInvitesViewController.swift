@@ -42,21 +42,17 @@ private var exampleInvites = [
 ]
 
 class IYActiveInvitesViewController: UITableViewController {
-
     //MARK: - Initializators
-
     private var invites: [ExampleInvites] = exampleInvites {  // изм!!!
         didSet {
             self.filteredInvites = self.invites
         }
     }
-
     private lazy var filteredInvites: [ExampleInvites] = self.invites {  // изм!!!
         didSet {
             self.tableView.reloadData()
         }
     }
-
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController()
         searchController.hidesNavigationBarDuringPresentation = false
@@ -75,9 +71,7 @@ class IYActiveInvitesViewController: UITableViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
     //MARK: - Lifecycle
-
         override func viewDidLoad() {
             super.viewDidLoad()
             self.title = "Invites"
@@ -85,14 +79,11 @@ class IYActiveInvitesViewController: UITableViewController {
             self.tableView.backgroundColor = backgroundСolorWhite
             self.tableView.showsVerticalScrollIndicator = false
             self.tableView.register(IYInvitationCell.self, forCellReuseIdentifier: IYInvitationCell.reuseIdentifier)
-
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"),
                                                                 style: .done,
                                                                 target: self,
                                                                 action: #selector(createButtonTapped))
             self.navigationItem.leftBarButtonItem?.tintColor = .white
-
-            // найти значок!!!!!!!!!!!!
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3.decrease.circle"),
                                                                 style: .done,
                                                                 target: self,
@@ -106,26 +97,19 @@ class IYActiveInvitesViewController: UITableViewController {
             self.searchController.searchBar.searchTextField.font = fontFamilyLittle
             }
     //как упорядочить по дате?????!!!!!!!!!
-
     //MARK: - TableView
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.filteredInvites.count
     }
-    // создание ячейки
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // создаем ячейку  (имя класса) автоматически и добавляем ее в таблицу, если ее нет
         let cell = tableView.dequeueReusableCell(withIdentifier: IYInvitationCell.reuseIdentifier,
                                                  for: indexPath) as? IYInvitationCell ?? IYInvitationCell()
-        // передача данных
         cell.setCell(model: self.filteredInvites[indexPath.row])
         return cell
     }
-    // действие при выбре ячейки
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.navigationController?.pushViewController(IYDetailsViewController(), animated: true)
     }
-    // удаление ячейки при сдвиге влево
     func deleteCell(index: Int) {
         invites.remove(at: index)
     }
@@ -138,7 +122,6 @@ class IYActiveInvitesViewController: UITableViewController {
         }
     }
     //MARK: - ButtonTapped
-
     @objc private func createButtonTapped() {
         navigationController?.pushViewController(IYCreateInviteViewController(), animated: true)
     }
@@ -166,7 +149,6 @@ class IYActiveInvitesViewController: UITableViewController {
     }
 }
     //MARK: - Extensions
-
 extension IYActiveInvitesViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }

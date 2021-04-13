@@ -5,22 +5,16 @@
 //  Created by Антон Смирнов on 10.03.21.
 //
 
-// это окно красивой инфы
-// отсюда по кнопке Edit будет переход на редактирование
-
 import UIKit
 
 class IYDetailsViewController: IYViewController {
-
     //MARK: - Variables
-
     private lazy var logoView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "photography") // дeфолтная картинка, сюда логотип организации
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-
     private lazy var nameOrganizerLabel: UILabel = {
         let label = UILabel()
         label.text = "Name Organizer"
@@ -31,7 +25,6 @@ class IYDetailsViewController: IYViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
     private lazy var infoAboutOrganizerLabel: UILabel = {
         let label = UILabel()
         label.text = "Info About The Organizer"
@@ -42,7 +35,6 @@ class IYDetailsViewController: IYViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
     private lazy var addressButton: UIButton = { // нажимаешь и открывается карта!!!!!!!!!!!!!!
         let button = UIButton()
         button.setTitle("Address", for: UIControl.State())
@@ -63,7 +55,6 @@ class IYDetailsViewController: IYViewController {
         button.layer.cornerRadius = 15
         return button
     }()
-
     private lazy var timeButton: UIButton = { // переход на календарь
         let button = UIButton()
         button.setTitle("Time", for: UIControl.State())
@@ -75,17 +66,15 @@ class IYDetailsViewController: IYViewController {
         button.layer.cornerRadius = 15
         return button
     }()
-
     private lazy var numberOfPersonsLabel: UILabel = {
         let label = UILabel()
-        label.text = "** person"
-        label.textColor = mainСolorGreen
+        label.text = "Number of persons"
+        label.textColor = .black
         label.font = fontFamilyLittle
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
     private lazy var nameOfEventLabel: UILabel = {
         let label = UILabel()
         label.text = "Name of event"
@@ -96,7 +85,6 @@ class IYDetailsViewController: IYViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
     private lazy var typeOfEventLabel: UILabel = { // перечисление с возможностью ввести свое назвнание!!!!!
         let label = UILabel()
         label.text = "Type of event"
@@ -107,7 +95,6 @@ class IYDetailsViewController: IYViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
     private lazy var infoAboutEventLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -122,7 +109,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
     private lazy var openOrClosedLabel: UILabel = { // перечисление с возможностью ввести свое назвнание!!!!!
         let label = UILabel()
         label.text = "Open Or Closed"
@@ -133,102 +119,76 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
     private lazy var subscribeButton: UIButton = {
         let button = UIButton()
         button.setTitle("Subscribe", for: UIControl.State())
         button.setTitleColor(.white, for: UIControl.State())
         button.backgroundColor = mainСolorGreen
         customButton(button)
-//        button.addTarget(self, action: #selector(subscribeButtonTapped), for: .touchUpInside) // действие кнопки
+//        button.addTarget(self, action: #selector(subscribeButtonTapped), for: .touchUpInside)
         return button
     }()
-
     private lazy var unsubscribeButton: UIButton = {
         let button = UIButton()
         button.setTitle("Unsubscribe", for: UIControl.State())
         button.setTitleColor(.white, for: UIControl.State())
         button.backgroundColor = notСolorPink
         customButton(button)
-//        button.addTarget(self, action: #selector(unsubscribeButtonTapped), for: .touchUpInside) // действие кнопки
+//        button.addTarget(self, action: #selector(unsubscribeButtonTapped), for: .touchUpInside) /
         return button
     }()
-
     private lazy var thinkButton: UIButton = {
         let button = UIButton()
         button.setTitle("Think", for: UIControl.State())
         button.setTitleColor(yellowСolor, for: UIControl.State())
         button.backgroundColor = .white
         customButton(button)
-//        button.addTarget(self, action: #selector(unsubscribeButtonTapped), for: .touchUpInside) // действие кнопки
+//        button.addTarget(self, action: #selector(unsubscribeButtonTapped), for: .touchUpInside)
         return button
     }()
-
     //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.title = "Details"
-
         navigationController?.navigationBar.tintColor = .white // цвет стрелки "назад"
-
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
                                                             style: .done,
                                                             target: self,
                                                             action: #selector(shareButtonTapped))
         navigationItem.rightBarButtonItem?.tintColor = .white
-
-        self.mainView.addSubview(self.logoView)
-        self.mainView.addSubview(self.nameOrganizerLabel)
-        self.mainView.addSubview(self.infoAboutOrganizerLabel)
-        self.mainView.addSubview(self.nameOfEventLabel)
-        self.mainView.addSubview(self.typeOfEventLabel)
-        self.mainView.addSubview(self.openOrClosedLabel)
-        self.mainView.addSubview(self.addressButton)
-        self.mainView.addSubview(self.dateButton)
-        self.mainView.addSubview(self.timeButton)
-        self.mainView.addSubview(self.numberOfPersonsLabel)
-        self.mainView.addSubview(self.infoAboutEventLabel)
-        self.mainView.addSubview(self.subscribeButton)
-        self.mainView.addSubview(self.unsubscribeButton)
-        self.mainView.addSubview(self.thinkButton)
-
+        self.mainView.addSubviews([
+            self.logoView,
+            self.nameOrganizerLabel,
+            self.infoAboutOrganizerLabel,
+            self.nameOfEventLabel,
+            self.typeOfEventLabel,
+            self.openOrClosedLabel,
+            self.addressButton,
+            self.dateButton,
+            self.timeButton,
+            self.numberOfPersonsLabel,
+            self.infoAboutEventLabel,
+            self.subscribeButton,
+            self.unsubscribeButton,
+            self.thinkButton
+        ])
         self.setUpConstraintsFunction()
-
-//        subscribeToNotification()
     }
-
     //MARK: - ButtonTapped
-
     @objc private func shareButtonTapped() {
         let text = "Invite You"
-        guard let url = URL(string: "google.com") else { return } // изменить на правильный адрес!!!!!!!!!!!!!!!!!!
-        let activityController = UIActivityViewController(activityItems: [text, url], applicationActivities: nil)
+        guard let url = URL(string: "google.com") else { return } // изменить на правильный адрес!!!!!!!!!!!
+        let activityController = UIActivityViewController(activityItems: [text, url],
+                                                          applicationActivities: nil)
         self.present(activityController, animated: true) {
             print("I Invite You")
         }
     }
-
     @objc private func calendarButtonTapped() {
         self.navigationController?.pushViewController(IYCalendarViewController(), animated: true)
     }
-
-    //MARK: - Func
-
-//    private func subscribeToNotification() { // (3.1 из 3 действий (подписка) для передачи данных через Notification)
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(createInvite),
-//                                               name: .createInvite,
-//                                               object: nil)
-//    }
-
-//    @objc private func createInvite(_ name: Notification) {
-////        self.nameOrganizerLabel.text = name
-//    }
-
     //MARK: - Constraints
-
     func setUpConstraintsFunction() {
         self.logoView.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(30)
@@ -260,13 +220,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
             make.left.right.equalToSuperview().inset(40)
         }
         self.dateButton.snp.makeConstraints { (make) in
-            make.top.equalTo(addressButton.snp.bottom).offset(20)
+            make.top.equalTo(addressButton.snp.bottom).offset(30)
             make.centerX.equalToSuperview().offset(-90)
             make.left.equalToSuperview().inset(40)
             make.height.equalTo(60)
         }
         self.timeButton.snp.makeConstraints { (make) in
-            make.top.equalTo(addressButton.snp.bottom).offset(20)
+            make.top.equalTo(addressButton.snp.bottom).offset(30)
             make.centerX.equalToSuperview().offset(90)
             make.right.equalToSuperview().inset(40)
             make.height.equalTo(60)

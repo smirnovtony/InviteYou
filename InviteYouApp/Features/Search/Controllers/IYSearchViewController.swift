@@ -163,7 +163,6 @@ extension IYSearchViewController: UISearchResultsUpdating {
         } else {
             notificationLabel.text = ""
         }
-
         self.tableView.reloadData()
     }
 }

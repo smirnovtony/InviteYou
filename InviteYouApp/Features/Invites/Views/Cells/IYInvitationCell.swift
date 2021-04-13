@@ -46,7 +46,7 @@ class IYInvitationCell: UITableViewCell {
             self.logoView.image = UIImage(systemName: nameLogo)
         }
     }
-    private lazy var organizerLable: UILabel = {
+    private lazy var organizerLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = fontFamilyLittle?.withSize(30)
@@ -56,7 +56,7 @@ class IYInvitationCell: UITableViewCell {
         return label
     }()
 
-    private lazy var addressLable: UILabel = {
+    private lazy var addressLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .black
@@ -66,7 +66,7 @@ class IYInvitationCell: UITableViewCell {
         return label
     }()
 
-    private lazy var nameOfEventLable: UILabel = {
+    private lazy var nameOfEventLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = mainСolorGreen
@@ -77,7 +77,7 @@ class IYInvitationCell: UITableViewCell {
         return label
     }()
 
-    private lazy var dateLable: UILabel = {
+    private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = mainСolorGreen?.withAlphaComponent(0.5)
         label.textColor = .white
@@ -126,10 +126,10 @@ class IYInvitationCell: UITableViewCell {
         self.contentView.backgroundColor = backgroundСolorWhite
         self.contentView.addSubview(self.cardContainerView)
         self.cardContainerView.addSubview(self.logoView)
-        self.cardContainerView.addSubview(self.organizerLable)
-        self.cardContainerView.addSubview(self.dateLable)
-        self.cardContainerView.addSubview(self.addressLable)
-        self.cardContainerView.addSubview(self.nameOfEventLable)
+        self.cardContainerView.addSubview(self.organizerLabel)
+        self.cardContainerView.addSubview(self.dateLabel)
+        self.cardContainerView.addSubview(self.addressLabel)
+        self.cardContainerView.addSubview(self.nameOfEventLabel)
         self.cardContainerView.addSubview(self.closedOrOpenEventView)
         self.updateConstraints()
         self.selectionStyle = .none // чтобы при выборе ячейки она не подсвечивалась
@@ -137,11 +137,11 @@ class IYInvitationCell: UITableViewCell {
 
     func setCell(model: ExampleInvites) {
         self.nameLogo = model.logo // передать изобаржение!!!!!!!!!!!!!!
-        self.organizerLable.text = model.nameOrganizer
-        self.dateLable.text = model.date
-        self.nameOfEventLable.text = model.nameOfEvent
+        self.organizerLabel.text = model.nameOrganizer
+        self.dateLabel.text = model.date
+        self.nameOfEventLabel.text = model.nameOfEvent
         self.closedOrOpenEventFlag = model.closedOrOpen
-        self.addressLable.text = model.address
+        self.addressLabel.text = model.address
 
         self.setNeedsUpdateConstraints()
     }
@@ -163,22 +163,22 @@ class IYInvitationCell: UITableViewCell {
             make.top.left.equalToSuperview().inset(10)
             make.size.equalTo(80)
         }
-        self.organizerLable.snp.makeConstraints { (make) in
+        self.organizerLabel.snp.makeConstraints { (make) in
             make.top.right.equalToSuperview().inset(10)
             make.left.equalTo(self.logoView.snp.right).offset(10)
         }
-        self.nameOfEventLable.snp.makeConstraints { (make) in
-            make.top.equalTo(self.organizerLable.snp.bottom).offset(10)
+        self.nameOfEventLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(self.organizerLabel.snp.bottom).offset(10)
             make.left.equalTo(self.logoView.snp.right).offset(10)
             make.right.equalToSuperview().inset(10)
-            make.bottom.equalTo(self.dateLable.snp.top).offset(-10)
+            make.bottom.equalTo(self.dateLabel.snp.top).offset(-10)
         }
-        self.addressLable.snp.makeConstraints { (make) in
-            make.right.equalTo(self.dateLable.snp.left).offset(-10)
+        self.addressLabel.snp.makeConstraints { (make) in
+            make.right.equalTo(self.dateLabel.snp.left).offset(-10)
             make.left.equalTo(self.closedOrOpenEventView.snp.right).offset(10)
             make.bottom.equalToSuperview().inset(10)
         }
-        self.dateLable.snp.makeConstraints { (make) in
+        self.dateLabel.snp.makeConstraints { (make) in
             make.bottom.right.equalToSuperview().inset(10)
             make.size.equalTo(80)
         }

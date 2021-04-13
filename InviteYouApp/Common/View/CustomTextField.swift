@@ -8,7 +8,6 @@
 import UIKit
 
 public func customTextField(_ textField: UITextField) {
-
     textField.backgroundColor = .white
     textField.textColor = mainСolorGreen
     textField.font = fontFamilyLittle

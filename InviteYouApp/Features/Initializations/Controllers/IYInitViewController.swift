@@ -9,18 +9,24 @@ import UIKit
 import SnapKit
 import Firebase
 
-class IYInitViewController: UIViewController, UITextFieldDelegate {
-
+class IYInitViewController: IYViewController, UITextFieldDelegate {
     //MARK: - Variables Constrait
-
-    private lazy var topAppLabelConstrait: NSLayoutConstraint = self.appView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 250) // задали Constrait в виде локальной переменной
-
-    private lazy var topUserNameLable: NSLayoutConstraint = self.userEmailLable.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: -10)
-
-    private lazy var bottomRegisterButton: NSLayoutConstraint = self.registerButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 50)
-
+    private lazy var topAppLabelConstrait = {
+        self.appView.snp.updateConstraints { (make) in
+            make.top.equalToSuperview().offset(250)
+        }
+    }
+    private lazy var topUserEmailLabel = {
+        self.userEmailLabel.snp.updateConstraints { (make) in
+            make.top.equalToSuperview().offset(-10)
+        }
+    }
+    private lazy var bottomRegisterButton = {
+        self.registerButton.snp.updateConstraints { (make) in
+            make.bottom.equalToSuperview().offset(50)
+        }
+    }
     //MARK: - Variables
-
     private lazy var appView: UIView = {
         let view = UIView()
         view.backgroundColor = mainСolorGreen
@@ -30,7 +36,6 @@ class IYInitViewController: UIViewController, UITextFieldDelegate {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
     private lazy var appLabel: UILabel = {
         let label = UILabel()
         label.text = "Invite.You"
@@ -40,14 +45,12 @@ class IYInitViewController: UIViewController, UITextFieldDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
-    private lazy var userEmailLable: UILabel = {
+    private lazy var userEmailLabel: UILabel = {
         let label = UILabel()
-        label.text = "User Email"
-        customLable(label)
+        label.text = "User email"
+        customLabel(label)
         return label
     }()
-
     private lazy var userEmailField: UITextField = {
         let textField = UITextField()
         customTextField(textField)
@@ -55,14 +58,12 @@ class IYInitViewController: UIViewController, UITextFieldDelegate {
         textField.delegate = self
         return textField
     }()
-
-    private lazy var userPasswordLable: UILabel = {
+    private lazy var userPasswordLabel: UILabel = {
         let label = UILabel()
-        label.text = "User Password"
-        customLable(label)
+        label.text = "User password"
+        customLabel(label)
         return label
     }()
-
     private lazy var userPasswordField: UITextField = {
         let textField = UITextField()
         customTextField(textField)
@@ -70,72 +71,79 @@ class IYInitViewController: UIViewController, UITextFieldDelegate {
         textField.delegate = self
         return textField
     }()
-
     private lazy var forgotPasswordButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Forgot Password?", for: UIControl.State())
+        button.setTitle("Forgot password?", for: UIControl.State())
         button.setTitleColor(mainСolorGreen, for: UIControl.State())
         button.titleLabel?.font = fontFamilyLittle
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
     private lazy var logInButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Log In", for: UIControl.State())
+        button.setTitle("Log in", for: UIControl.State())
         button.setTitleColor(.white, for: UIControl.State())
-        button.backgroundColor = mainСolorGreen?.withAlphaComponent(1)
+        button.backgroundColor = mainСolorGreen
         customButton(button)
         button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         return button
     }()
-
-    private lazy var dontHaveAnAccountLable: UILabel = {
+    private lazy var dontHaveAnAccountLabel: UILabel = {
         let label = UILabel()
-        label.text = "Don't Have An Account?"
+        label.text = "Don't have an account?"
         label.textColor = mainСolorGreen
         label.font = fontFamilyLittle
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-
         return label
     }()
-
     private lazy var registerButton: UIButton = {
         let button = UIButton()
         button.setTitle("Register", for: UIControl.State())
         button.setTitleColor(mainСolorGreen, for: UIControl.State())
-        button.backgroundColor = UIColor.white.withAlphaComponent(1)
+        button.backgroundColor = UIColor.white
         customButton(button)
         button.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         return button
     }()
-
     //MARK: - Lifecycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.addTapGestureToHideKeyboard()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        addTapGestureToHideKeyboard()
-        self.view.backgroundColor = backgroundСolorWhite
-        self.view.addSubview(appView)
-        self.view.addSubview(appLabel)
-        self.view.addSubview(userEmailLable)
-        self.view.addSubview(userEmailField)
-        self.view.addSubview(userPasswordLable)
-        self.view.addSubview(userPasswordField)
-        self.view.addSubview(forgotPasswordButton)
-        self.view.addSubview(logInButton)
-        self.view.addSubview(dontHaveAnAccountLable)
-        self.view.addSubview(registerButton)
+        self.view.addSubviews([
+            self.appView,
+            self.appLabel,
+            self.userEmailLabel,
+            self.userEmailField,
+            self.userPasswordLabel,
+            self.userPasswordField,
+            self.forgotPasswordButton,
+            self.forgotPasswordButton,
+            self.logInButton,
+            self.dontHaveAnAccountLabel,
+            self.registerButton
+        ])
         self.setUpConstraintsFunction()
         self.userAlreadylogged()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.topAppLabelConstrait.constant = 30
-        self.topUserNameLable.constant = 150
-        self.bottomRegisterButton.constant = -100
+        self.topAppLabelConstrait = {
+            self.appView.snp.updateConstraints { (make) in
+                make.top.equalToSuperview().offset(80)
+            }
+        }
+        self.topUserEmailLabel = {
+            self.userEmailLabel.snp.updateConstraints { (make) in
+                make.top.equalToSuperview().offset(200)
+            }
+        }
+        self.bottomRegisterButton = {
+            self.registerButton.snp.updateConstraints { (make) in
+                make.bottom.equalToSuperview().offset(-100)
+            }
+        }
         setUpConstraintsFunction()
         UIView.animate(withDuration: 1) {
             self.view.layoutIfNeeded()
@@ -152,7 +160,6 @@ class IYInitViewController: UIViewController, UITextFieldDelegate {
         }
     }
     //MARK: - ButtonTapped
-
     @objc private func logInButtonTapped() {
         let logIn = userEmailField.text ?? ""
         let password = userPasswordField.text ?? ""
@@ -176,142 +183,50 @@ class IYInitViewController: UIViewController, UITextFieldDelegate {
     @objc private func registerButtonTapped() {
         self.navigationController?.pushViewController(IYRegistrationViewController(), animated: true)
     }
-
     //MARK: - Constraints
     func setUpConstraintsFunction() {
-        self.view.addConstraints([
-            topAppLabelConstrait,
-//            NSLayoutConstraint(item: self.appLabel, attribute: .top, relatedBy: .equal,
-//                               toItem: self.view.safeAreaLayoutGuide, attribute: .top,
-//                               multiplier: 1, constant: 30),
-            NSLayoutConstraint(item: self.appView, attribute: .left, relatedBy: .equal,
-                               toItem: self.view.safeAreaLayoutGuide, attribute: .left,
-                               multiplier: 1, constant: 30),
-            NSLayoutConstraint(item: self.appView, attribute: .right, relatedBy: .equal,
-                               toItem: self.view.safeAreaLayoutGuide, attribute: .right,
-                               multiplier: 1, constant: -30),
-            NSLayoutConstraint(item: self.appView, attribute: .height, relatedBy: .equal,
-                               toItem: nil, attribute: .notAnAttribute,
-                               multiplier: 1, constant: 80)
-        ])
-        self.view.addConstraints([
-            NSLayoutConstraint(item: self.appLabel, attribute: .centerX, relatedBy: .equal,
-                               toItem: self.appView, attribute: .centerX,
-                               multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: self.appLabel, attribute: .centerY, relatedBy: .equal,
-                               toItem: self.appView, attribute: .centerY,
-                               multiplier: 1, constant: 0)
-        ])
-
-        self.view.addConstraints([
-//            NSLayoutConstraint(item: self.userNameLable, attribute: .top, relatedBy: .equal,
-//                               toItem: self.view.safeAreaLayoutGuide, attribute: .top,
-//                               multiplier: 1, constant: 150),
-            topUserNameLable,
-            NSLayoutConstraint(item: self.userEmailLable, attribute: .left, relatedBy: .equal,
-                               toItem: self.view.safeAreaLayoutGuide, attribute: .left,
-                               multiplier: 1, constant: 30),
-            NSLayoutConstraint(item: self.userEmailLable, attribute: .right, relatedBy: .equal,
-                               toItem: self.view.safeAreaLayoutGuide, attribute: .right,
-                               multiplier: 1, constant: -30)
-        ])
-
-        self.view.addConstraints([
-            NSLayoutConstraint(item: self.userEmailField, attribute: .top, relatedBy: .equal,
-                               toItem: self.userEmailLable, attribute: .bottom,
-                               multiplier: 1, constant: 20),
-            NSLayoutConstraint(item: self.userEmailField, attribute: .left, relatedBy: .equal,
-                               toItem: self.view.safeAreaLayoutGuide, attribute: .left,
-                               multiplier: 1, constant: 30),
-            NSLayoutConstraint(item: self.userEmailField, attribute: .right, relatedBy: .equal,
-                               toItem: self.view.safeAreaLayoutGuide, attribute: .right,
-                               multiplier: 1, constant: -30)
-        ])
-
-        self.view.addConstraints([
-            NSLayoutConstraint(item: self.userPasswordLable, attribute: .top, relatedBy: .equal,
-                               toItem: self.userEmailField, attribute: .bottom,
-                               multiplier: 1, constant: 20),
-            NSLayoutConstraint(item: self.userPasswordLable, attribute: .left, relatedBy: .equal,
-                               toItem: self.view.safeAreaLayoutGuide, attribute: .left,
-                               multiplier: 1, constant: 30),
-            NSLayoutConstraint(item: self.userPasswordLable, attribute: .right, relatedBy: .equal,
-                               toItem: self.view.safeAreaLayoutGuide, attribute: .right,
-                               multiplier: 1, constant: -30)
-        ])
-
-        self.view.addConstraints([
-            NSLayoutConstraint(item: self.userPasswordField, attribute: .top, relatedBy: .equal,
-                               toItem: self.userPasswordLable, attribute: .bottom,
-                               multiplier: 1, constant: 20),
-            NSLayoutConstraint(item: self.userPasswordField, attribute: .left, relatedBy: .equal,
-                               toItem: self.view.safeAreaLayoutGuide, attribute: .left,
-                               multiplier: 1, constant: 30),
-            NSLayoutConstraint(item: self.userPasswordField, attribute: .right, relatedBy: .equal,
-                               toItem: self.view.safeAreaLayoutGuide, attribute: .right,
-                               multiplier: 1, constant: -30)
-
-        ])
-
-        self.view.addConstraints([
-            NSLayoutConstraint(item: self.forgotPasswordButton, attribute: .top, relatedBy: .equal,
-                               toItem: self.userPasswordField, attribute: .bottom,
-                               multiplier: 1, constant: 20),
-            NSLayoutConstraint(item: self.forgotPasswordButton, attribute: .left, relatedBy: .equal,
-                               toItem: self.view.safeAreaLayoutGuide, attribute: .left,
-                               multiplier: 1, constant: 30),
-            NSLayoutConstraint(item: self.forgotPasswordButton, attribute: .right, relatedBy: .equal,
-                               toItem: self.view.safeAreaLayoutGuide, attribute: .right,
-                               multiplier: 1, constant: -30)
-//            NSLayoutConstraint(item: self.forgotPasswordButton, attribute: .right, relatedBy: .greaterThanOrEqual,
-//                               toItem: self.userPasswordField, attribute: .right,
-//                               multiplier: 1, constant: -40)
-        ])
-
-        self.view.addConstraints([
-            NSLayoutConstraint(item: self.logInButton, attribute: .top, relatedBy: .equal,
-                               toItem: self.forgotPasswordButton, attribute: .bottom,
-                               multiplier: 1, constant: 10),
-            NSLayoutConstraint(item: self.logInButton, attribute: .left, relatedBy: .equal,
-                               toItem: self.view.safeAreaLayoutGuide, attribute: .left,
-                               multiplier: 1, constant: 30),
-            NSLayoutConstraint(item: self.logInButton, attribute: .right, relatedBy: .equal,
-                               toItem: self.view.safeAreaLayoutGuide, attribute: .right,
-                               multiplier: 1, constant: -30),
-            NSLayoutConstraint(item: self.logInButton, attribute: .height, relatedBy: .equal,
-                               toItem: nil, attribute: .notAnAttribute,
-                               multiplier: 1, constant: 60)
-        ])
-
-        self.view.addConstraints([
-            NSLayoutConstraint(item: self.dontHaveAnAccountLable, attribute: .bottom, relatedBy: .equal,
-                               toItem: self.registerButton, attribute: .top,
-                               multiplier: 1, constant: -20),
-            NSLayoutConstraint(item: self.dontHaveAnAccountLable, attribute: .left, relatedBy: .equal,
-                               toItem: self.view.safeAreaLayoutGuide, attribute: .left,
-                               multiplier: 1, constant: 30),
-            NSLayoutConstraint(item: self.dontHaveAnAccountLable, attribute: .right, relatedBy: .equal,
-                               toItem: self.view.safeAreaLayoutGuide, attribute: .right,
-                               multiplier: 1, constant: -30)
-        ])
-
-        self.view.addConstraints([
-            bottomRegisterButton,
-//            NSLayoutConstraint(item: self.registerButton, attribute: .bottom, relatedBy: .equal,
-//                               toItem: self.view.safeAreaLayoutGuide, attribute: .bottom,
-//                               multiplier: 1, constant: -30),
-            NSLayoutConstraint(item: self.registerButton, attribute: .left, relatedBy: .equal,
-                               toItem: self.view.safeAreaLayoutGuide, attribute: .left,
-                               multiplier: 1, constant: 30),
-            NSLayoutConstraint(item: self.registerButton, attribute: .right, relatedBy: .equal,
-                               toItem: self.view.safeAreaLayoutGuide, attribute: .right,
-                               multiplier: 1, constant: -30),
-            NSLayoutConstraint(item: self.registerButton, attribute: .height, relatedBy: .equal,
-                               toItem: nil, attribute: .notAnAttribute,
-                               multiplier: 1, constant: 60) //высота
-
-        ])
-
+        self.appView.snp.makeConstraints { (make) in
+            topAppLabelConstrait()
+            make.left.right.equalToSuperview().inset(30)
+            make.height.equalTo(80)
+        }
+        self.appLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.appView.snp.centerX)
+            make.centerY.equalTo(self.appView.snp.centerY)
+        }
+        self.userEmailLabel.snp.makeConstraints { (make) in
+             topUserEmailLabel()
+            make.left.right.equalToSuperview().inset(30)
+        }
+        self.userEmailField.snp.makeConstraints { (make) in
+            make.top.equalTo(self.userEmailLabel.snp.bottom).offset(25)
+            make.left.right.equalToSuperview().inset(30)
+        }
+        self.userPasswordLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(self.userEmailField.snp.bottom).offset(25)
+            make.left.right.equalToSuperview().inset(30)
+        }
+        self.userPasswordField.snp.makeConstraints { (make) in
+            make.top.equalTo(self.userPasswordLabel.snp.bottom).offset(25)
+            make.left.right.equalToSuperview().inset(30)
+        }
+        self.forgotPasswordButton.snp.makeConstraints { (make) in
+            make.top.equalTo(self.userPasswordField.snp.bottom).offset(25)
+            make.left.right.equalToSuperview().inset(30)
+        }
+        self.logInButton.snp.makeConstraints { (make) in
+            make.top.equalTo(self.forgotPasswordButton.snp.bottom).offset(25)
+            make.left.right.equalToSuperview().inset(30)
+            make.height.equalTo(60)
+        }
+        self.dontHaveAnAccountLabel.snp.makeConstraints { (make) in
+            make.bottom.equalTo(self.registerButton.snp.top).offset(-25)
+            make.left.right.equalToSuperview().inset(30)
+        }
+        self.registerButton.snp.makeConstraints { (make) in
+            bottomRegisterButton()
+            make.left.right.equalToSuperview().inset(30)
+            make.height.equalTo(60)
+        }
     }
-
 }

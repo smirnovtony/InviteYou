@@ -5,7 +5,6 @@
 //  Created by Антон Смирнов on 29.03.21.
 //
 
-import Foundation
 import UIKit
 
 public func customButton(_ button: UIButton) {
