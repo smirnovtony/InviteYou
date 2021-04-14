@@ -31,6 +31,7 @@
 		EA64BAE22625D2F500192F01 /* UIPickerView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BAE12625D2F500192F01 /* UIPickerView+Ex.swift */; };
 		EA64BAE52625D95A00192F01 /* Date+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BAE42625D95A00192F01 /* Date+Ex.swift */; };
 		EA64BAEA2625E27900192F01 /* IYChangeLoginNPasswordStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BAE92625E27900192F01 /* IYChangeLoginNPasswordStack.swift */; };
+		EA64BAF02627142C00192F01 /* String+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BAEF2627142C00192F01 /* String+Ex.swift */; };
 		EA7B64482622DEE60048F783 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA7B64472622DEE60048F783 /* GoogleService-Info.plist */; };
 		EA7B7BB426021ED50006F22E /* IYViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7B7BB326021ED50006F22E /* IYViewController.swift */; };
 		EA7B7BD2260320830006F22E /* IYInvitationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7B7BD1260320830006F22E /* IYInvitationCell.swift */; };
@@ -77,6 +78,7 @@
 		EA64BAE12625D2F500192F01 /* UIPickerView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPickerView+Ex.swift"; sourceTree = "<group>"; };
 		EA64BAE42625D95A00192F01 /* Date+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ex.swift"; sourceTree = "<group>"; };
 		EA64BAE92625E27900192F01 /* IYChangeLoginNPasswordStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYChangeLoginNPasswordStack.swift; sourceTree = "<group>"; };
+		EA64BAEF2627142C00192F01 /* String+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ex.swift"; sourceTree = "<group>"; };
 		EA7B64472622DEE60048F783 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EA7B7BB326021ED50006F22E /* IYViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYViewController.swift; sourceTree = "<group>"; };
 		EA7B7BD1260320830006F22E /* IYInvitationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYInvitationCell.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				EA64BACC262592FF00192F01 /* UIEdgeInsets+Ex.swift.swift */,
 				EA64BAE12625D2F500192F01 /* UIPickerView+Ex.swift */,
 				EA64BAE42625D95A00192F01 /* Date+Ex.swift */,
+				EA64BAEF2627142C00192F01 /* String+Ex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				EAFFAA9F25F8EE14003A610E /* IYCalendarViewController.swift in Sources */,
 				EA64BACD262592FF00192F01 /* UIEdgeInsets+Ex.swift.swift in Sources */,
 				EA64BAC62625694400192F01 /* IYRegistrationStack.swift in Sources */,
+				EA64BAF02627142C00192F01 /* String+Ex.swift in Sources */,
 				EA200AE7261083610087E792 /* IYChangeLoginNPasswordViewController.swift in Sources */,
 				EAFFAAA225F8EE5C003A610E /* IYProfileViewController.swift in Sources */,
 				EA281A0D2611AB7700674722 /* CustomButton.swift in Sources */,

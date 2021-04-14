@@ -13,13 +13,13 @@ private var exampleInvites = [
                    nameOrganizer: "Domino's pizza",
                    nameOfEvent: "2+2=5",
                    address: "ул. Ложинская, 3",
-                   date: "30 May 2021",
+                   date: "30 May 2022",
                    closedOrOpen: true),
     ExampleInvites(logo: "ladybug.fill",
                    nameOrganizer: "Sushi House",
                    nameOfEvent: "50%",
                    address: "Логойский тракт, 35",
-                   date: "8 Apr 2021",
+                   date: "8 Oct 2021",
                    closedOrOpen: false),
     ExampleInvites(logo: "icloud.fill",
                    nameOrganizer: "Семья Смирновых",
@@ -31,19 +31,18 @@ private var exampleInvites = [
                    nameOrganizer: "VOKA CINEMA by Silver Screen в ТРЦ Dana Mall",
                    nameOfEvent: "Майор Гром: Чумной Доктор",
                    address: "ул. Петра Мстиславца, 11",
-                   date: "7 Apr 2021",
+                   date: "11 Apr 2021",
                    closedOrOpen: true),
     ExampleInvites(logo: "eyes.inverse",
                    nameOrganizer: "Музей миниатюр",
                    nameOfEvent: "Выставка: Страна мини",
                    address: "пр-т Независимости, 25",
-                   date: "18 Oct 2021",
+                   date: "18 Oct 2025",
                    closedOrOpen: true)
 ]
-
 class IYActiveInvitesViewController: UITableViewController {
     //MARK: - Initializators
-    private var invites: [ExampleInvites] = exampleInvites {  // изм!!!
+    private var invites: [ExampleInvites] = exampleInvites.sorted { $0.date.toDate() < $1.date.toDate()} {  // изм!!!
         didSet {
             self.filteredInvites = self.invites
         }
@@ -96,7 +95,6 @@ class IYActiveInvitesViewController: UITableViewController {
             self.searchController.searchBar.searchTextField.backgroundColor = UIColor.white
             self.searchController.searchBar.searchTextField.font = fontFamilyLittle
             }
-    //как упорядочить по дате?????!!!!!!!!!
     //MARK: - TableView
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.filteredInvites.count
