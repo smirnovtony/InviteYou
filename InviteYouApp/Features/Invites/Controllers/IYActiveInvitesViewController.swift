@@ -83,7 +83,7 @@ class IYActiveInvitesViewController: UITableViewController {
                                                                 target: self,
                                                                 action: #selector(createButtonTapped))
             self.navigationItem.leftBarButtonItem?.tintColor = .white
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3.decrease.circle"),
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3.decrease"),
                                                                 style: .done,
                                                                 target: self,
                                                                 action: #selector(filterButtonTapped))

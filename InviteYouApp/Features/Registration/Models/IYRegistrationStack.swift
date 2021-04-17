@@ -14,8 +14,6 @@ var registrationStack: UIStackView = {
     stack.alignment = .fill
     stack.spacing = 25
     stack.addArrangedSubview([
-        userLoginLabel,
-        userLoginField,
         userPasswordLabel,
         userPasswordField,
         confirmPasswordLabel,
@@ -25,17 +23,6 @@ var registrationStack: UIStackView = {
     ])
     stack.translatesAutoresizingMaskIntoConstraints = false
     return stack
-}()
-var userLoginLabel: UILabel = {
-    let label = UILabel()
-    label.text = "User login"
-    customLabel(label)
-    return label
-}()
-public var userLoginField: UITextField = {
-    let textField = UITextField()
-    customTextField(textField)
-    return textField
 }()
 var userPasswordLabel: UILabel = {
     let label = UILabel()
@@ -71,6 +58,7 @@ var emailField: UITextField = {
     let textField = UITextField()
     customTextField(textField)
     textField.keyboardType = .emailAddress
+    textField.autocorrectionType = .no
     textField.autocapitalizationType = UITextAutocapitalizationType.none
     return textField
 }()

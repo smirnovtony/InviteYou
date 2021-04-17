@@ -15,7 +15,7 @@
 		EA13486B261DA5750022E78E /* ExampleInvites.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA13486A261DA5750022E78E /* ExampleInvites.swift */; };
 		EA13486E261DE5550022E78E /* IYIvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA13486D261DE5550022E78E /* IYIvent.swift */; };
 		EA14798625FBDD2900A03DCD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EA14798525FBDD2900A03DCD /* SnapKit */; };
-		EA200AE7261083610087E792 /* IYChangeLoginNPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA200AE6261083610087E792 /* IYChangeLoginNPasswordViewController.swift */; };
+		EA200AE7261083610087E792 /* IYResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA200AE6261083610087E792 /* IYResetPasswordViewController.swift */; };
 		EA281A0A2611A64D00674722 /* СustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA281A092611A64D00674722 /* СustomLabel.swift */; };
 		EA281A0D2611AB7700674722 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA281A0C2611AB7700674722 /* CustomButton.swift */; };
 		EA29522F260C939F00B4523A /* IYNumberOfPersons.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA29522E260C939F00B4523A /* IYNumberOfPersons.swift */; };
@@ -25,7 +25,6 @@
 		EA64BAC926256CB100192F01 /* UIView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BAC826256CB100192F01 /* UIView+Ex.swift */; };
 		EA64BACD262592FF00192F01 /* UIEdgeInsets+Ex.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BACC262592FF00192F01 /* UIEdgeInsets+Ex.swift.swift */; };
 		EA64BAD02625A70B00192F01 /* UIStackView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BACF2625A70B00192F01 /* UIStackView+Ex.swift */; };
-		EA64BAD32625ABB800192F01 /* IYLoginWithStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BAD22625ABB800192F01 /* IYLoginWithStack.swift */; };
 		EA64BAD82625AF9D00192F01 /* CustomLabelCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BAD72625AF9D00192F01 /* CustomLabelCondition.swift */; };
 		EA64BADE2625C1D200192F01 /* IYCreateInviteStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BADD2625C1D200192F01 /* IYCreateInviteStack.swift */; };
 		EA64BAE22625D2F500192F01 /* UIPickerView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BAE12625D2F500192F01 /* UIPickerView+Ex.swift */; };
@@ -62,7 +61,7 @@
 		EA133FC42604719000241E8B /* IYSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYSearchViewController.swift; sourceTree = "<group>"; };
 		EA13486A261DA5750022E78E /* ExampleInvites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleInvites.swift; sourceTree = "<group>"; };
 		EA13486D261DE5550022E78E /* IYIvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYIvent.swift; sourceTree = "<group>"; };
-		EA200AE6261083610087E792 /* IYChangeLoginNPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYChangeLoginNPasswordViewController.swift; sourceTree = "<group>"; };
+		EA200AE6261083610087E792 /* IYResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYResetPasswordViewController.swift; sourceTree = "<group>"; };
 		EA281A092611A64D00674722 /* СustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СustomLabel.swift"; sourceTree = "<group>"; };
 		EA281A0C2611AB7700674722 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		EA29522E260C939F00B4523A /* IYNumberOfPersons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYNumberOfPersons.swift; sourceTree = "<group>"; };
@@ -72,7 +71,6 @@
 		EA64BAC826256CB100192F01 /* UIView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ex.swift"; sourceTree = "<group>"; };
 		EA64BACC262592FF00192F01 /* UIEdgeInsets+Ex.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Ex.swift.swift"; sourceTree = "<group>"; };
 		EA64BACF2625A70B00192F01 /* UIStackView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Ex.swift"; sourceTree = "<group>"; };
-		EA64BAD22625ABB800192F01 /* IYLoginWithStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYLoginWithStack.swift; sourceTree = "<group>"; };
 		EA64BAD72625AF9D00192F01 /* CustomLabelCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabelCondition.swift; sourceTree = "<group>"; };
 		EA64BADD2625C1D200192F01 /* IYCreateInviteStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYCreateInviteStack.swift; sourceTree = "<group>"; };
 		EA64BAE12625D2F500192F01 /* UIPickerView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPickerView+Ex.swift"; sourceTree = "<group>"; };
@@ -191,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				EA64BAC52625694400192F01 /* IYRegistrationStack.swift */,
-				EA64BAD22625ABB800192F01 /* IYLoginWithStack.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -267,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				EAFFAA7225F891AE003A610E /* IYInitViewController.swift */,
+				EA200AE6261083610087E792 /* IYResetPasswordViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -330,7 +328,6 @@
 			children = (
 				EAFFAAA125F8EE5C003A610E /* IYProfileViewController.swift */,
 				EAD0EBD025FB890800463EF7 /* IYEditProfileViewController.swift */,
-				EA200AE6261083610087E792 /* IYChangeLoginNPasswordViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -551,7 +548,7 @@
 				EA64BACD262592FF00192F01 /* UIEdgeInsets+Ex.swift.swift in Sources */,
 				EA64BAC62625694400192F01 /* IYRegistrationStack.swift in Sources */,
 				EA64BAF02627142C00192F01 /* String+Ex.swift in Sources */,
-				EA200AE7261083610087E792 /* IYChangeLoginNPasswordViewController.swift in Sources */,
+				EA200AE7261083610087E792 /* IYResetPasswordViewController.swift in Sources */,
 				EAFFAAA225F8EE5C003A610E /* IYProfileViewController.swift in Sources */,
 				EA281A0D2611AB7700674722 /* CustomButton.swift in Sources */,
 				EA64BAEA2625E27900192F01 /* IYChangeLoginNPasswordStack.swift in Sources */,
@@ -570,7 +567,6 @@
 				EA64BAD82625AF9D00192F01 /* CustomLabelCondition.swift in Sources */,
 				EA64BAE52625D95A00192F01 /* Date+Ex.swift in Sources */,
 				EA64BAD02625A70B00192F01 /* UIStackView+Ex.swift in Sources */,
-				EA64BAD32625ABB800192F01 /* IYLoginWithStack.swift in Sources */,
 				EAFFAA9B25F8EDF8003A610E /* IYDetailsViewController.swift in Sources */,
 				EA133FC52604719000241E8B /* IYSearchViewController.swift in Sources */,
 				EA64BADE2625C1D200192F01 /* IYCreateInviteStack.swift in Sources */,

@@ -12,9 +12,12 @@ import Firebase
 class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
     //MARK: - Variables
     private var output: Bool = false
-    private var userLogin: String {
-        userLoginField.text ?? ""
-    }
+
+    private var conditionsPassEqualToLogin: String = "Passwords must not contain your user name"
+    private var conditionsInvalidPassword: String = "Invalid password"
+    private var conditionsPassCharacters: String = "Password must be more than 8 characters"
+    private var conditionsEmailCharacters: String = "Check your email"
+
     private var userPassword: String {
         userPasswordField.text ?? ""
     }
@@ -24,11 +27,6 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
     private var email: String {
         emailField.text ?? ""
     }
-    private var conditionsPassEqualToLogin: String = "Passwords must not contain your user name"
-    private var conditionsInvalidPassword: String = "Invalid password"
-    private var conditionsPassCharacters: String = "Password must be more than 8 characters"
-    private var conditionsEmailCharacters: String = "Check your email"
-
     private lazy var registrationView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -44,15 +42,6 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
         label.text = "Registration"
         label.textColor = mainСolorGreen
         label.font = fontFamilyBig
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    private lazy var loginWithLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Login With"
-        label.textColor = mainСolorGreen
-        label.font = fontFamilyLittle
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -96,28 +85,23 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
         self.mainView.addSubviews([
             self.registrationView,
             self.registrationLabel,
-            self.loginWithLabel,
-            loginWithStack,
             registrationStack,
             self.registerButton,
             self.backButton
         ])
         self.setUpConstraintsFunction()
-        userLoginField.delegate = self
         userPasswordField.delegate = self
         emailField.delegate = self
     }
     // MARK: - ButtonTapped
     @objc private func registerButtonTapped() {
         if registrationConditions() {
-            Auth.auth().createUser(withEmail: email, password: userPassword) { (result, error) in
-                if error == nil {
-                    if let result = result, !result.user.uid.isEmpty {
+            Auth.auth().createUser(withEmail: self.email, password: self.userPassword) { (result, error) in
+                if error == nil, let result = result, !result.user.uid.isEmpty {
                         print(result.user.uid)
                         IYDefault.sh.userLogged = true
                         let reference = Database.database().reference().child("users")
-                        reference.child(result.user.uid).updateChildValues(["name": self.userLogin,
-                                                                            "email": self.email])
+                        reference.child(result.user.uid).updateChildValues(["email": self.email])
 
                         let alertController = UIAlertController(title: "Registration completed successfully",
                                                                 message: "",
@@ -133,7 +117,6 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
                         self.present(alertController, animated: true)
                     }
                 }
-            }
         } else {
             let alertController = UIAlertController(title: "Error",
                                                     message: "Сheck the entered information",
@@ -146,40 +129,26 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
     @objc private func backToLoginButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
-    // условия регистрации
-    func registrationConditions() -> Bool {
+    //MARK: - RegistrationConditions
+   private func registrationConditions() -> Bool {
         var counter = true
-        if !self.userLogin.isEmpty {
-            output = true
-            userLoginField.backgroundColor = .white
-        } else {
-            counter = false
-            userLoginField.backgroundColor = notСolorPink
-        }
-        if !self.userPassword.isEmpty,
-           !self.confirmPassword.isEmpty,
-           self.userPassword.count >= 8,
-           self.userPassword != self.userLogin,
-           self.userPassword == self.confirmPassword {
+        if !self.userPassword.isEmpty, !self.confirmPassword.isEmpty, self.userPassword.count >= 8, self.userPassword == self.confirmPassword {
             output = true
             conditionsPass.text = ""
             conditionsConfirmPass.text = ""
             userPasswordField.backgroundColor = .white
             confirmPasswordField.backgroundColor = .white
-        } else if !self.userPassword.isEmpty,
-                  self.userPassword == self.userLogin {
+        } else if !self.userPassword.isEmpty {
             counter = false
             conditionsPass.text = conditionsPassEqualToLogin
             conditionsConfirmPass.text = ""
             conditionsUserPassConstraints()
-        } else if !self.userPassword.isEmpty,
-                  self.userPassword.count < 8 {
+        } else if !self.userPassword.isEmpty, self.userPassword.count < 8 {
                 counter = false
                 conditionsPass.text = conditionsPassCharacters
                 conditionsConfirmPass.text = ""
                 conditionsUserPassConstraints()
-        } else if !self.confirmPassword.isEmpty,
-                  self.userPassword != self.confirmPassword {
+        } else if !self.confirmPassword.isEmpty, self.userPassword != self.confirmPassword {
             counter = false
             userPasswordField.backgroundColor = .white
             conditionsConfirmPass.text = conditionsInvalidPassword
@@ -232,7 +201,7 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
             make.left.right.equalToSuperview().inset(30)
         }
     }
-    private func isValid(_ email: String) -> Bool {
+    func isValid(_ email: String) -> Bool {
         // swiftlint:disable line_length
         let emailRegEx = "(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"+"~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\"+"x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-"+"z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5"+"]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-"+"9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"+"-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
 
@@ -250,17 +219,8 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
             make.centerX.equalTo(self.registrationView.snp.centerX)
             make.centerY.equalTo(self.registrationView.snp.centerY)
         }
-        self.loginWithLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.registrationLabel.snp.bottom).offset(40)
-            make.centerX.equalToSuperview()
-        }
-        loginWithStack.snp.makeConstraints { (make) in
-            make.top.equalTo(self.loginWithLabel.snp.bottom).offset(20)
-            make.centerX.equalToSuperview()
-            make.left.right.equalToSuperview().inset(60)
-        }
         registrationStack.snp.makeConstraints { (make) in
-            make.top.equalTo(loginWithStack.snp.bottom).offset(30)
+            make.top.equalTo(registrationLabel.snp.bottom).offset(50)
             make.left.right.equalToSuperview().inset(30)
                 }
         self.registerButton.snp.makeConstraints { (make) in

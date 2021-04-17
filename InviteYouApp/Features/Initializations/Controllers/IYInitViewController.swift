@@ -27,6 +27,13 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
         }
     }
     //MARK: - Variables
+    private var output: Bool = false
+    private var email: String {
+        self.userEmailField.text ?? ""
+    }
+    private var userPassword: String {
+        self.userPasswordField.text ?? ""
+    }
     private lazy var appView: UIView = {
         let view = UIView()
         view.backgroundColor = mainСolorGreen
@@ -54,6 +61,7 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
     private lazy var userEmailField: UITextField = {
         let textField = UITextField()
         customTextField(textField)
+        textField.autocorrectionType = .no
         textField.autocapitalizationType = UITextAutocapitalizationType.none
         textField.delegate = self
         return textField
@@ -77,6 +85,7 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
         button.setTitleColor(mainСolorGreen, for: UIControl.State())
         button.titleLabel?.font = fontFamilyLittle
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(resetPasswordButtonTapped), for: .touchUpInside)
         return button
     }()
     private lazy var logInButton: UIButton = {
@@ -161,27 +170,57 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
     }
     //MARK: - ButtonTapped
     @objc private func logInButtonTapped() {
-        let logIn = userEmailField.text ?? ""
-        let password = userPasswordField.text ?? ""
-        if !logIn.isEmpty, !password.isEmpty {
-            Auth.auth().signIn(withEmail: logIn, password: password) { (result, error) in
-                if error == nil {
-                    let tabBarController = IYTabBarViewController()
+        if logInConditions() {
+            Auth.auth().signIn(withEmail: self.email, password: self.userPassword) { (result, error) in
+                    if error == nil {
+                        let tabBarController = IYTabBarViewController()
                         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
-                    UserDefaults.standard.set(true, forKey: "userLoggedBool")
-                } else {
-                    let alertController = UIAlertController(title: "Check your email or password!",
-                                                            message: "",
-                                                            preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "OK", style: .default)
-                    alertController.addAction(okAction)
-                    self.present(alertController, animated: true)
-                }
+                        UserDefaults.standard.set(true, forKey: "userLoggedBool")
+                    } else {
+                        let alertController = UIAlertController(title: "Error",
+                                                                message: "Сheck the entered information",
+                                                                preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "OK", style: .destructive)
+                            self.present(alertController, animated: true)
+                            alertController.addAction(okAction)
+                        self.userEmailField.backgroundColor = notСolorPink
+                        self.userPasswordField.backgroundColor = notСolorPink
+                    }
             }
+        } else {
+            let alertController = UIAlertController(title: "Error",
+                                                    message: "Сheck the entered information",
+                                                    preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .destructive)
+                self.present(alertController, animated: true)
+                alertController.addAction(okAction)
         }
     }
     @objc private func registerButtonTapped() {
         self.navigationController?.pushViewController(IYRegistrationViewController(), animated: true)
+    }
+    //MARK: - LogInConditions
+    private func logInConditions() -> Bool {
+        var counter = true
+        if self.email.isEmpty {
+            counter = false
+            self.userEmailField.backgroundColor = notСolorPink
+        } else {
+            output = true
+        }
+        if self.userPassword.isEmpty {
+            counter = false
+            self.userPasswordField.backgroundColor = notСolorPink
+        } else {
+            output = true
+        }
+        if counter == false {
+            output = false
+        }
+        return output
+    }
+    @objc private func resetPasswordButtonTapped() {
+        self.navigationController?.pushViewController(IYResetPasswordViewController(), animated: true)
     }
     //MARK: - Constraints
     func setUpConstraintsFunction() {
@@ -195,7 +234,7 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
             make.centerY.equalTo(self.appView.snp.centerY)
         }
         self.userEmailLabel.snp.makeConstraints { (make) in
-             topUserEmailLabel()
+            topUserEmailLabel()
             make.left.right.equalToSuperview().inset(30)
         }
         self.userEmailField.snp.makeConstraints { (make) in
