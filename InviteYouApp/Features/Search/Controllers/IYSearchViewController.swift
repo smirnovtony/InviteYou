@@ -71,7 +71,7 @@ class IYSearchViewController: UITableViewController {
     private lazy var notificationLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = mainСolorGreen?.withAlphaComponent(0.5)
+        label.textColor = mainСolorBlue?.withAlphaComponent(0.5)
         label.font = fontFamilyLittle
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -94,7 +94,7 @@ class IYSearchViewController: UITableViewController {
         self.navigationItem.searchController = self.searchController
         self.searchController.searchResultsUpdater = self
         self.searchController.searchBar.barStyle = .black
-        self.searchController.searchBar.searchTextField.textColor = mainСolorGreen
+        self.searchController.searchBar.searchTextField.textColor = mainСolorBlue
         self.searchController.searchBar.searchTextField.backgroundColor = UIColor.white
         self.searchController.searchBar.searchTextField.font = fontFamilyLittle
     }

@@ -60,7 +60,7 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
     private lazy var openOrClosedControl: UISegmentedControl = {
         let control = UISegmentedControl(items: ["Open", "Closed"])
         control.selectedSegmentIndex = 0
-        control.selectedSegmentTintColor = mainСolorGreen?.withAlphaComponent(0.5)
+        control.selectedSegmentTintColor = mainСolorBlue?.withAlphaComponent(0.5)
         control.layer.borderColor = UIColor.black.cgColor
         control.setTitleTextAttributes([.foregroundColor: UIColor.white,
                                         .font: fontFamilyLittle ?? UIFont.systemFont(ofSize: 30)],
@@ -72,7 +72,7 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         let button = UIButton()
         button.setTitle("Create Invitation", for: UIControl.State())
         button.setTitleColor(.white, for: UIControl.State())
-        button.backgroundColor = mainСolorGreen
+        button.backgroundColor = mainСolorBlue
         customButton(button)
         button.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
         return button

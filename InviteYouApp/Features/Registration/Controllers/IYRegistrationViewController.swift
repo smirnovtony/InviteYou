@@ -40,7 +40,7 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
     private lazy var registrationLabel: UILabel = {
         let label = UILabel()
         label.text = "Registration"
-        label.textColor = mainСolorGreen
+        label.textColor = mainСolorBlue
         label.font = fontFamilyBig
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -65,7 +65,7 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
         let button = UIButton()
         button.setTitle("Register", for: UIControl.State())
         button.setTitleColor(.white, for: UIControl.State())
-        button.backgroundColor = mainСolorGreen
+        button.backgroundColor = mainСolorBlue
         customButton(button)
         button.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         return button

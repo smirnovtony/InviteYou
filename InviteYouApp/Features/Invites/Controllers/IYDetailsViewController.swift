@@ -19,7 +19,7 @@ class IYDetailsViewController: IYViewController {
         let label = UILabel()
         label.text = "Name Organizer"
         label.numberOfLines = 0
-        label.textColor = mainСolorGreen
+        label.textColor = mainСolorBlue
         label.font = fontFamilyMiddle
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -51,7 +51,7 @@ class IYDetailsViewController: IYViewController {
         button.setTitleColor(.white, for: UIControl.State())
         button.addTarget(self, action: #selector(calendarButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = mainСolorGreen?.withAlphaComponent(0.5)
+        button.backgroundColor = mainСolorBlue?.withAlphaComponent(0.5)
         button.layer.cornerRadius = 15
         return button
     }()
@@ -62,7 +62,7 @@ class IYDetailsViewController: IYViewController {
         button.setTitleColor(.white, for: UIControl.State())
         button.addTarget(self, action: #selector(calendarButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = mainСolorGreen?.withAlphaComponent(0.5)
+        button.backgroundColor = mainСolorBlue?.withAlphaComponent(0.5)
         button.layer.cornerRadius = 15
         return button
     }()
@@ -79,7 +79,7 @@ class IYDetailsViewController: IYViewController {
         let label = UILabel()
         label.text = "Name of event"
         label.numberOfLines = 0
-        label.textColor = mainСolorGreen
+        label.textColor = mainСolorBlue
         label.font = fontFamilyLittle
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -89,7 +89,7 @@ class IYDetailsViewController: IYViewController {
         let label = UILabel()
         label.text = "Type of event"
         label.numberOfLines = 0
-        label.textColor = mainСolorGreen
+        label.textColor = mainСolorBlue
         label.font = fontFamilyLittle
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -113,7 +113,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
         let label = UILabel()
         label.text = "Open Or Closed"
         label.numberOfLines = 0
-        label.textColor = mainСolorGreen
+        label.textColor = mainСolorBlue
         label.font = fontFamilyLittle
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -123,7 +123,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
         let button = UIButton()
         button.setTitle("Subscribe", for: UIControl.State())
         button.setTitleColor(.white, for: UIControl.State())
-        button.backgroundColor = mainСolorGreen
+        button.backgroundColor = mainСolorBlue
         customButton(button)
 //        button.addTarget(self, action: #selector(subscribeButtonTapped), for: .touchUpInside)
         return button

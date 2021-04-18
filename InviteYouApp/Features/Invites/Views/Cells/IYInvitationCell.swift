@@ -50,7 +50,7 @@ class IYInvitationCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = fontFamilyLittle?.withSize(30)
-        label.textColor = mainСolorGreen
+        label.textColor = mainСolorBlue
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -69,7 +69,7 @@ class IYInvitationCell: UITableViewCell {
     private lazy var nameOfEventLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = mainСolorGreen
+        label.textColor = mainСolorBlue
         label.font = fontFamilyLittle
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -79,7 +79,7 @@ class IYInvitationCell: UITableViewCell {
 
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = mainСolorGreen?.withAlphaComponent(0.5)
+        label.backgroundColor = mainСolorBlue?.withAlphaComponent(0.5)
         label.textColor = .white
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 40
@@ -101,7 +101,7 @@ class IYInvitationCell: UITableViewCell {
         didSet {
             if closedOrOpenEventFlag {
                 self.closedOrOpenEventView.image = UIImage(systemName: "lock.open")
-                self.closedOrOpenEventView.tintColor = mainСolorGreen
+                self.closedOrOpenEventView.tintColor = mainСolorBlue
             } else {
                 self.closedOrOpenEventView.image = UIImage(systemName: "lock")
                 self.closedOrOpenEventView.tintColor = notСolorPink

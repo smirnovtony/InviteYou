@@ -21,9 +21,19 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
             make.top.equalToSuperview().offset(-10)
         }
     }
+    private lazy var bottomForgotPassButton = {
+        self.forgotPasswordButton.snp.updateConstraints { (make) in
+            make.bottom.equalToSuperview().offset(50)
+        }
+    }
+    private lazy var toplogInButton = {
+        self.logInButton.snp.updateConstraints { (make) in
+            make.top.equalTo(self.userPasswordField.snp.bottom).offset(30)
+        }
+    }
     private lazy var bottomRegisterButton = {
         self.registerButton.snp.updateConstraints { (make) in
-            make.bottom.equalToSuperview().offset(50)
+            make.bottom.equalTo(self.forgotPasswordButton.snp.top).offset(-25)
         }
     }
     //MARK: - Variables
@@ -36,7 +46,7 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
     }
     private lazy var appView: UIView = {
         let view = UIView()
-        view.backgroundColor = mainСolorGreen
+        view.backgroundColor = mainСolorBlue
         view.layer.cornerRadius = 15
         view.layer.shadowRadius = 20
         view.layer.shadowOpacity = 0.5
@@ -82,9 +92,9 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
     private lazy var forgotPasswordButton: UIButton = {
         let button = UIButton()
         button.setTitle("Forgot password?", for: UIControl.State())
-        button.setTitleColor(mainСolorGreen, for: UIControl.State())
-        button.titleLabel?.font = fontFamilyLittle
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(.white, for: UIControl.State())
+        button.backgroundColor = mainСolorBlue
+        customButton(button)
         button.addTarget(self, action: #selector(resetPasswordButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -92,7 +102,7 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
         let button = UIButton()
         button.setTitle("Log in", for: UIControl.State())
         button.setTitleColor(.white, for: UIControl.State())
-        button.backgroundColor = mainСolorGreen
+        button.backgroundColor = mainСolorBlue
         customButton(button)
         button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         return button
@@ -100,7 +110,7 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
     private lazy var dontHaveAnAccountLabel: UILabel = {
         let label = UILabel()
         label.text = "Don't have an account?"
-        label.textColor = mainСolorGreen
+        label.textColor = mainСolorBlue
         label.font = fontFamilyLittle
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -109,7 +119,7 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
     private lazy var registerButton: UIButton = {
         let button = UIButton()
         button.setTitle("Register", for: UIControl.State())
-        button.setTitleColor(mainСolorGreen, for: UIControl.State())
+        button.setTitleColor(mainСolorBlue, for: UIControl.State())
         button.backgroundColor = UIColor.white
         customButton(button)
         button.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
@@ -128,31 +138,65 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
             self.userPasswordLabel,
             self.userPasswordField,
             self.forgotPasswordButton,
-            self.forgotPasswordButton,
             self.logInButton,
             self.dontHaveAnAccountLabel,
-            self.registerButton
+            self.registerButton,
+            self.forgotPasswordButton
         ])
         self.setUpConstraintsFunction()
         self.userAlreadylogged()
+
+    }
+    private func screenSize() {
+        let screen = UIScreen.main.bounds
+        let screenHeight = screen.size.height
+        if screenHeight < 896 {
+            self.topAppLabelConstrait = {
+                self.appView.snp.updateConstraints { (make) in
+                    make.top.equalToSuperview().offset(50)
+                }
+            }
+            self.topUserEmailLabel = {
+                self.userEmailLabel.snp.updateConstraints { (make) in
+                    make.top.equalToSuperview().offset(150)
+                }
+            }
+            self.bottomForgotPassButton = {
+                self.forgotPasswordButton.snp.updateConstraints { (make) in
+                    make.bottom.equalToSuperview().inset(30)
+                }
+            }
+        } else {
+           self.topAppLabelConstrait = {
+                self.appView.snp.updateConstraints { (make) in
+                    make.top.equalToSuperview().offset(80)
+                }
+            }
+            self.topUserEmailLabel = {
+                self.userEmailLabel.snp.updateConstraints { (make) in
+                    make.top.equalToSuperview().offset(200)
+                }
+            }
+            self.bottomForgotPassButton = {
+                self.forgotPasswordButton.snp.updateConstraints { (make) in
+                    make.bottom.equalToSuperview().inset(60)
+                }
+            }
+            self.toplogInButton = {
+                self.logInButton.snp.updateConstraints { (make) in
+                    make.top.equalTo(self.userPasswordField.snp.bottom).offset(60)
+                }
+            }
+            self.bottomRegisterButton = {
+                self.registerButton.snp.updateConstraints { (make) in
+                    make.bottom.equalTo(self.forgotPasswordButton.snp.top).offset(-60)
+                }
+            }
+        }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.topAppLabelConstrait = {
-            self.appView.snp.updateConstraints { (make) in
-                make.top.equalToSuperview().offset(80)
-            }
-        }
-        self.topUserEmailLabel = {
-            self.userEmailLabel.snp.updateConstraints { (make) in
-                make.top.equalToSuperview().offset(200)
-            }
-        }
-        self.bottomRegisterButton = {
-            self.registerButton.snp.updateConstraints { (make) in
-                make.bottom.equalToSuperview().offset(-100)
-            }
-        }
+        screenSize()
         setUpConstraintsFunction()
         UIView.animate(withDuration: 1) {
             self.view.layoutIfNeeded()
@@ -164,7 +208,6 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
             let tabBarController = IYTabBarViewController()
                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
         } else {
-            print(IYDefault.sh.userLogged)
             self.tabBarController?.tabBar.isHidden = true
         }
     }
@@ -172,29 +215,25 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
     @objc private func logInButtonTapped() {
         if logInConditions() {
             Auth.auth().signIn(withEmail: self.email, password: self.userPassword) { (result, error) in
-                    if error == nil {
-                        let tabBarController = IYTabBarViewController()
-                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
-                        UserDefaults.standard.set(true, forKey: "userLoggedBool")
-                    } else {
-                        let alertController = UIAlertController(title: "Error",
-                                                                message: "Сheck the entered information",
-                                                                preferredStyle: .alert)
-                        let okAction = UIAlertAction(title: "OK", style: .destructive)
-                            self.present(alertController, animated: true)
-                            alertController.addAction(okAction)
-                        self.userEmailField.backgroundColor = notСolorPink
-                        self.userPasswordField.backgroundColor = notСolorPink
-                    }
+                if error == nil {
+                    let tabBarController = IYTabBarViewController()
+                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+                    UserDefaults.standard.set(true, forKey: "userLoggedBool")
+                } else {
+                    self.allertError()
+                }
             }
         } else {
-            let alertController = UIAlertController(title: "Error",
-                                                    message: "Сheck the entered information",
-                                                    preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .destructive)
-                self.present(alertController, animated: true)
-                alertController.addAction(okAction)
+            self.allertError()
         }
+    }
+    func allertError() {
+        let alertController = UIAlertController(title: "Error",
+                                                message: "Сheck the entered information",
+                                                preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .destructive)
+        self.present(alertController, animated: true)
+        alertController.addAction(okAction)
     }
     @objc private func registerButtonTapped() {
         self.navigationController?.pushViewController(IYRegistrationViewController(), animated: true)
@@ -249,21 +288,24 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
             make.top.equalTo(self.userPasswordLabel.snp.bottom).offset(25)
             make.left.right.equalToSuperview().inset(30)
         }
-        self.forgotPasswordButton.snp.makeConstraints { (make) in
-            make.top.equalTo(self.userPasswordField.snp.bottom).offset(25)
-            make.left.right.equalToSuperview().inset(30)
-        }
         self.logInButton.snp.makeConstraints { (make) in
-            make.top.equalTo(self.forgotPasswordButton.snp.bottom).offset(25)
+            toplogInButton()
             make.left.right.equalToSuperview().inset(30)
             make.height.equalTo(60)
         }
         self.dontHaveAnAccountLabel.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self.registerButton.snp.top).offset(-25)
+            make.bottom.equalTo(self.registerButton.snp.top).offset(10)
+            make.height.equalTo(60)
             make.left.right.equalToSuperview().inset(30)
         }
         self.registerButton.snp.makeConstraints { (make) in
             bottomRegisterButton()
+            make.left.right.equalToSuperview().inset(30)
+            make.height.equalTo(60)
+        }
+        self.forgotPasswordButton.snp.makeConstraints { (make) in
+            bottomForgotPassButton()
+            make.top.equalTo(self.registerButton.snp.bottom).offset(25)
             make.left.right.equalToSuperview().inset(30)
             make.height.equalTo(60)
         }

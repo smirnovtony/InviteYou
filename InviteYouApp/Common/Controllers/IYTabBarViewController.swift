@@ -37,7 +37,7 @@ class IYTabBarViewController: UITabBarController {
 
     func setTabbarAppearance() {
         self.tabBar.barTintColor = .white
-        self.tabBar.tintColor = mainСolorGreen
+        self.tabBar.tintColor = mainСolorBlue
         self.tabBar.unselectedItemTintColor = .lightGray
         self.tabBar.itemPositioning = .fill
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: fontFamilyLittle?.withSize(15) ?? UIFont.systemFont(ofSize: 15)], for: .normal)

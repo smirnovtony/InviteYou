@@ -9,7 +9,7 @@ import UIKit
 
 public func customTextField(_ textField: UITextField) {
     textField.backgroundColor = .white
-    textField.textColor = mainСolorGreen
+    textField.textColor = mainСolorBlue
     textField.font = fontFamilyLittle
     textField.borderStyle = .roundedRect
     textField.clearButtonMode = .always

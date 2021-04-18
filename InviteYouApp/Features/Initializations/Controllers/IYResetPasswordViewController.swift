@@ -15,6 +15,25 @@ class IYResetPasswordViewController: IYViewController {
     private var oldPassword: String {
         emailField.text ?? ""
     }
+    private lazy var resetPassView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 15
+        view.layer.shadowRadius = 20
+        view.layer.shadowOpacity = 0.5
+        view.layer.shadowColor = UIColor.gray.cgColor
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    private lazy var resetPassLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Reset password"
+        label.textColor = mainСolorBlue
+        label.font = fontFamilyBig
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     private lazy var changePasswordStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -45,7 +64,7 @@ class IYResetPasswordViewController: IYViewController {
         let button = UIButton()
         button.setTitle("Reset", for: UIControl.State())
         button.setTitleColor(.white, for: UIControl.State())
-        button.backgroundColor = mainСolorGreen
+        button.backgroundColor = mainСolorBlue
         customButton(button)
         button.addTarget(self, action: #selector(resetButtonTapped), for: .touchUpInside)
         return button
@@ -64,6 +83,8 @@ class IYResetPasswordViewController: IYViewController {
         super.viewDidLoad()
         self.addTapGestureToHideKeyboard()
         self.mainView.addSubviews([
+            self.resetPassView,
+            self.resetPassLabel,
             self.changePasswordStack,
             self.resetButton,
             self.backButton
@@ -100,8 +121,17 @@ class IYResetPasswordViewController: IYViewController {
     }
     //MARK: - Constraints
     func setUpConstraintsFunction() {
-        self.changePasswordStack.snp.makeConstraints { (make) in
+        self.resetPassView.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(30)
+            make.left.right.equalToSuperview().inset(30)
+            make.height.equalTo(80)
+        }
+        self.resetPassLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.resetPassView.snp.centerX)
+            make.centerY.equalTo(self.resetPassView.snp.centerY)
+        }
+        self.changePasswordStack.snp.makeConstraints { (make) in
+            make.top.equalTo(self.resetPassLabel.snp.bottom).offset(50)
             make.left.right.equalToSuperview().inset(30)
         }
         self.resetButton.snp.makeConstraints { (make) in
@@ -110,7 +140,7 @@ class IYResetPasswordViewController: IYViewController {
             make.height.equalTo(60)
         }
         self.backButton.snp.makeConstraints { (make) in
-            make.top.equalTo(self.resetButton.snp.bottom).offset(50)
+            make.top.equalTo(self.resetButton.snp.bottom).offset(40)
             make.left.right.equalToSuperview().inset(30)
             make.height.equalTo(60)
             make.bottom.equalToSuperview().inset(50)

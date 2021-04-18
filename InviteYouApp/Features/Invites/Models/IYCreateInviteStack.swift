@@ -129,7 +129,7 @@ var infoAboutEventTextView: UITextView = {
     textView.sizeToFit()
     textView.isScrollEnabled = false
     textView.font = fontFamilyLittle
-    textView.textColor = mainСolorGreen
+    textView.textColor = mainСolorBlue
     textView.snp.makeConstraints { (make) in
         make.height.equalTo(80)
     }

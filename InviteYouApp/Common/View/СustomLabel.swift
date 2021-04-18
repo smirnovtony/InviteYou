@@ -8,7 +8,7 @@
 import UIKit
 
 public func customLabel(_ label: UILabel) {
-    label.textColor = mainСolorGreen
+    label.textColor = mainСolorBlue
     label.font = fontFamilyLittle
     label.textAlignment = .left
     label.translatesAutoresizingMaskIntoConstraints = false
