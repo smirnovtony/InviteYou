@@ -145,8 +145,55 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
         ])
         self.setUpConstraintsFunction()
         self.userAlreadylogged()
-
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        screenSize()
+        setUpConstraintsFunction()
+        UIView.animate(withDuration: 1) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    //MARK: - ButtonTapped
+    @objc private func logInButtonTapped() {
+        if logInConditions() {
+            Auth.auth().signIn(withEmail: self.email, password: self.userPassword) { (result, error) in
+                if error == nil {
+                    let tabBarController = IYTabBarViewController()
+                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+                    UserDefaults.standard.set(true, forKey: "userLoggedBool")
+                } else {
+                    self.allertError()
+                }
+            }
+        } else {
+            self.allertError()
+        }
+    }
+    @objc private func registerButtonTapped() {
+        self.navigationController?.pushViewController(IYRegistrationViewController(), animated: true)
+    }
+    @objc private func resetPasswordButtonTapped() {
+        self.navigationController?.pushViewController(IYResetPasswordViewController(), animated: true)
+    }
+    private func allertError() {
+        let alertController = UIAlertController(title: "Error",
+                                                message: "Сheck the entered information",
+                                                preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .destructive)
+        self.present(alertController, animated: true)
+        alertController.addAction(okAction)
+    }
+    //MARK: - Methods
+    private func userAlreadylogged() {
+        if UserDefaults.standard.bool(forKey: "userLoggedBool") == true {
+            let tabBarController = IYTabBarViewController()
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+        } else {
+            self.tabBarController?.tabBar.isHidden = true
+        }
+    }
+    //MARK: - ScreenSize
     private func screenSize() {
         let screen = UIScreen.main.bounds
         let screenHeight = screen.size.height
@@ -194,50 +241,6 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
             }
         }
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        screenSize()
-        setUpConstraintsFunction()
-        UIView.animate(withDuration: 1) {
-            self.view.layoutIfNeeded()
-        }
-    }
-    //MARK: - Methods
-    private func userAlreadylogged() {
-        if UserDefaults.standard.bool(forKey: "userLoggedBool") == true {
-            let tabBarController = IYTabBarViewController()
-                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
-        } else {
-            self.tabBarController?.tabBar.isHidden = true
-        }
-    }
-    //MARK: - ButtonTapped
-    @objc private func logInButtonTapped() {
-        if logInConditions() {
-            Auth.auth().signIn(withEmail: self.email, password: self.userPassword) { (result, error) in
-                if error == nil {
-                    let tabBarController = IYTabBarViewController()
-                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
-                    UserDefaults.standard.set(true, forKey: "userLoggedBool")
-                } else {
-                    self.allertError()
-                }
-            }
-        } else {
-            self.allertError()
-        }
-    }
-    func allertError() {
-        let alertController = UIAlertController(title: "Error",
-                                                message: "Сheck the entered information",
-                                                preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .destructive)
-        self.present(alertController, animated: true)
-        alertController.addAction(okAction)
-    }
-    @objc private func registerButtonTapped() {
-        self.navigationController?.pushViewController(IYRegistrationViewController(), animated: true)
-    }
     //MARK: - LogInConditions
     private func logInConditions() -> Bool {
         var counter = true
@@ -257,9 +260,6 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
             output = false
         }
         return output
-    }
-    @objc private func resetPasswordButtonTapped() {
-        self.navigationController?.pushViewController(IYResetPasswordViewController(), animated: true)
     }
     //MARK: - Constraints
     func setUpConstraintsFunction() {

@@ -10,8 +10,7 @@ enum IYTypeOfEvent: String, CaseIterable {
     case friends = "Friends"
     case work = "Work"
     case family = "Family"
-    case no = " "
-//    case  = ""
-//    case other = "Your Option"
+    case child = "Child"
+    case my = "Myself"
+    case other = "Other"
 }
-// дописать еще мероприятий, даже можно сделать возможность самому создать типы

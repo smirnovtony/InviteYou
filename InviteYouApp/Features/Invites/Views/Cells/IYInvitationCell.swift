@@ -13,11 +13,7 @@ import SnapKit
 class IYInvitationCell: UITableViewCell {
 
     //MARK: - Variables
-
     static let reuseIdentifier: String = "IYInvitationCell"
-
-//    var closedOrOpenFlag: (() -> Void)? // создаем замыкание (1 из 3-х действий)
-
     private lazy var cardContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = backgroundСolorWhite
@@ -32,15 +28,12 @@ class IYInvitationCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
     private lazy var logoView: UIImageView = {
         let imageView = UIImageView()
-//        imageView.image = UIImage(systemName: nameLogo)
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-
     private var nameLogo: String = "face.smiling" { // времнно, чтобы протестить как отображается
         didSet {
             self.logoView.image = UIImage(systemName: nameLogo)
@@ -55,7 +48,6 @@ class IYInvitationCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
     private lazy var addressLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -65,7 +57,6 @@ class IYInvitationCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
     private lazy var nameOfEventLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -76,7 +67,6 @@ class IYInvitationCell: UITableViewCell {
 
         return label
     }()
-
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = mainСolorBlue?.withAlphaComponent(0.5)
@@ -88,7 +78,6 @@ class IYInvitationCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
     private lazy var closedOrOpenEventView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "lock") // если мероприятие закрытое, то "lock", если открытое то "lock.open" и .tintColor = mainColorGreen
@@ -96,7 +85,6 @@ class IYInvitationCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-
     private var closedOrOpenEventFlag: Bool = true { // true - открытое
         didSet {
             if closedOrOpenEventFlag {
@@ -108,20 +96,15 @@ class IYInvitationCell: UITableViewCell {
             }
         }
     }
-
     //MARK: - Initializators
-
     override init(style: IYInvitationCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.initCell()
     }
-
     required init?(coder: NSCoder) { // FIX
         fatalError("init(coder:) has not been implemented")
     }
-
-    //MARK: - Functions
-
+    //MARK: - FunctionsCell
     func initCell() {
         self.contentView.backgroundColor = backgroundСolorWhite
         self.contentView.addSubview(self.cardContainerView)
@@ -134,7 +117,6 @@ class IYInvitationCell: UITableViewCell {
         self.updateConstraints()
         self.selectionStyle = .none // чтобы при выборе ячейки она не подсвечивалась
     }
-
     func setCell(model: ExampleInvites) {
         self.nameLogo = model.logo // передать изобаржение!!!!!!!!!!!!!!
         self.organizerLabel.text = model.nameOrganizer
@@ -142,17 +124,13 @@ class IYInvitationCell: UITableViewCell {
         self.nameOfEventLabel.text = model.nameOfEvent
         self.closedOrOpenEventFlag = model.closedOrOpen
         self.addressLabel.text = model.address
-
         self.setNeedsUpdateConstraints()
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-//        self.backgroundColor = selected ? .lightGray : .white // фон ячейки при наведении
     }
 
     //MARK: - Constraints
-
     override func updateConstraints() {
         self.cardContainerView.snp.updateConstraints { (make) in
             make.top.equalToSuperview().offset(20)

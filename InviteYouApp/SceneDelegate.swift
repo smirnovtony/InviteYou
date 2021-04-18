@@ -8,11 +8,8 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-
         guard let scene  = scene as? UIWindowScene else { return }
         let window = UIWindow(frame: scene.coordinateSpace.bounds)
         window.windowScene = scene
@@ -21,30 +18,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.setupNavBarAppearance()
         window.makeKeyAndVisible()
     }
-
     func setupNavBarAppearance() {
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithDefaultBackground()
         navBarAppearance.backgroundColor = UIColor(named: "systemColor")
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white,
                                                 .font: fontFamilyLittle?.withSize(30) ?? UIFont.systemFont(ofSize: 30)]
-
         let button = UIBarButtonItemAppearance(style: .plain)
         button.normal.titleTextAttributes = [.foregroundColor: UIColor.white,
                                              .font: fontFamilyLittle?.withSize(20) ?? UIFont.systemFont(ofSize: 20)]
         navBarAppearance.buttonAppearance = button
-
-        UINavigationBar.appearance().standardAppearance = navBarAppearance //  применение для версий iOS ниже 13
-//        UINavigationBar.appearance().isTranslucent = true // подсветка
-//        UINavigationBar.appearance().tintColor = .brown
-//        UINavigationBar.appearance().barStyle = .black // стиль ночной
+        UINavigationBar.appearance().standardAppearance = navBarAppearance
     }
-
     func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {
         guard let window = self.window else { return }
-
         window.rootViewController = vc
-
         if animated {
             UIView.transition(with: window,
                               duration: 0.5,
@@ -52,4 +40,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                               animations: nil)
         }
     }
+
 }

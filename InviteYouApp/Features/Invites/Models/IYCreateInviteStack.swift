@@ -66,7 +66,6 @@ var addressTextField: UITextField = {
     customTextField(textField)
     return textField
 }()
-
 var numberOfPersonsLabel: UILabel = {
     let label = UILabel()
     label.text = "Persons"
@@ -100,7 +99,6 @@ var typeOfEventTextField: UITextField = {
     customTextField(textField)
     return textField
 }()
-
 var typeOfEventPicker: UIPickerView = {
     let picker = UIPickerView()
     picker.translatesAutoresizingMaskIntoConstraints = false

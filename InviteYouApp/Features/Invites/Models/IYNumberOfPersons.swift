@@ -11,7 +11,7 @@ enum IYNumberOfPersons: String, CaseIterable {
     case little = "1-10 persons"
     case middle = "10-20 persons"
     case big = "20-50 persons"
-    case more = "more 50 persons"
-//    case  = ""
-//    case  = ""
+    case more = "More 50 persons"
+    case no = "One"
+    case unknow = "Unknow"
 }

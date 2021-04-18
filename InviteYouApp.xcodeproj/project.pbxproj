@@ -29,7 +29,6 @@
 		EA64BADE2625C1D200192F01 /* IYCreateInviteStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BADD2625C1D200192F01 /* IYCreateInviteStack.swift */; };
 		EA64BAE22625D2F500192F01 /* UIPickerView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BAE12625D2F500192F01 /* UIPickerView+Ex.swift */; };
 		EA64BAE52625D95A00192F01 /* Date+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BAE42625D95A00192F01 /* Date+Ex.swift */; };
-		EA64BAEA2625E27900192F01 /* IYChangeLoginNPasswordStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BAE92625E27900192F01 /* IYChangeLoginNPasswordStack.swift */; };
 		EA64BAF02627142C00192F01 /* String+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BAEF2627142C00192F01 /* String+Ex.swift */; };
 		EA7B64482622DEE60048F783 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA7B64472622DEE60048F783 /* GoogleService-Info.plist */; };
 		EA7B7BB426021ED50006F22E /* IYViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7B7BB326021ED50006F22E /* IYViewController.swift */; };
@@ -75,7 +74,6 @@
 		EA64BADD2625C1D200192F01 /* IYCreateInviteStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYCreateInviteStack.swift; sourceTree = "<group>"; };
 		EA64BAE12625D2F500192F01 /* UIPickerView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPickerView+Ex.swift"; sourceTree = "<group>"; };
 		EA64BAE42625D95A00192F01 /* Date+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ex.swift"; sourceTree = "<group>"; };
-		EA64BAE92625E27900192F01 /* IYChangeLoginNPasswordStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYChangeLoginNPasswordStack.swift; sourceTree = "<group>"; };
 		EA64BAEF2627142C00192F01 /* String+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ex.swift"; sourceTree = "<group>"; };
 		EA7B64472622DEE60048F783 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EA7B7BB326021ED50006F22E /* IYViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYViewController.swift; sourceTree = "<group>"; };
@@ -193,14 +191,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		EA64BAE82625E25600192F01 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				EA64BAE92625E27900192F01 /* IYChangeLoginNPasswordStack.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		EA7B7BCF26031FC60006F22E /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,7 +280,6 @@
 		EAD0EBDC25FBA15000463EF7 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				EA64BAE82625E25600192F01 /* Models */,
 				EAD0EBE325FBA2AD00463EF7 /* Controllers */,
 			);
 			path = Profile;
@@ -551,7 +540,6 @@
 				EA200AE7261083610087E792 /* IYResetPasswordViewController.swift in Sources */,
 				EAFFAAA225F8EE5C003A610E /* IYProfileViewController.swift in Sources */,
 				EA281A0D2611AB7700674722 /* CustomButton.swift in Sources */,
-				EA64BAEA2625E27900192F01 /* IYChangeLoginNPasswordStack.swift in Sources */,
 				EA13486B261DA5750022E78E /* ExampleInvites.swift in Sources */,
 				EA0315FE260383E6003F1CDD /* IYCreateInviteViewController.swift in Sources */,
 				EA29522F260C939F00B4523A /* IYNumberOfPersons.swift in Sources */,

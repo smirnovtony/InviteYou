@@ -12,12 +12,10 @@ import Firebase
 class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
     //MARK: - Variables
     private var output: Bool = false
-
     private var conditionsPassEqualToLogin: String = "Passwords must not contain your user name"
     private var conditionsInvalidPassword: String = "Invalid password"
     private var conditionsPassCharacters: String = "Password must be more than 8 characters"
     private var conditionsEmailCharacters: String = "Check your email"
-
     private var userPassword: String {
         userPasswordField.text ?? ""
     }
@@ -103,7 +101,7 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
                         let reference = Database.database().reference().child("users")
                         reference.child(result.user.uid).updateChildValues(["email": self.email])
 
-                        let alertController = UIAlertController(title: "Registration completed successfully",
+                        let alertController = UIAlertController(title: "Registration completed successfully!",
                                                                 message: "",
                                                                 preferredStyle: .alert)
                         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
