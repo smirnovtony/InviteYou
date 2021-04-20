@@ -97,7 +97,7 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
             Auth.auth().createUser(withEmail: self.email, password: self.userPassword) { (result, error) in
                 if error == nil, let result = result, !result.user.uid.isEmpty {
                         print(result.user.uid)
-                        IYDefault.sh.userLogged = true
+                        IYSharedData.sh.userLogged = true
                         let reference = Database.database().reference().child("users")
                         reference.child(result.user.uid).updateChildValues(["email": self.email])
 
@@ -113,8 +113,15 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
                         }
                         alertController.addAction(okAction)
                         self.present(alertController, animated: true)
-                    }
+                } else {
+                    let alertController = UIAlertController(title: "Error",
+                                                            message: "User with the same email address already exists",
+                                                            preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .destructive)
+                        self.present(alertController, animated: true)
+                        alertController.addAction(okAction)
                 }
+            }
         } else {
             let alertController = UIAlertController(title: "Error",
                                                     message: "Сheck the entered information",

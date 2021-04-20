@@ -8,10 +8,7 @@
 import UIKit
 import SnapKit
 
-//     САМА ЯЧЕЙКА
-
 class IYInvitationCell: UITableViewCell {
-
     //MARK: - Variables
     static let reuseIdentifier: String = "IYInvitationCell"
     private lazy var cardContainerView: UIView = {
@@ -30,15 +27,12 @@ class IYInvitationCell: UITableViewCell {
     }()
     private lazy var logoView: UIImageView = {
         let imageView = UIImageView()
+        imageView.layer.cornerRadius = 40
+        imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    private var nameLogo: String = "face.smiling" { // времнно, чтобы протестить как отображается
-        didSet {
-            self.logoView.image = UIImage(systemName: nameLogo)
-        }
-    }
     private lazy var organizerLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -80,14 +74,14 @@ class IYInvitationCell: UITableViewCell {
     }()
     private lazy var closedOrOpenEventView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "lock") // если мероприятие закрытое, то "lock", если открытое то "lock.open" и .tintColor = mainColorGreen
+        imageView.image = UIImage(systemName: "lock")
         imageView.tintColor = notСolorPink
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    private var closedOrOpenEventFlag: Bool = true { // true - открытое
+    private var closedOrOpenEventFlag: Int = 0 {
         didSet {
-            if closedOrOpenEventFlag {
+            if closedOrOpenEventFlag == 0 {
                 self.closedOrOpenEventView.image = UIImage(systemName: "lock.open")
                 self.closedOrOpenEventView.tintColor = mainСolorBlue
             } else {
@@ -101,25 +95,30 @@ class IYInvitationCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.initCell()
     }
-    required init?(coder: NSCoder) { // FIX
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     //MARK: - FunctionsCell
     func initCell() {
         self.contentView.backgroundColor = backgroundСolorWhite
         self.contentView.addSubview(self.cardContainerView)
-        self.cardContainerView.addSubview(self.logoView)
-        self.cardContainerView.addSubview(self.organizerLabel)
-        self.cardContainerView.addSubview(self.dateLabel)
-        self.cardContainerView.addSubview(self.addressLabel)
-        self.cardContainerView.addSubview(self.nameOfEventLabel)
-        self.cardContainerView.addSubview(self.closedOrOpenEventView)
+        self.cardContainerView.addSubviews([
+            self.logoView,
+            self.organizerLabel,
+            self.dateLabel,
+            self.addressLabel,
+            self.nameOfEventLabel,
+            self.closedOrOpenEventView
+        ])
         self.updateConstraints()
-        self.selectionStyle = .none // чтобы при выборе ячейки она не подсвечивалась
+        self.selectionStyle = .none
     }
-    func setCell(model: ExampleInvites) {
-        self.nameLogo = model.logo // передать изобаржение!!!!!!!!!!!!!!
-        self.organizerLabel.text = model.nameOrganizer
+    func setCell(model: IYIvent) {
+        guard let url = URL(string: model.logo ) else { return }
+        UIImage.loadFrom(url: url) { image in
+            self.logoView.image = image
+        }
+        self.organizerLabel.text = model.organizerName
         self.dateLabel.text = model.date
         self.nameOfEventLabel.text = model.nameOfEvent
         self.closedOrOpenEventFlag = model.closedOrOpen
@@ -129,7 +128,6 @@ class IYInvitationCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
     //MARK: - Constraints
     override func updateConstraints() {
         self.cardContainerView.snp.updateConstraints { (make) in

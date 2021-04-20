@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		52E8AABA8ED62975FABDC34B /* Pods_InviteYouApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306C279F90194F15AD9A4075 /* Pods_InviteYouApp.framework */; };
+		7BC00A38B5E9C63983314889 /* Pods_InviteYouApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E138A01912F94F0268D6A77 /* Pods_InviteYouApp.framework */; };
 		EA0315FE260383E6003F1CDD /* IYCreateInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0315FD260383E6003F1CDD /* IYCreateInviteViewController.swift */; };
 		EA04196826063A900060EFAD /* IYTypeOfEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA04196726063A900060EFAD /* IYTypeOfEvent.swift */; };
 		EA0CB6362611A208003F92DD /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0CB6352611A208003F92DD /* CustomTextField.swift */; };
@@ -34,7 +34,7 @@
 		EA7B7BB426021ED50006F22E /* IYViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7B7BB326021ED50006F22E /* IYViewController.swift */; };
 		EA7B7BD2260320830006F22E /* IYInvitationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7B7BD1260320830006F22E /* IYInvitationCell.swift */; };
 		EAB533AE260B76EE00C0C8C0 /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB533AD260B76EE00C0C8C0 /* UIViewController+Ex.swift */; };
-		EACB0380261493140002B8C6 /* IYDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACB037F261493140002B8C6 /* IYDefault.swift */; };
+		EACB0380261493140002B8C6 /* IYSharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACB037F261493140002B8C6 /* IYSharedData.swift */; };
 		EAD0EBD125FB890800463EF7 /* IYEditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0EBD025FB890800463EF7 /* IYEditProfileViewController.swift */; };
 		EAF777DF25FCD57100F8F091 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF777DE25FCD57100F8F091 /* Colors.swift */; };
 		EAFFAA6F25F891AE003A610E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA6E25F891AE003A610E /* AppDelegate.swift */; };
@@ -51,9 +51,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		306C279F90194F15AD9A4075 /* Pods_InviteYouApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InviteYouApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		58C6CA89B6C9DA8F5235FE61 /* Pods-InviteYouApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InviteYouApp.debug.xcconfig"; path = "Target Support Files/Pods-InviteYouApp/Pods-InviteYouApp.debug.xcconfig"; sourceTree = "<group>"; };
-		6E905028421ED4B97E9A08B7 /* Pods-InviteYouApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InviteYouApp.release.xcconfig"; path = "Target Support Files/Pods-InviteYouApp/Pods-InviteYouApp.release.xcconfig"; sourceTree = "<group>"; };
+		0B81C68C9880EA58C12FCF04 /* Pods-InviteYouApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InviteYouApp.release.xcconfig"; path = "Target Support Files/Pods-InviteYouApp/Pods-InviteYouApp.release.xcconfig"; sourceTree = "<group>"; };
+		1DA5E40EAFB855998758C69D /* Pods-InviteYouApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InviteYouApp.debug.xcconfig"; path = "Target Support Files/Pods-InviteYouApp/Pods-InviteYouApp.debug.xcconfig"; sourceTree = "<group>"; };
+		8E138A01912F94F0268D6A77 /* Pods_InviteYouApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InviteYouApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA0315FD260383E6003F1CDD /* IYCreateInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYCreateInviteViewController.swift; sourceTree = "<group>"; };
 		EA04196726063A900060EFAD /* IYTypeOfEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYTypeOfEvent.swift; sourceTree = "<group>"; };
 		EA0CB6352611A208003F92DD /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 		EA7B7BB326021ED50006F22E /* IYViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYViewController.swift; sourceTree = "<group>"; };
 		EA7B7BD1260320830006F22E /* IYInvitationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYInvitationCell.swift; sourceTree = "<group>"; };
 		EAB533AD260B76EE00C0C8C0 /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
-		EACB037F261493140002B8C6 /* IYDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYDefault.swift; sourceTree = "<group>"; };
+		EACB037F261493140002B8C6 /* IYSharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYSharedData.swift; sourceTree = "<group>"; };
 		EAD0EBD025FB890800463EF7 /* IYEditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYEditProfileViewController.swift; sourceTree = "<group>"; };
 		EAF777DE25FCD57100F8F091 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		EAFFAA6B25F891AE003A610E /* InviteYouApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InviteYouApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,28 +103,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA14798625FBDD2900A03DCD /* SnapKit in Frameworks */,
-				52E8AABA8ED62975FABDC34B /* Pods_InviteYouApp.framework in Frameworks */,
+				7BC00A38B5E9C63983314889 /* Pods_InviteYouApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		87929051B4F5EB45E2569B61 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8E138A01912F94F0268D6A77 /* Pods_InviteYouApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		905E883CBAF9E570DF876CCB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				58C6CA89B6C9DA8F5235FE61 /* Pods-InviteYouApp.debug.xcconfig */,
-				6E905028421ED4B97E9A08B7 /* Pods-InviteYouApp.release.xcconfig */,
+				1DA5E40EAFB855998758C69D /* Pods-InviteYouApp.debug.xcconfig */,
+				0B81C68C9880EA58C12FCF04 /* Pods-InviteYouApp.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		CFCB9FB757C11264DC761626 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				306C279F90194F15AD9A4075 /* Pods_InviteYouApp.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		EA04196A26063A9C0060EFAD /* Models */ = {
@@ -224,7 +224,7 @@
 		EACB037E261492EE0002B8C6 /* DataSaving */ = {
 			isa = PBXGroup;
 			children = (
-				EACB037F261493140002B8C6 /* IYDefault.swift */,
+				EACB037F261493140002B8C6 /* IYSharedData.swift */,
 			);
 			path = DataSaving;
 			sourceTree = "<group>";
@@ -345,7 +345,7 @@
 				EAFFAA6D25F891AE003A610E /* InviteYouApp */,
 				EAFFAA6C25F891AE003A610E /* Products */,
 				905E883CBAF9E570DF876CCB /* Pods */,
-				CFCB9FB757C11264DC761626 /* Frameworks */,
+				87929051B4F5EB45E2569B61 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -391,12 +391,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EAFFAA7F25F891B0003A610E /* Build configuration list for PBXNativeTarget "InviteYouApp" */;
 			buildPhases = (
-				4E06F133D4A0D7A56ED7DA25 /* [CP] Check Pods Manifest.lock */,
+				D184AA2FA7F99EAAAC855D69 /* [CP] Check Pods Manifest.lock */,
 				EAFFAA6725F891AE003A610E /* Sources */,
 				EAFFAA6825F891AE003A610E /* Frameworks */,
 				EAFFAA6925F891AE003A610E /* Resources */,
 				EA260769260D12EB0019B2D6 /* ShellScript */,
-				3CD5DA229D3C0FA897596B63 /* [CP] Embed Pods Frameworks */,
+				5A2B07B692DC486A25EF8DE7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -460,7 +460,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3CD5DA229D3C0FA897596B63 /* [CP] Embed Pods Frameworks */ = {
+		5A2B07B692DC486A25EF8DE7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -477,7 +477,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InviteYouApp/Pods-InviteYouApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4E06F133D4A0D7A56ED7DA25 /* [CP] Check Pods Manifest.lock */ = {
+		D184AA2FA7F99EAAAC855D69 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -549,7 +549,7 @@
 				EAF777DF25FCD57100F8F091 /* Colors.swift in Sources */,
 				EAD0EBD125FB890800463EF7 /* IYEditProfileViewController.swift in Sources */,
 				EA281A0A2611A64D00674722 /* СustomLabel.swift in Sources */,
-				EACB0380261493140002B8C6 /* IYDefault.swift in Sources */,
+				EACB0380261493140002B8C6 /* IYSharedData.swift in Sources */,
 				EA7B7BB426021ED50006F22E /* IYViewController.swift in Sources */,
 				EAFFAA7125F891AE003A610E /* SceneDelegate.swift in Sources */,
 				EA64BAD82625AF9D00192F01 /* CustomLabelCondition.swift in Sources */,
@@ -693,7 +693,7 @@
 		};
 		EAFFAA8025F891B0003A610E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58C6CA89B6C9DA8F5235FE61 /* Pods-InviteYouApp.debug.xcconfig */;
+			baseConfigurationReference = 1DA5E40EAFB855998758C69D /* Pods-InviteYouApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -714,7 +714,7 @@
 		};
 		EAFFAA8125F891B0003A610E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E905028421ED4B97E9A08B7 /* Pods-InviteYouApp.release.xcconfig */;
+			baseConfigurationReference = 0B81C68C9880EA58C12FCF04 /* Pods-InviteYouApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

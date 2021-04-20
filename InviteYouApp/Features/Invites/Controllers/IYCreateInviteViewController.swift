@@ -7,14 +7,29 @@
 
 import UIKit
 import SnapKit
+import Firebase
 
 class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
+
     //MARK: - Variables
     private lazy var logoView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "photography") // дeфолтная картинка, сюда логотип организации
+        let imageTap = UITapGestureRecognizer(target: self, action: #selector(openImagePicker))
+        imageView.layer.cornerRadius = 70
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(imageTap)
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "photography")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
+    }()
+    private lazy var logoPicker: UIImagePickerController = {
+        let getImage = UIImagePickerController()
+        getImage.allowsEditing = true
+        getImage.sourceType = .photoLibrary
+        getImage.delegate = self
+        return getImage
     }()
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
@@ -111,9 +126,47 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
     }
     //MARK: - ButtonTapped
     @objc private func createButtonTapped() {
-        self.navigationController?.pushViewController(IYDetailsViewController(), animated: true)
-// сохрание данных и передача их на предыдущий контроллер и в ячейку !!!!!!!!!!!!!!!!
-    }
+        guard let address = addressTextField.text else { return }
+        guard let closedOrOpen = Int?(openOrClosedControl.selectedSegmentIndex) else { return }
+        guard let date = dateTextField.text else { return }
+        guard let id = Auth.auth().currentUser?.uid else { return }
+        guard let infoAboutEvent = infoAboutEventTextView.text else { return }
+        guard let infoAboutOrganizer = infoAboutOrganizerTextField.text else { return }
+        guard let logo = logoView.image else { return }
+        guard let nameOfEvent = nameOfEventTextField.text else { return }
+        guard let organizerName = infoAboutOrganizerTextField.text else { return }
+        guard let person = numberOfPersonsTextField.text else { return }
+        guard let time = timeTextField.text else { return }
+        guard let typeOfIvent = typeOfEventTextField.text else { return }
+        let addDocumentData: [String: Any] = ["address": address,
+                                              "closedOrOpen": closedOrOpen,
+                                              "date": date,
+                                              "id": id,
+                                              "infoAboutEvent": infoAboutEvent,
+                                              "infoAboutOrganizer": infoAboutOrganizer,
+                                              "nameOfEvent": nameOfEvent,
+                                              "organizerName": organizerName,
+                                              "person": person,
+                                              "time": time,
+                                              "typeOfIvent": typeOfIvent]
+            self.uploadInviteImage(logo) { url in
+                if url != nil {
+                    Firestore.firestore().collection("invites").document(nameOfEvent).setData(addDocumentData) { err in
+                        if let err = err {
+                            print("Error writing document: \(err)")
+                        } else {
+                            print("Document successfully written!")
+                        }
+                    }
+
+                    Firestore.firestore().collection("invites").document(nameOfEvent).updateData(["logo": url?.absoluteString ?? "", "subscribe": "true"])
+                } else {
+                    return Swift.print(Error.self)
+    //                self.resetForm()
+                }
+            }
+            self.navigationController?.popViewController(animated: true)
+        }
     @objc func datePickerValueChanged() {
         dateTextField.text = datePicker.date.toString
     }
@@ -128,6 +181,48 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
     }
     @objc private func backToButtonTapped() {
         self.navigationController?.popViewController(animated: true)
+    }
+
+    private func uploadInviteImage(_ image: UIImage, completion: @escaping ((_ url: URL?) -> Void)) {
+        guard let logoName = nameOfEventTextField.text else { return }
+        let dataRef = Storage.storage().reference().child("/invitesPics/\(logoName)")
+        guard let imageData = image.jpegData(compressionQuality: 0.75) else { return }
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
+        dataRef.putData(imageData, metadata: metaData) { metaData, error in
+            if error == nil, metaData != nil {
+                dataRef.downloadURL { url, error in
+                    completion(url)
+                }
+            } else {
+                // failed
+                completion(nil)
+            }
+        }
+    }
+//    private func saveInvitelogotoProfile(inviteLogo: URL, completion: @escaping ((_ success: Bool) -> Void)) {
+//        guard let uid = Auth.auth().currentUser?.uid else { return }
+//        let databaseRef = Database.database().reference().child("users/profile/\(uid)")
+//        let userObject = [
+//            "username": username,
+//            "photoURL": profileImageURL.absoluteString,
+//            "phoneNumber": phoneNumber,
+//            "userDateOfBirth": userDateOfBirth
+//        ] as [String: Any]
+//
+//        databaseRef.setValue(userObject) { error, ref in
+//            completion(error == nil)
+//        }
+//    }
+
+//    func getInvitesDetail(collection: String, docName: String, completion: @escaping (IYIvent?) -> Void) {
+//        let db = IYDefault.sh.configureFB()
+//        db.collection(collection).document(docName).getDocument(completion: { (document, error) in
+//            guard error == nil else { completion(nil); return }
+//        })
+//        }
+    @objc private func openImagePicker(_ sender: Any) {
+        self.present(logoPicker, animated: true, completion: nil)
     }
     //MARK: - Constraints
     func setUpConstraintsFunction() {
@@ -169,5 +264,17 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
             make.height.equalTo(60)
             make.bottom.equalToSuperview().inset(20)
         }
+    }
+}
+extension IYCreateInviteViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        if let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            self.logoView.image = selectedImage
+        }
+        picker.dismiss(animated: true, completion: nil)
     }
 }

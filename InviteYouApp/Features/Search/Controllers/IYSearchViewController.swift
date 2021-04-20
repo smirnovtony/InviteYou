@@ -9,55 +9,20 @@
 
 import UIKit
 
-private var exampleInvites = [
-    ExampleInvites(logo: "hare.fill",
-                   nameOrganizer: "Domino's pizza",
-                   nameOfEvent: "2+2=5",
-                   address: "ул. Ложинская, 3",
-                   date: "30 May 2021",
-                   closedOrOpen: true),
-    ExampleInvites(logo: "ladybug.fill",
-                   nameOrganizer: "Sushi House",
-                   nameOfEvent: "50%",
-                   address: "Логойский тракт, 35",
-                   date: "8 Apr 2021",
-                   closedOrOpen: false),
-    ExampleInvites(logo: "icloud.fill",
-                   nameOrganizer: "Семья Смирновых",
-                   nameOfEvent: "ДР Антона",
-                   address: "Восточная, 74-57",
-                   date: "1 Jun 2021",
-                   closedOrOpen: false),
-    ExampleInvites(logo: "eyes.inverse",
-                   nameOrganizer: "VOKA CINEMA by Silver Screen в ТРЦ Dana Mall",
-                   nameOfEvent: "Майор Гром: Чумной Доктор",
-                   address: "ул. Петра Мстиславца, 11",
-                   date: "7 Apr 2021",
-                   closedOrOpen: true),
-    ExampleInvites(logo: "eyes.inverse",
-                   nameOrganizer: "Музей миниатюр",
-                   nameOfEvent: "Выставка: Страна мини",
-                   address: "пр-т Независимости, 25",
-                   date: "18 Oct 2021",
-                   closedOrOpen: true)
-]
-
 class IYSearchViewController: UITableViewController {
 
     //MARK: - Initializators
 
-    private var invites: [ExampleInvites] = exampleInvites {  // изм!!!
+    private var invites: [IYIvent] = IYSharedData.sh.collectionInvites {
         didSet {
             self.filteredInvites = self.invites
         }
     }
-
-    private lazy var filteredInvites: [ExampleInvites] = self.invites {
+    private lazy var filteredInvites: [IYIvent] = self.invites {
         didSet {
             self.tableView.reloadData()
         }
     }
-
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController()
         searchController.hidesNavigationBarDuringPresentation = false
@@ -79,6 +44,7 @@ class IYSearchViewController: UITableViewController {
     }()
     //MARK: - Lifecycle
     override func viewDidLoad() {
+        print("SEARCH!!!!!!\(IYSharedData.sh.collectionInvites)")
         super.viewDidLoad()
         self.title = "Search"
         self.tableView.separatorStyle = .none
@@ -92,34 +58,26 @@ class IYSearchViewController: UITableViewController {
                                                                 action: #selector(createButtonTapped))
         self.navigationItem.leftBarButtonItem?.tintColor = .white
         self.navigationItem.searchController = self.searchController
-        self.searchController.searchResultsUpdater = self
+//        self.searchController.searchResultsUpdater = self
         self.searchController.searchBar.barStyle = .black
         self.searchController.searchBar.searchTextField.textColor = mainСolorBlue
         self.searchController.searchBar.searchTextField.backgroundColor = UIColor.white
         self.searchController.searchBar.searchTextField.font = fontFamilyLittle
     }
-
-    //как упорядочить по дате?????!!!!!!!!!
-
     //MARK: - TableView
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.filteredInvites.count
     }
-    // создание ячейки
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // создаем ячейку  (имя класса) автоматически и добавляем ее в таблицу, если ее нет
         let cell = tableView.dequeueReusableCell(withIdentifier: IYInvitationCell.reuseIdentifier,
                                                  for: indexPath) as? IYInvitationCell ?? IYInvitationCell()
-        // передача данных
         cell.setCell(model: self.filteredInvites[indexPath.row])
         return cell
     }
-    // действие при выбре ячейки
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.navigationController?.pushViewController(IYDetailsViewController(), animated: true)
     }
-    // удаление ячейки при сдвиге влево
     func deleteCell(index: Int) {
         invites.remove(at: index)
     }
@@ -147,7 +105,7 @@ extension IYSearchViewController: UISearchResultsUpdating {
             self.filteredInvites = self.invites.filter {
                 let result = $0.nameOfEvent.lowercased().contains(searchText.lowercased())
                 if !result {
-                    return $0.nameOrganizer.lowercased().contains(searchText.lowercased())
+                    return $0.organizerName.lowercased().contains(searchText.lowercased())
                 }
                 return result
             }
@@ -165,4 +123,5 @@ extension IYSearchViewController: UISearchResultsUpdating {
         }
         self.tableView.reloadData()
     }
+
 }

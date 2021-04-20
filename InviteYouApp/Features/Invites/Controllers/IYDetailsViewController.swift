@@ -85,7 +85,7 @@ class IYDetailsViewController: IYViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    private lazy var typeOfEventLabel: UILabel = { // перечисление с возможностью ввести свое назвнание!!!!!
+    private lazy var typeOfEventLabel: UILabel = {
         let label = UILabel()
         label.text = "Type of event"
         label.numberOfLines = 0
@@ -109,7 +109,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    private lazy var openOrClosedLabel: UILabel = { // перечисление с возможностью ввести свое назвнание!!!!!
+    private lazy var openOrClosedLabel: UILabel = {
         let label = UILabel()
         label.text = "Open Or Closed"
         label.numberOfLines = 0
