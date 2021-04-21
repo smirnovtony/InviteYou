@@ -6,20 +6,25 @@
 //
 
 import UIKit
+import Firebase
 
 class IYSearchViewController: UITableViewController {
+
     //MARK: - Variables
+
     private var invites: [IYIvent] = IYSharedData.sh.collectionInvites.sorted { $0.date.toDate() < $1.date.toDate()}.filter { $0.closedOrOpen == 0 } {
         didSet {
             IYSharedData.sh.collectionInvites = self.invites
             self.filteredInvites = self.invites
         }
     }
+
     private lazy var filteredInvites: [IYIvent] = self.invites {
         didSet {
             self.tableView.reloadData()
         }
     }
+
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController()
         searchController.hidesNavigationBarDuringPresentation = false
@@ -29,7 +34,6 @@ class IYSearchViewController: UITableViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         return searchController
     }()
-    private var notificationText = "The search has not given any results"
     private lazy var notificationLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -39,20 +43,26 @@ class IYSearchViewController: UITableViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+
+    private var notificationText = "The search has not given any results"
+
     //MARK: - Lifecycle
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            self.title = "Open invites"
-            self.tableViewSetting()
-            self.navigationItemSetting()
-            self.searchControllerSetting()
-        }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "Open invites"
+        self.tableViewSetting()
+        self.navigationItemSetting()
+        self.searchControllerSetting()
+    }
+
     private func tableViewSetting() {
         self.tableView.separatorStyle = .none
         self.tableView.backgroundColor = backgroundСolorWhite
         self.tableView.showsVerticalScrollIndicator = false
         self.tableView.register(IYInvitationCell.self, forCellReuseIdentifier: IYInvitationCell.reuseIdentifier)
     }
+
     private func searchControllerSetting() {
         self.searchController.searchResultsUpdater = self
         self.searchController.searchBar.barStyle = .black
@@ -60,68 +70,62 @@ class IYSearchViewController: UITableViewController {
         self.searchController.searchBar.searchTextField.backgroundColor = UIColor.white
         self.searchController.searchBar.searchTextField.font = fontFamilyLittle
     }
+
     private func navigationItemSetting() {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"),
                                                             style: .done,
                                                             target: self,
                                                             action: #selector(createButtonTapped))
         self.navigationItem.leftBarButtonItem?.tintColor = .white
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3.decrease"),
-//                                                            style: .done,
-//                                                            target: self,
-//                                                            action: #selector(filterButtonTapped))
         self.navigationItem.rightBarButtonItem?.tintColor = .white
         self.navigationItem.searchController = self.searchController
     }
+
     //MARK: - TableView
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.filteredInvites.count
     }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: IYInvitationCell.reuseIdentifier,
                                                  for: indexPath) as? IYInvitationCell ?? IYInvitationCell()
         cell.setCell(model: self.filteredInvites[indexPath.row])
         return cell
     }
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.navigationController?.pushViewController(IYDetailsViewController(), animated: true)
-    }
-    func deleteCell(index: Int) {
-        invites.remove(at: index)
-    }
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            deleteCell(index: indexPath.row)
+        let indexcell = self.invites[indexPath.row].nameOfEvent
+        let alertController = UIAlertController(title: "Do action",
+                                                message: "",
+                                                preferredStyle: .alert)
+        let subscribe = UIAlertAction(title: "Subscribe", style: .default) { _ in
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            Firestore.firestore().collection("invites").document(indexcell).updateData(["subscribe": true])
+            self.navigationController?.pushViewController(IYLoadingViewController(), animated: true)
         }
+        alertController.addAction(subscribe)
+        let unsubscribe = UIAlertAction(title: "Unsubscribe", style: .destructive) { _ in
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            Firestore.firestore().collection("invites").document(indexcell).updateData(["subscribe": false])
+            self.navigationController?.pushViewController(IYLoadingViewController(), animated: true)
+        }
+        alertController.addAction(unsubscribe)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        }
+        alertController.addAction(cancel)
+        self.present(alertController, animated: true, completion: nil)
     }
+
     //MARK: - ButtonTapped
     @objc private func createButtonTapped() {
         navigationController?.pushViewController(IYCreateInviteViewController(), animated: true)
     }
-    //MARK: - Allert
-//    @objc private func filterButtonTapped() {
-//        let alertController = UIAlertController(title: "Filter",
-//                                                message: "",
-//                                                preferredStyle: .actionSheet)
-//        let allAction = UIAlertAction(title: "All Ivents", style: .default) { _ in
-//            self.filteredInvites = self.invites
-//        }
-//        alertController.addAction(allAction)
-//        let myInvitationsAction = UIAlertAction(title: "I'm", style: .default) { _ in
-//            self.filteredInvites = self.invites.filter { $0.id == IYSharedData.sh.idUser }
-//        }
-//        alertController.addAction(myInvitationsAction)
-//        let otherInvitesAction = UIAlertAction(title: "Other invites", style: .destructive) { _ in
-//            self.filteredInvites = self.invites.filter { $0.closedOrOpen == 1 }
-//        }
-//        alertController.addAction(otherInvitesAction)
-//        self.present(alertController, animated: true)
-//    }
 }
+
 //MARK: - Extensions
+
 extension IYSearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }

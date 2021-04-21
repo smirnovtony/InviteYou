@@ -9,8 +9,11 @@ import UIKit
 import Firebase
 
 class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
+
     //MARK: - Variables
-    private var output: Bool = false
+
+    private var successfulCondition: Bool = false
+
     var dateCreate: String {
         dateTextField.text ?? ""
     }
@@ -97,10 +100,11 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         button.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
         return button
     }()
+
     //MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        addTapGestureToHideKeyboard()
         self.title = "Create Invitation"
         self.navigationController?.navigationBar.tintColor = .white
         self.mainView.addSubviews([
@@ -116,6 +120,7 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         self.setUpConstraintsFunction()
         self.customizationStack()
     }
+
     func customizationStack() {
         numberOfPersonsTextField.inputView = numberOfPersonsPicker
         numberOfPersonsTextField.inputAccessoryView = doneToolBar
@@ -129,18 +134,17 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         typeOfEventPicker.delegate = self
         typeOfEventPicker.dataSource = self
     }
+
     //MARK: - ButtonTapped
+
     @objc private func createButtonTapped() {
         if createConditions() {
             guard let address = addressTextField.text else { return }
             guard let closedOrOpen = Int?(openOrClosedControl.selectedSegmentIndex) else { return }
             guard let date = dateTextField.text else { return }
             guard let id = Auth.auth().currentUser?.uid else { return }
-//            guard let infoAboutEvent = infoAboutEventTextView.text else { return }
-//            guard let infoAboutOrganizer = infoAboutOrganizerTextField.text else { return }
             guard let logo = logoView.image else { return }
             guard let nameOfEvent = nameOfEventTextField.text else { return }
-//            guard let organizerName = infoAboutOrganizerTextField.text else { return }
             guard let person = numberOfPersonsTextField.text else { return }
             guard let time = timeTextField.text else { return }
             guard let typeOfIvent = typeOfEventTextField.text else { return }
@@ -148,10 +152,7 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
                                                   "closedOrOpen": closedOrOpen,
                                                   "date": date,
                                                   "id": id,
-//                                                  "infoAboutEvent": infoAboutEvent,
-//                                                  "infoAboutOrganizer": infoAboutOrganizer,
                                                   "nameOfEvent": nameOfEvent,
-//                                                  "organizerName": organizerName,
                                                   "person": person,
                                                   "time": time,
                                                   "typeOfIvent": typeOfIvent]
@@ -167,7 +168,6 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
                     Firestore.firestore().collection("invites").document(nameOfEvent).updateData(["logo": url?.absoluteString ?? "", "subscribe": true])
                 } else {
                     return Swift.print(Error.self)
-                    //                self.resetForm()
                 }
             }
             let alertController = UIAlertController(title: "Еvent saved successfully!",
@@ -187,21 +187,26 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
             alertController.addAction(okAction)
         }
     }
+
     @objc func datePickerValueChanged() {
         dateTextField.text = datePicker.date.toString
     }
+
     @objc func timePickerValueChanged() {
         timeTextField.text = timePicker.date.timeToString
     }
+
     @objc private func doneTapped() {
         dateTextField.resignFirstResponder()
         timeTextField.resignFirstResponder()
         numberOfPersonsTextField.resignFirstResponder()
         typeOfEventTextField.resignFirstResponder()
     }
+
     @objc private func openImagePicker(_ sender: Any) {
         self.present(logoPicker, animated: true, completion: nil)
     }
+
     private func uploadInviteImage(_ image: UIImage, completion: @escaping ((_ url: URL?) -> Void)) {
         guard let logoName = nameOfEventTextField.text else { return }
         let dataRef = Storage.storage().reference().child("/invitesPics/\(logoName)")
@@ -219,100 +224,69 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
             }
         }
     }
+
     //MARK: - CreateConditions
-    func createConditions() -> Bool {
+
+    private func createConditions() -> Bool {
         var counter = true
         if  nameOrganizeCreate.isEmpty {
             counter = false
             nameOrganizerTextField.backgroundColor = notСolorPink
         } else {
-            output = true
+            successfulCondition = true
             nameOrganizerTextField.backgroundColor = .white
         }
-//        if infoAboutOrganizerCreate.isEmpty {
-//            counter = false
-//            infoAboutOrganizerTextField.backgroundColor = notСolorPink
-//        } else {
-//            output = true
-//            infoAboutOrganizerTextField.backgroundColor = .white
-//        }
         if addressCreate.isEmpty {
             counter = false
             addressTextField.backgroundColor = notСolorPink
         } else {
-            output = true
+            successfulCondition = true
             addressTextField.backgroundColor = .white
         }
         if numberOfPersonsCreate.isEmpty {
             counter = false
             numberOfPersonsTextField.backgroundColor = notСolorPink
         } else {
-            output = true
+            successfulCondition = true
             numberOfPersonsTextField.backgroundColor = .white
         }
         if typeOfEventCreate.isEmpty {
             counter = false
             typeOfEventTextField.backgroundColor = notСolorPink
         } else {
-            output = true
+            successfulCondition = true
             typeOfEventTextField.backgroundColor = .white
         }
         if nameOfEventCreate.isEmpty {
             counter = false
             nameOfEventTextField.backgroundColor = notСolorPink
         } else {
-            output = true
+            successfulCondition = true
             nameOfEventTextField.backgroundColor = .white
         }
-//        if infoAboutEventCreate.isEmpty {
-//            counter = false
-//            infoAboutEventTextView.backgroundColor = notСolorPink
-//        } else {
-//            output = true
-//            infoAboutEventTextView.backgroundColor = .white
-//        }
         if dateCreate.isEmpty {
             counter = false
             dateTextField.backgroundColor = notСolorPink
         } else {
-            output = true
+            successfulCondition = true
             dateTextField.backgroundColor = .white
         }
         if timeCreate.isEmpty {
             counter = false
             timeTextField.backgroundColor = notСolorPink
         } else {
-            output = true
+            successfulCondition = true
             timeTextField.backgroundColor = .white
         }
         if counter == false {
-            output = false
+            successfulCondition = false
         }
-        return output
+        return successfulCondition
     }
-//    private func saveInvitelogotoProfile(inviteLogo: URL, completion: @escaping ((_ success: Bool) -> Void)) {
-//        guard let uid = Auth.auth().currentUser?.uid else { return }
-//        let databaseRef = Database.database().reference().child("users/profile/\(uid)")
-//        let userObject = [
-//            "username": username,
-//            "photoURL": profileImageURL.absoluteString,
-//            "phoneNumber": phoneNumber,
-//            "userDateOfBirth": userDateOfBirth
-//        ] as [String: Any]
-//
-//        databaseRef.setValue(userObject) { error, ref in
-//            completion(error == nil)
-//        }
-//    }
 
-//    func getInvitesDetail(collection: String, docName: String, completion: @escaping (IYIvent?) -> Void) {
-//        let db = IYDefault.sh.configureFB()
-//        db.collection(collection).document(docName).getDocument(completion: { (document, error) in
-//            guard error == nil else { completion(nil); return }
-//        })
-//        }
     //MARK: - Constraints
-    func setUpConstraintsFunction() {
+
+   private func setUpConstraintsFunction() {
         self.logoView.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(30)
             make.centerX.equalToSuperview()
@@ -355,6 +329,7 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
 }
 
 //MARK: - Extensions
+
 extension IYCreateInviteViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)

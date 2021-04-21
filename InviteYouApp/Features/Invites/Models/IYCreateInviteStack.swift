@@ -17,8 +17,6 @@ var createInviteStack: UIStackView = {
     stack.addArrangedSubview([
         nameOrganizerLabel,
         nameOrganizerTextField,
-//        infoAboutOrganizerLabel,
-//        infoAboutOrganizerTextField,
         addressLabel,
         addressTextField,
         numberOfPersonsLabel,
@@ -27,8 +25,6 @@ var createInviteStack: UIStackView = {
         typeOfEventTextField,
         nameOfEventLabel,
         nameOfEventTextField
-//        infoAboutEventLabel
-//        infoAboutEventTextView
     ])
     stack.translatesAutoresizingMaskIntoConstraints = false
     return stack
@@ -36,9 +32,6 @@ var createInviteStack: UIStackView = {
 var nameOrganizeCreate: String {
     nameOrganizerTextField.text ?? ""
 }
-//var infoAboutOrganizerCreate: String {
-//    infoAboutOrganizerTextField.text ?? ""
-//}
 var addressCreate: String {
     addressTextField.text ?? ""
 }
@@ -51,9 +44,7 @@ var typeOfEventCreate: String {
 var nameOfEventCreate: String {
     nameOfEventTextField.text ?? ""
 }
-//var infoAboutEventCreate: String {
-//    infoAboutEventTextView.text ?? ""
-//}
+
 var nameOrganizerLabel: UILabel = {
     let label = UILabel()
     label.text = "Name organizer"
@@ -65,17 +56,6 @@ var nameOrganizerTextField: UITextField = {
     customTextField(textField)
     return textField
 }()
-//private var infoAboutOrganizerLabel: UILabel = {
-//    let label = UILabel()
-//    label.text = "Info about the organizer"
-//    customLabel(label)
-//    return label
-//}()
-//var infoAboutOrganizerTextField: UITextField = {
-//    let textField = UITextField()
-//    customTextField(textField)
-//    return textField
-//}()
 var addressLabel: UILabel = {
     let label = UILabel()
     label.text = "Address"
@@ -135,21 +115,3 @@ var nameOfEventTextField: UITextField = {
     customTextField(textField)
     return textField
 }()
-//var infoAboutEventLabel: UILabel = {
-//    let label = UILabel()
-//    label.text = "Info about event"
-//    customLabel(label)
-//    return label
-//}()
-//var infoAboutEventTextView: UITextView = {
-//    let textView = UITextView()
-//    textView.backgroundColor = .white
-//    textView.sizeToFit()
-//    textView.isScrollEnabled = false
-//    textView.font = fontFamilyLittle
-//    textView.textColor = mainСolorBlue
-//    textView.snp.makeConstraints { (make) in
-//        make.height.equalTo(80)
-//    }
-//    return textView
-//}()

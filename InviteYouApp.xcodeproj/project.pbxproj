@@ -30,7 +30,6 @@
 		EA64BAE22625D2F500192F01 /* UIPickerView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BAE12625D2F500192F01 /* UIPickerView+Ex.swift */; };
 		EA64BAE52625D95A00192F01 /* Date+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BAE42625D95A00192F01 /* Date+Ex.swift */; };
 		EA64BAF02627142C00192F01 /* String+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BAEF2627142C00192F01 /* String+Ex.swift */; };
-		EA686DA826303ADB008F1175 /* CellIndexModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA686DA726303ADB008F1175 /* CellIndexModel.swift */; };
 		EA7B64482622DEE60048F783 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA7B64472622DEE60048F783 /* GoogleService-Info.plist */; };
 		EA7B7BB426021ED50006F22E /* IYViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7B7BB326021ED50006F22E /* IYViewController.swift */; };
 		EA7B7BD2260320830006F22E /* IYInvitationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7B7BD1260320830006F22E /* IYInvitationCell.swift */; };
@@ -46,7 +45,6 @@
 		EAFFAA8725F8CB19003A610E /* IYRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA8625F8CB19003A610E /* IYRegistrationViewController.swift */; };
 		EAFFAA8A25F8E53F003A610E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA8925F8E53F003A610E /* Fonts.swift */; };
 		EAFFAA9825F8EDCA003A610E /* IYActiveInvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA9725F8EDCA003A610E /* IYActiveInvitesViewController.swift */; };
-		EAFFAA9B25F8EDF8003A610E /* IYDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA9A25F8EDF8003A610E /* IYDetailsViewController.swift */; };
 		EAFFAAA225F8EE5C003A610E /* IYProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAAA125F8EE5C003A610E /* IYProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,7 +73,6 @@
 		EA64BAE12625D2F500192F01 /* UIPickerView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPickerView+Ex.swift"; sourceTree = "<group>"; };
 		EA64BAE42625D95A00192F01 /* Date+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ex.swift"; sourceTree = "<group>"; };
 		EA64BAEF2627142C00192F01 /* String+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ex.swift"; sourceTree = "<group>"; };
-		EA686DA726303ADB008F1175 /* CellIndexModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellIndexModel.swift; sourceTree = "<group>"; };
 		EA7B64472622DEE60048F783 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EA7B7BB326021ED50006F22E /* IYViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYViewController.swift; sourceTree = "<group>"; };
 		EA7B7BD1260320830006F22E /* IYInvitationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYInvitationCell.swift; sourceTree = "<group>"; };
@@ -93,7 +90,6 @@
 		EAFFAA8625F8CB19003A610E /* IYRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYRegistrationViewController.swift; sourceTree = "<group>"; };
 		EAFFAA8925F8E53F003A610E /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		EAFFAA9725F8EDCA003A610E /* IYActiveInvitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYActiveInvitesViewController.swift; sourceTree = "<group>"; };
-		EAFFAA9A25F8EDF8003A610E /* IYDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYDetailsViewController.swift; sourceTree = "<group>"; };
 		EAFFAAA125F8EE5C003A610E /* IYProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -202,7 +198,6 @@
 			isa = PBXGroup;
 			children = (
 				EA7B7BD1260320830006F22E /* IYInvitationCell.swift */,
-				EA686DA726303ADB008F1175 /* CellIndexModel.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -317,7 +312,6 @@
 			isa = PBXGroup;
 			children = (
 				EAFFAA9725F8EDCA003A610E /* IYActiveInvitesViewController.swift */,
-				EAFFAA9A25F8EDF8003A610E /* IYDetailsViewController.swift */,
 				EA0315FD260383E6003F1CDD /* IYCreateInviteViewController.swift */,
 			);
 			path = Controllers;
@@ -508,7 +502,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA64BAC926256CB100192F01 /* UIView+Ex.swift in Sources */,
-				EA686DA826303ADB008F1175 /* CellIndexModel.swift in Sources */,
 				EA13486E261DE5550022E78E /* IYIvent.swift in Sources */,
 				EA64BAE22625D2F500192F01 /* UIPickerView+Ex.swift in Sources */,
 				EA7B7BD2260320830006F22E /* IYInvitationCell.swift in Sources */,
@@ -539,7 +532,6 @@
 				EA64BAD82625AF9D00192F01 /* CustomLabelCondition.swift in Sources */,
 				EA64BAE52625D95A00192F01 /* Date+Ex.swift in Sources */,
 				EA64BAD02625A70B00192F01 /* UIStackView+Ex.swift in Sources */,
-				EAFFAA9B25F8EDF8003A610E /* IYDetailsViewController.swift in Sources */,
 				EA133FC52604719000241E8B /* IYSearchViewController.swift in Sources */,
 				EA64BADE2625C1D200192F01 /* IYCreateInviteStack.swift in Sources */,
 			);

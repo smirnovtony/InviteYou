@@ -8,15 +8,12 @@
 import UIKit
 import Firebase
 
-//protocol IYActiveInvitesViewControllerDelegate: class {
-//    func editContactsChanged(I: Int)
-//}
 class IYActiveInvitesViewController: UITableViewController {
+
     //MARK: - Variables
-//    weak var delegate: IYActiveInvitesViewControllerDelegate?
-//    var cellIndexModel: CellIndexModel?
-    private var invites: [IYIvent] = IYSharedData.sh.collectionInvites.sorted { $0.date.toDate() < $1.date.toDate() } .filter { (filtr) -> Bool in
-        if filtr.id == IYSharedData.sh.idUser || filtr.subscribe == true { return true } else { return false } } {
+
+    private var invites: [IYIvent] = IYSharedData.sh.collectionInvites.sorted { $0.date.toDate() < $1.date.toDate() }.filter { (filter) -> Bool in
+        if filter.id == IYSharedData.sh.idUser || filter.subscribe == true { return true } else { return false } } {
         didSet {
             IYSharedData.sh.collectionInvites = self.invites
             self.filteredInvites = self.invites
@@ -36,7 +33,6 @@ class IYActiveInvitesViewController: UITableViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         return searchController
     }()
-    private var notificationText = "The search has not given any results"
     private lazy var notificationLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -46,21 +42,26 @@ class IYActiveInvitesViewController: UITableViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+
+    private var notificationText = "The search has not given any results"
+
     //MARK: - Lifecycle
+
     override func viewDidLoad() {
-//        setViewData()
         super.viewDidLoad()
         self.title = "My invites"
         self.tableViewSetting()
         self.navigationItemSetting()
         self.searchControllerSetting()
     }
+
     private func tableViewSetting() {
         self.tableView.separatorStyle = .none
         self.tableView.backgroundColor = backgroundСolorWhite
         self.tableView.showsVerticalScrollIndicator = false
         self.tableView.register(IYInvitationCell.self, forCellReuseIdentifier: IYInvitationCell.reuseIdentifier)
     }
+
     private func searchControllerSetting() {
         self.searchController.searchResultsUpdater = self
         self.searchController.searchBar.barStyle = .black
@@ -68,6 +69,7 @@ class IYActiveInvitesViewController: UITableViewController {
         self.searchController.searchBar.searchTextField.backgroundColor = UIColor.white
         self.searchController.searchBar.searchTextField.font = fontFamilyLittle
     }
+
     private func navigationItemSetting() {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"),
                                                                 style: .done,
@@ -81,100 +83,82 @@ class IYActiveInvitesViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem?.tintColor = .white
         self.navigationItem.searchController = self.searchController
     }
+
     //MARK: - TableView
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.filteredInvites.count
     }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: IYInvitationCell.reuseIdentifier,
                                                  for: indexPath) as? IYInvitationCell ?? IYInvitationCell()
         cell.setCell(model: self.filteredInvites[indexPath.row])
         return cell
     }
-//    var oneCellIvent: IYIvent = IYIvent(id: "", logo: "",
-//                                        organizerName: "", infoAboutOrganizer: "",
-//                                        nameOfEvent: "", typeOfIvent: "",
-//                                        person: "", address: "",
-//                                        date: "", time: "",
-//                                        infoAboutEvent: "", closedOrOpen: 0,
-//                                        subscribe: true, unsubscribe: false)
-//    var indexxxx = 12345
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let indexcell = self.invites[indexPath.row].nameOfEvent
         let alertController = UIAlertController(title: "Do action",
                                                 message: "",
                                                 preferredStyle: .alert)
         let subscribe = UIAlertAction(title: "Subscribe", style: .default) { _ in
-            UIImpactFeedbackGenerator(style: .light).impactOccurred() // вибрация при нажатии
-            //прописать логику!!!!!!!!!!!!!! установить в true
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            Firestore.firestore().collection("invites").document(indexcell).updateData(["subscribe": true])
+            self.navigationController?.pushViewController(IYLoadingViewController(), animated: true)
         }
         alertController.addAction(subscribe)
         let unsubscribe = UIAlertAction(title: "Unsubscribe", style: .destructive) { _ in
-            UIImpactFeedbackGenerator(style: .light).impactOccurred() // вибрация при нажатии
-            //прописать логику!!!!!!!!!!!!!! установить в false
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            Firestore.firestore().collection("invites").document(indexcell).updateData(["subscribe": false])
+            self.navigationController?.pushViewController(IYLoadingViewController(), animated: true)
         }
         alertController.addAction(unsubscribe)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            UIImpactFeedbackGenerator(style: .light).impactOccurred() // вибрация при нажатии
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
         }
         alertController.addAction(cancel)
-        self.present(alertController, animated: true, completion: nil) // показать
-//        indexxxx = indexPath.row
-//        cellData()
-//        self.navigationController?.pushViewController(IYDetailsViewController(), animated: true)
+        self.present(alertController, animated: true, completion: nil)
     }
-//    private func setViewData() {
-//        indexxxx = self.cellIndexModel?.cellIndexModel ?? 99
-//        print("FFFFF\(indexxxx)")
-//    }
-//    private func setModelData() {
-//        guard let cellModel = self.cellIndexModel else { return }
-//        cellModel.cellIndexModel = indexxxx
-//        print("QQQQQQQQQ\(indexxxx)")
-//        print("DDDDDDDD\(cellModel.cellIndexModel)")
-//    }
-//    func cellData() {
-//        setModelData()
-//        let I = indexxxx
-//        delegate?.editContactsChanged(I: I)
-//    }
-//    func readOneCell(i: Int) {
-//        for (index, document) in self.filteredInvites.enumerated() {
-//            if i == index {
-//                var result: IYIvent
-//                result = IYIvent(id: document.id,
-//                                 logo: document.logo,
-//                                 organizerName: document.organizerName,
-//                                 infoAboutOrganizer: document.infoAboutEvent,
-//                                 nameOfEvent: document.nameOfEvent,
-//                                 typeOfIvent: document.typeOfIvent,
-//                                 person: document.person,
-//                                 address: document.address,
-//                                 date: document.date,
-//                                 time: document.time,
-//                                 infoAboutEvent: document.infoAboutEvent,
-//                                 closedOrOpen: document.closedOrOpen,
-//                                 subscribe: document.subscribe,
-//                                 unsubscribe: document.unsubscribe)
-//                oneCellIvent = result
+
+    private func deleteCell(index: Int) {
+        invites.remove(at: index)
+        let deletedData = invites[index].nameOfEvent
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!\(deletedData)")
+        Firestore.firestore().collection("invites").document(deletedData).updateData(["subscribe": false, "id": ""])
+//        }
+//        let deletedData = invites[index].nameOfEvent
+//        let deletedData =
+//        print("!!!!!!!!!!!!!!!!!!!!!!!!!\(deletedData)")
+//        Firestore.firestore().collection("invites").document(deletedData).delete() { err in
+//            if let err = err {
+//                print("Error writing document: \(err)")
+//            } else {
+//                print("Document successfully written!")
 //            }
 //        }
-//    }
-
-    func deleteCell(index: Int) {
-        invites.remove(at: index)
     }
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            deleteCell(index: indexPath.row)
+            tableView.indexPathForSelectedRow
+            print("!!!!!!!!!!!!!!!!!!!\(String(describing: tableView.deq))")
+            guard let deletedDataCellRow = tableView.indexPathForSelectedRow else { return }
+//            indexPathForSelectedRow?.row
+
+            //            deleteCell(index: q111)
+//                        deleteCell(index: deletedDataCellRow)
         }
     }
+
     //MARK: - ButtonTapped
+
     @objc private func createButtonTapped() {
         navigationController?.pushViewController(IYCreateInviteViewController(), animated: true)
     }
+
     @objc private func filterButtonTapped() {
         let alertController = UIAlertController(title: "Filter",
                                                 message: "",
@@ -197,7 +181,9 @@ class IYActiveInvitesViewController: UITableViewController {
         self.present(alertController, animated: true)
     }
 }
+
 //MARK: - Extensions
+
 extension IYActiveInvitesViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }

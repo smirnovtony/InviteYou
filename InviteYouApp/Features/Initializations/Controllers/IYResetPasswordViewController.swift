@@ -6,12 +6,14 @@
 //
 
 import UIKit
-import SnapKit
 import Firebase
 
 class IYResetPasswordViewController: IYViewController {
+
     //MARK: - Variables
-    private var output: Bool = false
+
+    private var successfulCondition: Bool = false
+
     private var oldPassword: String {
         emailField.text ?? ""
     }
@@ -78,10 +80,11 @@ class IYResetPasswordViewController: IYViewController {
         button.addTarget(self, action: #selector(backToLoginButtonTapped), for: .touchUpInside)
         return button
     }()
+
     //MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addTapGestureToHideKeyboard()
         self.mainView.addSubviews([
             self.resetPassView,
             self.resetPassLabel,
@@ -91,20 +94,23 @@ class IYResetPasswordViewController: IYViewController {
         ])
         self.setUpConstraintsFunction()
     }
+
     // MARK: - ButtonTapped
+
     @objc private func resetButtonTapped() {
         let email = emailField.text ?? ""
         if !email.isEmpty {
             Auth.auth().sendPasswordReset(withEmail: email) { (error) in
                 if error == nil {
-                    self.allert(title: "Password reset successfully!", message: "")
+                    self.errorAllert(title: "Password reset successfully!", message: "")
                 } else {
-                    self.allert(title: "Error", message: "Сheck entered email adress")
+                    self.errorAllert(title: "Error", message: "Сheck entered email adress")
                 }
             }
         }
     }
-    private func allert(title: String, message: String) {
+
+    private func errorAllert(title: String, message: String) {
         let alertController = UIAlertController(title: title,
                                                 message: message,
                                                 preferredStyle: .alert)
@@ -112,11 +118,14 @@ class IYResetPasswordViewController: IYViewController {
         self.present(alertController, animated: true)
         alertController.addAction(okAction)
     }
+
     @objc private func backToLoginButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
+
     //MARK: - Constraints
-    func setUpConstraintsFunction() {
+
+    private func setUpConstraintsFunction() {
         self.resetPassView.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(30)
             make.left.right.equalToSuperview().inset(30)

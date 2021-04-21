@@ -30,6 +30,7 @@ class IYTabBarViewController: UITabBarController {
 
         self.setTabbarAppearance()
     }
+    //MARK: - TabBar
     func setTabbarAppearance() {
         self.tabBar.barTintColor = .white
         self.tabBar.tintColor = mainСolorBlue
@@ -38,6 +39,7 @@ class IYTabBarViewController: UITabBarController {
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: fontFamilyLittle?.withSize(15) ?? UIFont.systemFont(ofSize: 15)], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: fontFamilyLittle?.withSize(15) ?? UIFont.systemFont(ofSize: 15)], for: .selected)
     }
+
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         guard let index = self.tabBar.items?.firstIndex(of: item),
               let imageView = tabBar.subviews[index + 1].subviews.first as? UIImageView else { return }

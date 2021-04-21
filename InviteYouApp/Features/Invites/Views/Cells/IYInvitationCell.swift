@@ -8,8 +8,11 @@
 import UIKit
 
 class IYInvitationCell: UITableViewCell {
+
     //MARK: - Variables
+
     static let reuseIdentifier: String = "IYInvitationCell"
+
     private lazy var cardContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = backgroundСolorWhite
@@ -146,15 +149,20 @@ class IYInvitationCell: UITableViewCell {
             }
         }
     }
+
     //MARK: - Initializators
+
     override init(style: IYInvitationCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.initCell()
     }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     //MARK: - FunctionsCell
+
     func initCell() {
         self.contentView.backgroundColor = backgroundСolorWhite
         self.contentView.addSubview(self.cardContainerView)
@@ -174,6 +182,7 @@ class IYInvitationCell: UITableViewCell {
         self.updateConstraints()
         self.selectionStyle = .none
     }
+
     func setCell(model: IYIvent) {
         guard let url = URL(string: model.logo ) else { return }
         UIImage.loadFrom(url: url) { image in
@@ -191,9 +200,11 @@ class IYInvitationCell: UITableViewCell {
         self.subscribeFlag = model.subscribe
         self.setNeedsUpdateConstraints()
     }
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+
     //MARK: - Constraints
     override func updateConstraints() {
         self.cardContainerView.snp.updateConstraints { (make) in

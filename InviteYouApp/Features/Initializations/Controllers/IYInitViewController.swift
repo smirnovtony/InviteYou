@@ -10,7 +10,9 @@ import SnapKit
 import Firebase
 
 class IYInitViewController: IYViewController, UITextFieldDelegate {
+
     //MARK: - Variables Constrait
+
     private lazy var topAppLabelConstrait = {
         self.appView.snp.updateConstraints { (make) in
             make.top.equalToSuperview().offset(250)
@@ -36,8 +38,11 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
             make.bottom.equalTo(self.forgotPasswordButton.snp.top).offset(-25)
         }
     }
+
     //MARK: - Variables
-    private var output: Bool = false
+
+    private var successfulCondition: Bool = false
+
     private var email: String {
         self.userEmailField.text ?? ""
     }
@@ -125,10 +130,11 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
         button.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         return button
     }()
+
     //MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addTapGestureToHideKeyboard()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.view.addSubviews([
             self.appView,
@@ -146,15 +152,18 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
         self.setUpConstraintsFunction()
         self.userAlreadylogged()
     }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        screenSize()
+        constraintsForLittleScreen()
         setUpConstraintsFunction()
         UIView.animate(withDuration: 1) {
             self.view.layoutIfNeeded()
         }
     }
+
     //MARK: - ButtonTapped
+
     @objc private func logInButtonTapped() {
         if logInConditions() {
             Auth.auth().signIn(withEmail: self.email, password: self.userPassword) { (result, error) in
@@ -162,23 +171,27 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
                     self.navigationController?.pushViewController(IYLoadingViewController(), animated: true)
                     UserDefaults.standard.set(true, forKey: "userLoggedBool")
                 } else {
-                    self.allertError()
+                    self.showAlertError()
                 }
             }
         } else {
-            self.allertError()
+            self.showAlertError()
         }
     }
+
     @objc private func registerButtonTapped() {
         self.navigationController?.pushViewController(IYRegistrationViewController(), animated: true)
     }
+
     @objc private func resetPasswordButtonTapped() {
         self.navigationController?.pushViewController(IYResetPasswordViewController(), animated: true)
     }
-    private func allertError() {
-        self.allert(title: "Error", message: "Сheck the entered information")
+
+    private func showAlertError() {
+        self.errorAlert(title: "Error", message: "Сheck the entered information")
     }
-    private func allert(title: String, message: String) {
+
+    private func errorAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title,
                                                 message: message,
                                                 preferredStyle: .alert)
@@ -186,7 +199,9 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
         self.present(alertController, animated: true)
         alertController.addAction(okAction)
     }
+
     //MARK: - Methods
+
     private func userAlreadylogged() {
         if UserDefaults.standard.bool(forKey: "userLoggedBool") == true {
             self.navigationController?.pushViewController(IYLoadingViewController(), animated: true)
@@ -194,8 +209,10 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
             self.tabBarController?.tabBar.isHidden = true
         }
     }
-    //MARK: - ScreenSize
-    private func screenSize() {
+
+    //MARK: - ConstraintsForLittleScreen
+
+    private func constraintsForLittleScreen() {
         let screen = UIScreen.main.bounds
         let screenHeight = screen.size.height
         if screenHeight < 750 {
@@ -242,28 +259,32 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
             }
         }
     }
+
     //MARK: - LogInConditions
+
     private func logInConditions() -> Bool {
         var counter = true
         if self.email.isEmpty {
             counter = false
             self.userEmailField.backgroundColor = notСolorPink
         } else {
-            output = true
+            successfulCondition = true
         }
         if self.userPassword.isEmpty {
             counter = false
             self.userPasswordField.backgroundColor = notСolorPink
         } else {
-            output = true
+            successfulCondition = true
         }
         if counter == false {
-            output = false
+            successfulCondition = false
         }
-        return output
+        return successfulCondition
     }
+
     //MARK: - Constraints
-    func setUpConstraintsFunction() {
+
+    private func setUpConstraintsFunction() {
         self.appView.snp.makeConstraints { (make) in
             topAppLabelConstrait()
             make.left.right.equalToSuperview().inset(30)

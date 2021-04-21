@@ -8,7 +8,9 @@
 import UIKit
 
 class IYLoadingViewController: IYViewController {
+
     //MARK: - Variables
+
     private lazy var indicator: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView(style: .large)
         view.color = mainСolorBlue
@@ -41,7 +43,9 @@ class IYLoadingViewController: IYViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+
     //MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         IYSharedData.sh.collectionInvites = []
@@ -54,13 +58,15 @@ class IYLoadingViewController: IYViewController {
         ])
         setUpConstraintsFunction()
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.indicator.startAnimating()
     }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.indicator.stopAnimating()
             if IYSharedData.sh.collectionInvites.count != 0 {
                 let tabBarController = IYTabBarViewController()
@@ -68,8 +74,10 @@ class IYLoadingViewController: IYViewController {
             }
         }
     }
+
     //MARK: - Constraints
-    func setUpConstraintsFunction() {
+
+    private func setUpConstraintsFunction() {
         self.appView.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview().offset(-150)
             make.left.right.equalToSuperview().inset(30)

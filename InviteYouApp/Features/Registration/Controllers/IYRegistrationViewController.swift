@@ -10,12 +10,11 @@ import SnapKit
 import Firebase
 
 class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
+
     //MARK: - Variables
-    private var output: Bool = false
-    private var conditionsPassEqualToLogin: String = "Passwords must not contain your user name"
-    private var conditionsInvalidPassword: String = "Invalid password"
-    private var conditionsPassCharacters: String = "Password must be more than 8 characters"
-    private var conditionsEmailCharacters: String = "Check your email"
+
+    private var successfulCondition: Bool = false
+
     private var userPassword: String {
         userPasswordField.text ?? ""
     }
@@ -77,7 +76,14 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
         button.addTarget(self, action: #selector(backToLoginButtonTapped), for: .touchUpInside)
         return button
     }()
+
+    private var conditionsPassEqualToLogin: String = "Passwords must not contain your user name"
+    private var conditionsInvalidPassword: String = "Invalid password"
+    private var conditionsPassCharacters: String = "Password must be more than 8 characters"
+    private var conditionsEmailCharacters: String = "Check your email"
+
     //MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mainView.addSubviews([
@@ -91,7 +97,9 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
         userPasswordField.delegate = self
         emailField.delegate = self
     }
+
     // MARK: - ButtonTapped
+
     @objc private func registerButtonTapped() {
         if registrationConditions() {
             Auth.auth().createUser(withEmail: self.email, password: self.userPassword) { (result, error) in
@@ -120,6 +128,7 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
             self.allert(title: "Error", message: "Сheck the entered information")
         }
     }
+
     private func allert(title: String, message: String) {
         let alertController = UIAlertController(title: title,
                                                 message: message,
@@ -128,14 +137,17 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
         self.present(alertController, animated: true)
         alertController.addAction(okAction)
     }
+
     @objc private func backToLoginButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
+
     //MARK: - RegistrationConditions
+
    private func registrationConditions() -> Bool {
         var counter = true
         if !self.userPassword.isEmpty, !self.confirmPassword.isEmpty, self.userPassword.count >= 8, self.userPassword == self.confirmPassword {
-            output = true
+            successfulCondition = true
             conditionsPass.text = ""
             conditionsConfirmPass.text = ""
             userPasswordField.backgroundColor = .white
@@ -158,7 +170,7 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
             conditionsConfirmPassConstraints()
         }
         if !self.email.isEmpty, isValid(email) {
-            output = true
+            successfulCondition = true
             emailField.backgroundColor = .white
             conditionsEmail.text = ""
         } else if self.email.isEmpty {
@@ -175,10 +187,11 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
             userPasswordField.backgroundColor = notСolorPink
         }
         if counter == false {
-            output = false
+            successfulCondition = false
         }
-        return output
+        return successfulCondition
     }
+
     private func conditionsUserPassConstraints() {
         userPasswordField.backgroundColor = notСolorPink
         self.mainView.addSubview(conditionsPass)
@@ -187,6 +200,7 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
             make.left.right.equalToSuperview().inset(30)
         }
     }
+
     private func conditionsConfirmPassConstraints() {
         confirmPasswordField.backgroundColor = notСolorPink
         self.mainView.addSubview(conditionsConfirmPass)
@@ -195,6 +209,7 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
             make.left.right.equalToSuperview().inset(30)
         }
     }
+
     private func conditionsEmailConstraints() {
         emailField.backgroundColor = notСolorPink
         self.mainView.addSubview(conditionsEmail)
@@ -203,15 +218,18 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
             make.left.right.equalToSuperview().inset(30)
         }
     }
-    func isValid(_ email: String) -> Bool {
+
+    private func isValid(_ email: String) -> Bool {
         // swiftlint:disable line_length
         let emailRegEx = "(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"+"~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\"+"x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-"+"z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5"+"]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-"+"9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"+"-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
 
         let emailTest = NSPredicate(format: "SELF MATCHES[c] %@", emailRegEx)
         return emailTest.evaluate(with: email)
     }
+
     //MARK: - Constraints
-    func setUpConstraintsFunction() {
+
+    private func setUpConstraintsFunction() {
         self.registrationView.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(30)
             make.left.right.equalToSuperview().inset(30)
@@ -236,4 +254,5 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
             make.bottom.equalToSuperview().inset(50)
         }
     }
+
 }

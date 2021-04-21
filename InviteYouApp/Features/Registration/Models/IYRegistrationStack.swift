@@ -8,6 +8,7 @@
 import UIKit
 
 //MARK: - Variables
+
 var registrationStack: UIStackView = {
     let stack = UIStackView()
     stack.axis = .vertical
@@ -25,7 +26,7 @@ var registrationStack: UIStackView = {
     stack.translatesAutoresizingMaskIntoConstraints = false
     return stack
 }()
-var userPasswordLabel: UILabel = {
+private var userPasswordLabel: UILabel = {
     let label = UILabel()
     label.text = "User password"
     customLabel(label)
@@ -37,7 +38,7 @@ var userPasswordField: UITextField = {
     textField.isSecureTextEntry = true
     return textField
 }()
-var confirmPasswordLabel: UILabel = {
+private var confirmPasswordLabel: UILabel = {
     let label = UILabel()
     label.text = "Сonfirm password"
     customLabel(label)
@@ -49,7 +50,7 @@ var confirmPasswordField: UITextField = {
     textField.isSecureTextEntry = true
     return textField
 }()
-var emailLabel: UILabel = {
+private var emailLabel: UILabel = {
     let label = UILabel()
     label.text = "Email"
     customLabel(label)
