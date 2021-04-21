@@ -108,9 +108,9 @@ class IYInvitationCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    private var myIventFlag: String = "" {
+    private var myEventFlag: String = "" {
         didSet {
-            if !myIventFlag.isEmpty, myIventFlag == IYSharedData.sh.idUser {
+            if !myEventFlag.isEmpty, myEventFlag == IYSharedData.sh.idUser {
                 self.myIventView.image = UIImage(systemName: "face.smiling")
             }
         }
@@ -184,6 +184,7 @@ class IYInvitationCell: UITableViewCell {
     }
 
     func setCell(model: IYIvent) {
+        self.logoView.image = UIImage(named: "photography")
         guard let url = URL(string: model.logo ) else { return }
         UIImage.loadFrom(url: url) { image in
             self.logoView.image = image
@@ -193,7 +194,7 @@ class IYInvitationCell: UITableViewCell {
         self.nameOfEventLabel.text = model.nameOfEvent
         self.closedOrOpenEventFlag = model.closedOrOpen
         self.addressLabel.text = model.address
-        self.myIventFlag = model.id
+        self.myEventFlag = model.id
         self.numberOfPersonsLabel.text = model.person
         self.typeOfEventLabel.text = model.typeOfIvent
         self.timeLabel.text = model.time

@@ -122,34 +122,16 @@ class IYActiveInvitesViewController: UITableViewController {
     }
 
     private func deleteCell(index: Int) {
-        invites.remove(at: index)
-        let deletedData = invites[index].nameOfEvent
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!\(deletedData)")
+        let deletedData = filteredInvites[index].nameOfEvent
         Firestore.firestore().collection("invites").document(deletedData).updateData(["subscribe": false, "id": ""])
-//        }
-//        let deletedData = invites[index].nameOfEvent
-//        let deletedData =
-//        print("!!!!!!!!!!!!!!!!!!!!!!!!!\(deletedData)")
-//        Firestore.firestore().collection("invites").document(deletedData).delete() { err in
-//            if let err = err {
-//                print("Error writing document: \(err)")
-//            } else {
-//                print("Document successfully written!")
-//            }
-//        }
+        self.navigationController?.pushViewController(IYLoadingViewController(), animated: true)
     }
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            tableView.indexPathForSelectedRow
-            print("!!!!!!!!!!!!!!!!!!!\(String(describing: tableView.deq))")
-            guard let deletedDataCellRow = tableView.indexPathForSelectedRow else { return }
-//            indexPathForSelectedRow?.row
-
-            //            deleteCell(index: q111)
-//                        deleteCell(index: deletedDataCellRow)
+            deleteCell(index: indexPath.row)
         }
     }
 
