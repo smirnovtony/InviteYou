@@ -28,7 +28,7 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
     }
     private lazy var toplogInButton = {
         self.logInButton.snp.updateConstraints { (make) in
-            make.top.equalTo(self.userPasswordField.snp.bottom).offset(30)
+            make.top.equalTo(self.userPasswordField.snp.bottom).offset(40)
         }
     }
     private lazy var bottomRegisterButton = {
@@ -159,8 +159,7 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
         if logInConditions() {
             Auth.auth().signIn(withEmail: self.email, password: self.userPassword) { (result, error) in
                 if error == nil {
-                    let tabBarController = IYTabBarViewController()
-                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+                    self.navigationController?.pushViewController(IYLoadingViewController(), animated: true)
                     UserDefaults.standard.set(true, forKey: "userLoggedBool")
                 } else {
                     self.allertError()
@@ -177,8 +176,11 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(IYResetPasswordViewController(), animated: true)
     }
     private func allertError() {
-        let alertController = UIAlertController(title: "Error",
-                                                message: "Сheck the entered information",
+        self.allert(title: "Error", message: "Сheck the entered information")
+    }
+    private func allert(title: String, message: String) {
+        let alertController = UIAlertController(title: title,
+                                                message: message,
                                                 preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .destructive)
         self.present(alertController, animated: true)
@@ -187,8 +189,7 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
     //MARK: - Methods
     private func userAlreadylogged() {
         if UserDefaults.standard.bool(forKey: "userLoggedBool") == true {
-            let tabBarController = IYTabBarViewController()
-                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+            self.navigationController?.pushViewController(IYLoadingViewController(), animated: true)
         } else {
             self.tabBarController?.tabBar.isHidden = true
         }
@@ -197,15 +198,15 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
     private func screenSize() {
         let screen = UIScreen.main.bounds
         let screenHeight = screen.size.height
-        if screenHeight < 896 {
+        if screenHeight < 750 {
             self.topAppLabelConstrait = {
                 self.appView.snp.updateConstraints { (make) in
-                    make.top.equalToSuperview().offset(50)
+                    make.top.equalToSuperview().offset(40)
                 }
             }
             self.topUserEmailLabel = {
                 self.userEmailLabel.snp.updateConstraints { (make) in
-                    make.top.equalToSuperview().offset(150)
+                    make.top.equalToSuperview().offset(140)
                 }
             }
             self.bottomForgotPassButton = {
@@ -269,23 +270,22 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
             make.height.equalTo(80)
         }
         self.appLabel.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.appView.snp.centerX)
-            make.centerY.equalTo(self.appView.snp.centerY)
+            make.center.equalTo(self.appView.snp.center)
         }
         self.userEmailLabel.snp.makeConstraints { (make) in
             topUserEmailLabel()
             make.left.right.equalToSuperview().inset(30)
         }
         self.userEmailField.snp.makeConstraints { (make) in
-            make.top.equalTo(self.userEmailLabel.snp.bottom).offset(25)
+            make.top.equalTo(self.userEmailLabel.snp.bottom).offset(20)
             make.left.right.equalToSuperview().inset(30)
         }
         self.userPasswordLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.userEmailField.snp.bottom).offset(25)
+            make.top.equalTo(self.userEmailField.snp.bottom).offset(20)
             make.left.right.equalToSuperview().inset(30)
         }
         self.userPasswordField.snp.makeConstraints { (make) in
-            make.top.equalTo(self.userPasswordLabel.snp.bottom).offset(25)
+            make.top.equalTo(self.userPasswordLabel.snp.bottom).offset(20)
             make.left.right.equalToSuperview().inset(30)
         }
         self.logInButton.snp.makeConstraints { (make) in

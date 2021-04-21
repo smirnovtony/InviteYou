@@ -9,6 +9,7 @@ enum IYTypeOfEvent: String, CaseIterable {
     case relax = "Relax"
     case friends = "Friends"
     case work = "Work"
+    case study = "Study"
     case family = "Family"
     case child = "Child"
     case my = "Myself"

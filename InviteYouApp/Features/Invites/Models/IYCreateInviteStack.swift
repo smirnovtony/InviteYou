@@ -7,6 +7,7 @@
 
 import UIKit
 
+//MARK: - Variables
 var createInviteStack: UIStackView = {
     let stack = UIStackView()
     stack.axis = .vertical
@@ -16,8 +17,8 @@ var createInviteStack: UIStackView = {
     stack.addArrangedSubview([
         nameOrganizerLabel,
         nameOrganizerTextField,
-        infoAboutOrganizerLabel,
-        infoAboutOrganizerTextField,
+//        infoAboutOrganizerLabel,
+//        infoAboutOrganizerTextField,
         addressLabel,
         addressTextField,
         numberOfPersonsLabel,
@@ -25,14 +26,34 @@ var createInviteStack: UIStackView = {
         typeOfEventLabel,
         typeOfEventTextField,
         nameOfEventLabel,
-        nameOfEventTextField,
-        infoAboutEventLabel,
-        infoAboutEventTextView
+        nameOfEventTextField
+//        infoAboutEventLabel
+//        infoAboutEventTextView
     ])
     stack.translatesAutoresizingMaskIntoConstraints = false
     return stack
 }()
-//MARK: - Variables
+var nameOrganizeCreate: String {
+    nameOrganizerTextField.text ?? ""
+}
+//var infoAboutOrganizerCreate: String {
+//    infoAboutOrganizerTextField.text ?? ""
+//}
+var addressCreate: String {
+    addressTextField.text ?? ""
+}
+var numberOfPersonsCreate: String {
+    numberOfPersonsTextField.text ?? ""
+}
+var typeOfEventCreate: String {
+    typeOfEventTextField.text ?? ""
+}
+var nameOfEventCreate: String {
+    nameOfEventTextField.text ?? ""
+}
+//var infoAboutEventCreate: String {
+//    infoAboutEventTextView.text ?? ""
+//}
 var nameOrganizerLabel: UILabel = {
     let label = UILabel()
     label.text = "Name organizer"
@@ -44,18 +65,18 @@ var nameOrganizerTextField: UITextField = {
     customTextField(textField)
     return textField
 }()
-private var infoAboutOrganizerLabel: UILabel = {
-    let label = UILabel()
-    label.text = "Info about the organizer"
-    customLabel(label)
-    return label
-}()
-var infoAboutOrganizerTextField: UITextField = {
-    let textField = UITextField()
-    customTextField(textField)
-    return textField
-}()
-var addressLabel: UILabel = { // связать с картой!!!!!!!!!!!!!!!!!!!!!!!!!!
+//private var infoAboutOrganizerLabel: UILabel = {
+//    let label = UILabel()
+//    label.text = "Info about the organizer"
+//    customLabel(label)
+//    return label
+//}()
+//var infoAboutOrganizerTextField: UITextField = {
+//    let textField = UITextField()
+//    customTextField(textField)
+//    return textField
+//}()
+var addressLabel: UILabel = {
     let label = UILabel()
     label.text = "Address"
     customLabel(label)
@@ -82,7 +103,6 @@ var numberOfPersonsPicker: UIPickerView = {
      picker.translatesAutoresizingMaskIntoConstraints = false
      return picker
  }()
-
 var doneToolBar: UIToolbar = {
     let toolbar = UIToolbar()
     toolbar.translatesAutoresizingMaskIntoConstraints = false
@@ -115,21 +135,21 @@ var nameOfEventTextField: UITextField = {
     customTextField(textField)
     return textField
 }()
-var infoAboutEventLabel: UILabel = {
-    let label = UILabel()
-    label.text = "Info about event"
-    customLabel(label)
-    return label
-}()
-var infoAboutEventTextView: UITextView = {
-    let textView = UITextView()
-    textView.backgroundColor = .white
-    textView.sizeToFit()
-    textView.isScrollEnabled = false
-    textView.font = fontFamilyLittle
-    textView.textColor = mainСolorBlue
-    textView.snp.makeConstraints { (make) in
-        make.height.equalTo(80)
-    }
-    return textView
-}()
+//var infoAboutEventLabel: UILabel = {
+//    let label = UILabel()
+//    label.text = "Info about event"
+//    customLabel(label)
+//    return label
+//}()
+//var infoAboutEventTextView: UITextView = {
+//    let textView = UITextView()
+//    textView.backgroundColor = .white
+//    textView.sizeToFit()
+//    textView.isScrollEnabled = false
+//    textView.font = fontFamilyLittle
+//    textView.textColor = mainСolorBlue
+//    textView.snp.makeConstraints { (make) in
+//        make.height.equalTo(80)
+//    }
+//    return textView
+//}()

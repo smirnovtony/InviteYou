@@ -16,7 +16,8 @@ class IYSharedData {
     static let sh = IYSharedData()
     private let databaseReference: DatabaseReference
     var collectionInvites: [IYIvent] = []
-
+    var idUser = Auth.auth().currentUser?.uid
+    var cellIndex: Int = 12345678
     private init() {
         databaseReference = Database.database().reference()
     }
@@ -53,25 +54,10 @@ class IYSharedData {
                                      infoAboutEvent: document["infoAboutEvent"] as? String ?? "",
                                      closedOrOpen: document["closedOrOpen"] as? Int ?? 0,
                                      subscribe: document["subscribe"] as? Bool ?? true,
-                                     unsubscribe: document["unsubscribe"] as? Bool ?? true,
-                                     think: document["think"] as? Bool ?? true)
+                                     unsubscribe: document["unsubscribe"] as? Bool ?? true)
                     self.collectionInvites.append(result)
                 }
             }
-        }
-    }
-    //MARK: - Image
-    func getImage(picName: String, completion: @escaping (UIImage) -> Void) {
-        let storage = Storage.storage()
-        let reference = storage.reference()
-        let pathRef = reference.child("invitesPics")
-
-        var image: UIImage = UIImage(named: "IYdefalt_pic")!
-        let fileRef = pathRef.child(picName + "jpeg")
-        fileRef.getData(maxSize: 1024*1024) { data, error in
-            guard error == nil else { completion(image); return }
-            image = UIImage(data: data!)!
-            completion(image)
         }
     }
 }

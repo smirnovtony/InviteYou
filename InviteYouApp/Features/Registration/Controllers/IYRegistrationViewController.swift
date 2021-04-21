@@ -100,7 +100,6 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
                         IYSharedData.sh.userLogged = true
                         let reference = Database.database().reference().child("users")
                         reference.child(result.user.uid).updateChildValues(["email": self.email])
-
                         let alertController = UIAlertController(title: "Registration completed successfully!",
                                                                 message: "",
                                                                 preferredStyle: .alert)
@@ -111,25 +110,23 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
                             }
                             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(registerController)
                         }
-                        alertController.addAction(okAction)
-                        self.present(alertController, animated: true)
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true)
                 } else {
-                    let alertController = UIAlertController(title: "Error",
-                                                            message: "User with the same email address already exists",
-                                                            preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "OK", style: .destructive)
-                        self.present(alertController, animated: true)
-                        alertController.addAction(okAction)
+                    self.allert(title: "Error", message: "User with the same email address already exists")
                 }
             }
         } else {
-            let alertController = UIAlertController(title: "Error",
-                                                    message: "Сheck the entered information",
-                                                    preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .destructive)
-                self.present(alertController, animated: true)
-                alertController.addAction(okAction)
+            self.allert(title: "Error", message: "Сheck the entered information")
         }
+    }
+    private func allert(title: String, message: String) {
+        let alertController = UIAlertController(title: title,
+                                                message: message,
+                                                preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .destructive)
+        self.present(alertController, animated: true)
+        alertController.addAction(okAction)
     }
     @objc private func backToLoginButtonTapped() {
         self.navigationController?.popViewController(animated: true)
@@ -221,13 +218,12 @@ class IYRegistrationViewController: IYViewController, UITextFieldDelegate {
             make.height.equalTo(80)
         }
         self.registrationLabel.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.registrationView.snp.centerX)
-            make.centerY.equalTo(self.registrationView.snp.centerY)
+            make.center.equalTo(self.registrationView.snp.center)
         }
         registrationStack.snp.makeConstraints { (make) in
             make.top.equalTo(registrationLabel.snp.bottom).offset(50)
             make.left.right.equalToSuperview().inset(30)
-                }
+        }
         self.registerButton.snp.makeConstraints { (make) in
             make.top.equalTo(registrationStack.snp.bottom).offset(50)
             make.height.equalTo(60)

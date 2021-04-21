@@ -97,24 +97,20 @@ class IYResetPasswordViewController: IYViewController {
         if !email.isEmpty {
             Auth.auth().sendPasswordReset(withEmail: email) { (error) in
                 if error == nil {
-                    let alertController = UIAlertController(title: "Password reset successfully!",
-                                                            message: "",
-                                                            preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-                        self.navigationController?.popViewController(animated: true)
-                    }
-                    alertController.addAction(okAction)
-                    self.present(alertController, animated: true)
+                    self.allert(title: "Password reset successfully!", message: "")
                 } else {
-                    let alertController = UIAlertController(title: "Error",
-                                                            message: "Сheck entered email adress",
-                                                            preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "OK", style: .destructive)
-                        self.present(alertController, animated: true)
-                        alertController.addAction(okAction)
+                    self.allert(title: "Error", message: "Сheck entered email adress")
                 }
             }
         }
+    }
+    private func allert(title: String, message: String) {
+        let alertController = UIAlertController(title: title,
+                                                message: message,
+                                                preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .destructive)
+        self.present(alertController, animated: true)
+        alertController.addAction(okAction)
     }
     @objc private func backToLoginButtonTapped() {
         self.navigationController?.popViewController(animated: true)
@@ -127,8 +123,7 @@ class IYResetPasswordViewController: IYViewController {
             make.height.equalTo(80)
         }
         self.resetPassLabel.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.resetPassView.snp.centerX)
-            make.centerY.equalTo(self.resetPassView.snp.centerY)
+            make.center.equalTo(self.resetPassView.snp.center)
         }
         self.changePasswordStack.snp.makeConstraints { (make) in
             make.top.equalTo(self.resetPassLabel.snp.bottom).offset(50)

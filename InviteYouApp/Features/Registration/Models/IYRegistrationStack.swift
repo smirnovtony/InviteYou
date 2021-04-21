@@ -7,6 +7,7 @@
 
 import UIKit
 
+//MARK: - Variables
 var registrationStack: UIStackView = {
     let stack = UIStackView()
     stack.axis = .vertical

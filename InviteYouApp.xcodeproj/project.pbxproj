@@ -12,9 +12,9 @@
 		EA04196826063A900060EFAD /* IYTypeOfEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA04196726063A900060EFAD /* IYTypeOfEvent.swift */; };
 		EA0CB6362611A208003F92DD /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0CB6352611A208003F92DD /* CustomTextField.swift */; };
 		EA133FC52604719000241E8B /* IYSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA133FC42604719000241E8B /* IYSearchViewController.swift */; };
-		EA13486B261DA5750022E78E /* ExampleInvites.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA13486A261DA5750022E78E /* ExampleInvites.swift */; };
 		EA13486E261DE5550022E78E /* IYIvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA13486D261DE5550022E78E /* IYIvent.swift */; };
 		EA14798625FBDD2900A03DCD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EA14798525FBDD2900A03DCD /* SnapKit */; };
+		EA1562CA262EA231004751C3 /* IYLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1562C9262EA231004751C3 /* IYLoadingViewController.swift */; };
 		EA200AE7261083610087E792 /* IYResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA200AE6261083610087E792 /* IYResetPasswordViewController.swift */; };
 		EA281A0A2611A64D00674722 /* СustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA281A092611A64D00674722 /* СustomLabel.swift */; };
 		EA281A0D2611AB7700674722 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA281A0C2611AB7700674722 /* CustomButton.swift */; };
@@ -30,6 +30,7 @@
 		EA64BAE22625D2F500192F01 /* UIPickerView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BAE12625D2F500192F01 /* UIPickerView+Ex.swift */; };
 		EA64BAE52625D95A00192F01 /* Date+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BAE42625D95A00192F01 /* Date+Ex.swift */; };
 		EA64BAF02627142C00192F01 /* String+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BAEF2627142C00192F01 /* String+Ex.swift */; };
+		EA686DA826303ADB008F1175 /* CellIndexModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA686DA726303ADB008F1175 /* CellIndexModel.swift */; };
 		EA7B64482622DEE60048F783 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA7B64472622DEE60048F783 /* GoogleService-Info.plist */; };
 		EA7B7BB426021ED50006F22E /* IYViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7B7BB326021ED50006F22E /* IYViewController.swift */; };
 		EA7B7BD2260320830006F22E /* IYInvitationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7B7BD1260320830006F22E /* IYInvitationCell.swift */; };
@@ -46,7 +47,6 @@
 		EAFFAA8A25F8E53F003A610E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA8925F8E53F003A610E /* Fonts.swift */; };
 		EAFFAA9825F8EDCA003A610E /* IYActiveInvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA9725F8EDCA003A610E /* IYActiveInvitesViewController.swift */; };
 		EAFFAA9B25F8EDF8003A610E /* IYDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA9A25F8EDF8003A610E /* IYDetailsViewController.swift */; };
-		EAFFAA9F25F8EE14003A610E /* IYCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAA9E25F8EE14003A610E /* IYCalendarViewController.swift */; };
 		EAFFAAA225F8EE5C003A610E /* IYProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFFAAA125F8EE5C003A610E /* IYProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,8 +58,8 @@
 		EA04196726063A900060EFAD /* IYTypeOfEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYTypeOfEvent.swift; sourceTree = "<group>"; };
 		EA0CB6352611A208003F92DD /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		EA133FC42604719000241E8B /* IYSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYSearchViewController.swift; sourceTree = "<group>"; };
-		EA13486A261DA5750022E78E /* ExampleInvites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleInvites.swift; sourceTree = "<group>"; };
 		EA13486D261DE5550022E78E /* IYIvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYIvent.swift; sourceTree = "<group>"; };
+		EA1562C9262EA231004751C3 /* IYLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYLoadingViewController.swift; sourceTree = "<group>"; };
 		EA200AE6261083610087E792 /* IYResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYResetPasswordViewController.swift; sourceTree = "<group>"; };
 		EA281A092611A64D00674722 /* СustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СustomLabel.swift"; sourceTree = "<group>"; };
 		EA281A0C2611AB7700674722 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -75,6 +75,7 @@
 		EA64BAE12625D2F500192F01 /* UIPickerView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPickerView+Ex.swift"; sourceTree = "<group>"; };
 		EA64BAE42625D95A00192F01 /* Date+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ex.swift"; sourceTree = "<group>"; };
 		EA64BAEF2627142C00192F01 /* String+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ex.swift"; sourceTree = "<group>"; };
+		EA686DA726303ADB008F1175 /* CellIndexModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellIndexModel.swift; sourceTree = "<group>"; };
 		EA7B64472622DEE60048F783 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EA7B7BB326021ED50006F22E /* IYViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYViewController.swift; sourceTree = "<group>"; };
 		EA7B7BD1260320830006F22E /* IYInvitationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYInvitationCell.swift; sourceTree = "<group>"; };
@@ -93,7 +94,6 @@
 		EAFFAA8925F8E53F003A610E /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		EAFFAA9725F8EDCA003A610E /* IYActiveInvitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYActiveInvitesViewController.swift; sourceTree = "<group>"; };
 		EAFFAA9A25F8EDF8003A610E /* IYDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYDetailsViewController.swift; sourceTree = "<group>"; };
-		EAFFAA9E25F8EE14003A610E /* IYCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYCalendarViewController.swift; sourceTree = "<group>"; };
 		EAFFAAA125F8EE5C003A610E /* IYProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,9 +130,8 @@
 		EA04196A26063A9C0060EFAD /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EA04196726063A900060EFAD /* IYTypeOfEvent.swift */,
 				EA29522E260C939F00B4523A /* IYNumberOfPersons.swift */,
-				EA13486A261DA5750022E78E /* ExampleInvites.swift */,
+				EA04196726063A900060EFAD /* IYTypeOfEvent.swift */,
 				EA13486D261DE5550022E78E /* IYIvent.swift */,
 				EA64BADD2625C1D200192F01 /* IYCreateInviteStack.swift */,
 			);
@@ -203,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				EA7B7BD1260320830006F22E /* IYInvitationCell.swift */,
+				EA686DA726303ADB008F1175 /* CellIndexModel.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -236,7 +236,6 @@
 				EAD0EBDE25FBA19500463EF7 /* Registration */,
 				EAD0EBD925FBA0FD00463EF7 /* Invites */,
 				EA133FC72604719500241E8B /* Search */,
-				EAD0EBDB25FBA14400463EF7 /* Calendar */,
 				EAD0EBDC25FBA15000463EF7 /* Profile */,
 			);
 			path = Features;
@@ -255,6 +254,7 @@
 			children = (
 				EAFFAA7225F891AE003A610E /* IYInitViewController.swift */,
 				EA200AE6261083610087E792 /* IYResetPasswordViewController.swift */,
+				EA1562C9262EA231004751C3 /* IYLoadingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -269,14 +269,6 @@
 			path = Invites;
 			sourceTree = "<group>";
 		};
-		EAD0EBDB25FBA14400463EF7 /* Calendar */ = {
-			isa = PBXGroup;
-			children = (
-				EAD0EBE625FBA2DA00463EF7 /* Controllers */,
-			);
-			path = Calendar;
-			sourceTree = "<group>";
-		};
 		EAD0EBDC25FBA15000463EF7 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,8 +281,8 @@
 			isa = PBXGroup;
 			children = (
 				EACB037E261492EE0002B8C6 /* DataSaving */,
-				EA0692682611A3F700EBB4A1 /* Controllers */,
 				EA0CB6382611A250003F92DD /* View */,
+				EA0692682611A3F700EBB4A1 /* Controllers */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -317,14 +309,6 @@
 			children = (
 				EAFFAAA125F8EE5C003A610E /* IYProfileViewController.swift */,
 				EAD0EBD025FB890800463EF7 /* IYEditProfileViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		EAD0EBE625FBA2DA00463EF7 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				EAFFAA9E25F8EE14003A610E /* IYCalendarViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -524,6 +508,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA64BAC926256CB100192F01 /* UIView+Ex.swift in Sources */,
+				EA686DA826303ADB008F1175 /* CellIndexModel.swift in Sources */,
 				EA13486E261DE5550022E78E /* IYIvent.swift in Sources */,
 				EA64BAE22625D2F500192F01 /* UIPickerView+Ex.swift in Sources */,
 				EA7B7BD2260320830006F22E /* IYInvitationCell.swift in Sources */,
@@ -533,14 +518,13 @@
 				EA04196826063A900060EFAD /* IYTypeOfEvent.swift in Sources */,
 				EAFFAA8725F8CB19003A610E /* IYRegistrationViewController.swift in Sources */,
 				EAB533AE260B76EE00C0C8C0 /* UIViewController+Ex.swift in Sources */,
-				EAFFAA9F25F8EE14003A610E /* IYCalendarViewController.swift in Sources */,
+				EA1562CA262EA231004751C3 /* IYLoadingViewController.swift in Sources */,
 				EA64BACD262592FF00192F01 /* UIEdgeInsets+Ex.swift.swift in Sources */,
 				EA64BAC62625694400192F01 /* IYRegistrationStack.swift in Sources */,
 				EA64BAF02627142C00192F01 /* String+Ex.swift in Sources */,
 				EA200AE7261083610087E792 /* IYResetPasswordViewController.swift in Sources */,
 				EAFFAAA225F8EE5C003A610E /* IYProfileViewController.swift in Sources */,
 				EA281A0D2611AB7700674722 /* CustomButton.swift in Sources */,
-				EA13486B261DA5750022E78E /* ExampleInvites.swift in Sources */,
 				EA0315FE260383E6003F1CDD /* IYCreateInviteViewController.swift in Sources */,
 				EA29522F260C939F00B4523A /* IYNumberOfPersons.swift in Sources */,
 				EAFFAA6F25F891AE003A610E /* AppDelegate.swift in Sources */,

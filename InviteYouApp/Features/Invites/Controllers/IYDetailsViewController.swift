@@ -8,13 +8,50 @@
 import UIKit
 
 class IYDetailsViewController: IYViewController {
+//                               IYActiveInvitesViewControllerDelegate 
+//    let userEditContacts = CellIndexModel()
+//    let cellDeledate = IYActiveInvitesViewController()
+//    func editContactsChanged(I i: Int) {
+//        index = i
+//    }
+//    func setViewData() {
+//        index = userEditContacts.cellIndexModel
+//    }
+//    var index: Int = 111
+
+//    var oneIventFinal: IYIvent = IYIvent(id: "", logo: "",
+//                                         organizerName: "", infoAboutOrganizer: "",
+//                                         nameOfEvent: "", typeOfIvent: "",
+//                                         person: "", address: "",
+//                                         date: "", time: "",
+//                                         infoAboutEvent: "", closedOrOpen: 0,
+//                                         subscribe: true, unsubscribe: false)
+//    var vc = IYActiveInvitesViewController()
     //MARK: - Variables
+
     private lazy var logoView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "photography") // дeфолтная картинка, сюда логотип организации
+        imageView.image = UIImage(named: "photography")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    private lazy var closedOrOpenEventView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "lock")
+        imageView.tintColor = notСolorPink
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+//    {
+//        didSet {
+//            if closedOrOpenEventFlag == 0 {
+//                self.closedOrOpenEventView.image = UIImage(systemName: "lock.open")
+//                self.closedOrOpenEventView.tintColor = mainСolorBlue
+//            } else if closedOrOpenEventFlag == 1 {
+//                self.closedOrOpenEventView.image = UIImage(systemName: "lock")
+//                self.closedOrOpenEventView.tintColor = notСolorPink
+//            }
+//        }
     private lazy var nameOrganizerLabel: UILabel = {
         let label = UILabel()
         label.text = "Name Organizer"
@@ -35,36 +72,37 @@ class IYDetailsViewController: IYViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    private lazy var addressButton: UIButton = { // нажимаешь и открывается карта!!!!!!!!!!!!!!
-        let button = UIButton()
-        button.setTitle("Address", for: UIControl.State())
-        button.setTitleColor(.black, for: UIControl.State())
-        button.titleLabel?.font = fontFamilyLittle
-//        button.addTarget(self, action: #selector(mapButtonTapped), for: .touchUpInside) // действие кнопки
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+    private lazy var addressLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Address"
+        label.textColor = .black
+        label.font = fontFamilyLittle
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
-    private lazy var dateButton: UIButton = { // переход на календарь
-        let button = UIButton()
-        button.setTitle("Date", for: UIControl.State())
-        button.titleLabel?.font = fontFamilyLittle
-        button.setTitleColor(.white, for: UIControl.State())
-        button.addTarget(self, action: #selector(calendarButtonTapped), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = mainСolorBlue?.withAlphaComponent(0.5)
-        button.layer.cornerRadius = 15
-        return button
+    private lazy var dateLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Date"
+        label.font = fontFamilyLittle
+        label.textColor = .white
+        label.textAlignment = .center
+        label.clipsToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = mainСolorBlue?.withAlphaComponent(0.5)
+        label.layer.cornerRadius = 15
+        return label
     }()
-    private lazy var timeButton: UIButton = { // переход на календарь
-        let button = UIButton()
-        button.setTitle("Time", for: UIControl.State())
-        button.titleLabel?.font = fontFamilyLittle
-        button.setTitleColor(.white, for: UIControl.State())
-        button.addTarget(self, action: #selector(calendarButtonTapped), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = mainСolorBlue?.withAlphaComponent(0.5)
-        button.layer.cornerRadius = 15
-        return button
+    private lazy var timeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Time"
+        label.font = fontFamilyLittle
+        label.textColor = .white
+        label.textAlignment = .center
+        label.clipsToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = mainСolorBlue?.withAlphaComponent(0.5)
+        label.layer.cornerRadius = 15
+        return label
     }()
     private lazy var numberOfPersonsLabel: UILabel = {
         let label = UILabel()
@@ -109,16 +147,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    private lazy var openOrClosedLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Open Or Closed"
-        label.numberOfLines = 0
-        label.textColor = mainСolorBlue
-        label.font = fontFamilyLittle
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
     private lazy var subscribeButton: UIButton = {
         let button = UIButton()
         button.setTitle("Subscribe", for: UIControl.State())
@@ -137,43 +165,38 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
 //        button.addTarget(self, action: #selector(unsubscribeButtonTapped), for: .touchUpInside) /
         return button
     }()
-    private lazy var thinkButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Think", for: UIControl.State())
-        button.setTitleColor(yellowСolor, for: UIControl.State())
-        button.backgroundColor = .white
-        customButton(button)
-//        button.addTarget(self, action: #selector(unsubscribeButtonTapped), for: .touchUpInside)
-        return button
-    }()
     //MARK: - Lifecycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Details"
-        navigationController?.navigationBar.tintColor = .white // цвет стрелки "назад"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
-                                                            style: .done,
-                                                            target: self,
-                                                            action: #selector(shareButtonTapped))
-        navigationItem.rightBarButtonItem?.tintColor = .white
+        self.navigationControllerSetting()
         self.mainView.addSubviews([
             self.logoView,
+            self.closedOrOpenEventView,
             self.nameOrganizerLabel,
             self.infoAboutOrganizerLabel,
             self.nameOfEventLabel,
             self.typeOfEventLabel,
-            self.openOrClosedLabel,
-            self.addressButton,
-            self.dateButton,
-            self.timeButton,
+            self.addressLabel,
+            self.dateLabel,
+            self.timeLabel,
             self.numberOfPersonsLabel,
             self.infoAboutEventLabel,
             self.subscribeButton,
-            self.unsubscribeButton,
-            self.thinkButton
+            self.unsubscribeButton
         ])
         self.setUpConstraintsFunction()
+//        cellDeledate.delegate = self
+//        setViewData()
+//        print("FIFIFIF\(index)")
+    }
+    private func navigationControllerSetting() {
+    navigationController?.navigationBar.tintColor = .white
+    navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
+                                                        style: .done,
+                                                        target: self,
+                                                        action: #selector(shareButtonTapped))
+    navigationItem.rightBarButtonItem?.tintColor = .white
     }
     //MARK: - ButtonTapped
     @objc private func shareButtonTapped() {
@@ -185,15 +208,38 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
             print("I Invite You")
         }
     }
-    @objc private func calendarButtonTapped() {
-        self.navigationController?.pushViewController(IYCalendarViewController(), animated: true)
-    }
+//    private func setData(selectedCell: Int?) {
+//        var invatesCell = IYActiveInvitesViewController()
+////        guard textLabel != nil else { return }vc2.callback = { text in
+////        self..text = text
+////    }
+//
+//        print("\(String(describing: selectedCell))!!!!!!!!!!!!!")
+//        for (_, cell) in IYSharedData.sh.collectionInvites.enumerated() {
+//            self.nameOrganizerLabel.text = cell.infoAboutEvent
+////                print("\(cell.organizerName)!!!!!!!!!!!!!")
+////                print("\(selection)!!!!!!!!!!!!!")
+//            }
+//        }
+//
+////    func presentVC2() {
+//        var vc2 = IYActiveInvitesViewController()
+//        vc2.callback = { text in
+//            self.textLabel.text = text
+//        }
+//        self.present(vc2, animated: true, completion: nil)
+//    }
     //MARK: - Constraints
     func setUpConstraintsFunction() {
         self.logoView.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(30)
             make.centerX.equalToSuperview()
-            make.height.width.equalTo(140)
+            make.size.equalTo(140)
+        }
+        self.closedOrOpenEventView.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(30)
+            make.right.equalToSuperview().inset(40)
+            make.size.equalTo(30)
         }
         self.nameOrganizerLabel.snp.makeConstraints { (make) in
             make.top.equalTo(logoView.snp.bottom).offset(10)
@@ -215,42 +261,33 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum er
             make.top.equalTo(typeOfEventLabel.snp.bottom).offset(30)
             make.left.right.equalToSuperview().inset(40)
         }
-        self.addressButton.snp.makeConstraints { (make) in
+        self.addressLabel.snp.makeConstraints { (make) in
             make.top.equalTo(numberOfPersonsLabel.snp.bottom).offset(30)
             make.left.right.equalToSuperview().inset(40)
         }
-        self.dateButton.snp.makeConstraints { (make) in
-            make.top.equalTo(addressButton.snp.bottom).offset(30)
+        self.dateLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(addressLabel.snp.bottom).offset(30)
             make.centerX.equalToSuperview().offset(-90)
             make.left.equalToSuperview().inset(40)
             make.height.equalTo(60)
         }
-        self.timeButton.snp.makeConstraints { (make) in
-            make.top.equalTo(addressButton.snp.bottom).offset(30)
+        self.timeLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(addressLabel.snp.bottom).offset(30)
             make.centerX.equalToSuperview().offset(90)
             make.right.equalToSuperview().inset(40)
             make.height.equalTo(60)
         }
         self.infoAboutEventLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(dateButton.snp.bottom).offset(30)
-            make.left.right.equalToSuperview().inset(40)
-        }
-        self.openOrClosedLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(infoAboutEventLabel.snp.bottom).offset(30)
+            make.top.equalTo(dateLabel.snp.bottom).offset(30)
             make.left.right.equalToSuperview().inset(40)
         }
         self.subscribeButton.snp.makeConstraints { (make) in
-            make.top.equalTo(openOrClosedLabel.snp.bottom).offset(30)
+            make.top.equalTo(infoAboutEventLabel.snp.bottom).offset(30)
             make.left.right.equalToSuperview().inset(40)
             make.height.equalTo(60)
         }
         self.unsubscribeButton.snp.makeConstraints { (make) in
             make.top.equalTo(subscribeButton.snp.bottom).offset(30)
-            make.left.right.equalToSuperview().inset(40)
-            make.height.equalTo(60)
-        }
-        self.thinkButton.snp.makeConstraints { (make) in
-            make.top.equalTo(unsubscribeButton.snp.bottom).offset(30)
             make.left.right.equalToSuperview().inset(40)
             make.height.equalTo(60)
             make.bottom.equalToSuperview().inset(20)

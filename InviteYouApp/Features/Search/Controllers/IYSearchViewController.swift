@@ -5,16 +5,13 @@
 //  Created by Антон Смирнов on 19.03.21.
 //
 
-// логика: если событие subscibe, unsubscibe или think - то добавить на IYActiveInvitesViewController
-
 import UIKit
 
 class IYSearchViewController: UITableViewController {
-
-    //MARK: - Initializators
-
-    private var invites: [IYIvent] = IYSharedData.sh.collectionInvites {
+    //MARK: - Variables
+    private var invites: [IYIvent] = IYSharedData.sh.collectionInvites.sorted { $0.date.toDate() < $1.date.toDate()}.filter { $0.closedOrOpen == 0 } {
         didSet {
+            IYSharedData.sh.collectionInvites = self.invites
             self.filteredInvites = self.invites
         }
     }
@@ -43,29 +40,40 @@ class IYSearchViewController: UITableViewController {
         return label
     }()
     //MARK: - Lifecycle
-    override func viewDidLoad() {
-        print("SEARCH!!!!!!\(IYSharedData.sh.collectionInvites)")
-        super.viewDidLoad()
-        self.title = "Search"
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            self.title = "Open invites"
+            self.tableViewSetting()
+            self.navigationItemSetting()
+            self.searchControllerSetting()
+        }
+    private func tableViewSetting() {
         self.tableView.separatorStyle = .none
         self.tableView.backgroundColor = backgroundСolorWhite
         self.tableView.showsVerticalScrollIndicator = false
         self.tableView.register(IYInvitationCell.self, forCellReuseIdentifier: IYInvitationCell.reuseIdentifier)
-
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"),
-                                                                style: .done,
-                                                                target: self,
-                                                                action: #selector(createButtonTapped))
-        self.navigationItem.leftBarButtonItem?.tintColor = .white
-        self.navigationItem.searchController = self.searchController
-//        self.searchController.searchResultsUpdater = self
+    }
+    private func searchControllerSetting() {
+        self.searchController.searchResultsUpdater = self
         self.searchController.searchBar.barStyle = .black
         self.searchController.searchBar.searchTextField.textColor = mainСolorBlue
         self.searchController.searchBar.searchTextField.backgroundColor = UIColor.white
         self.searchController.searchBar.searchTextField.font = fontFamilyLittle
     }
+    private func navigationItemSetting() {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"),
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(createButtonTapped))
+        self.navigationItem.leftBarButtonItem?.tintColor = .white
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3.decrease"),
+//                                                            style: .done,
+//                                                            target: self,
+//                                                            action: #selector(filterButtonTapped))
+        self.navigationItem.rightBarButtonItem?.tintColor = .white
+        self.navigationItem.searchController = self.searchController
+    }
     //MARK: - TableView
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.filteredInvites.count
     }
@@ -76,7 +84,7 @@ class IYSearchViewController: UITableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(IYDetailsViewController(), animated: true)
+//        self.navigationController?.pushViewController(IYDetailsViewController(), animated: true)
     }
     func deleteCell(index: Int) {
         invites.remove(at: index)
@@ -90,12 +98,30 @@ class IYSearchViewController: UITableViewController {
         }
     }
     //MARK: - ButtonTapped
-
     @objc private func createButtonTapped() {
         navigationController?.pushViewController(IYCreateInviteViewController(), animated: true)
     }
+    //MARK: - Allert
+//    @objc private func filterButtonTapped() {
+//        let alertController = UIAlertController(title: "Filter",
+//                                                message: "",
+//                                                preferredStyle: .actionSheet)
+//        let allAction = UIAlertAction(title: "All Ivents", style: .default) { _ in
+//            self.filteredInvites = self.invites
+//        }
+//        alertController.addAction(allAction)
+//        let myInvitationsAction = UIAlertAction(title: "I'm", style: .default) { _ in
+//            self.filteredInvites = self.invites.filter { $0.id == IYSharedData.sh.idUser }
+//        }
+//        alertController.addAction(myInvitationsAction)
+//        let otherInvitesAction = UIAlertAction(title: "Other invites", style: .destructive) { _ in
+//            self.filteredInvites = self.invites.filter { $0.closedOrOpen == 1 }
+//        }
+//        alertController.addAction(otherInvitesAction)
+//        self.present(alertController, animated: true)
+//    }
 }
-    //MARK: - Extensions
+//MARK: - Extensions
 extension IYSearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }

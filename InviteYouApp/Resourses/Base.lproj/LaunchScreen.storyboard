@@ -34,7 +34,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by Tony S." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaO-3D-VQe">
-                                <rect key="frame" x="160.5" y="809.5" width="93.5" height="23.5"/>
+                                <rect key="frame" x="160.5" y="808.5" width="93.5" height="23.5"/>
                                 <fontDescription key="fontDescription" name="AgencyFBCyrillic" family="Agency FB Cyrillic" pointSize="20"/>
                                 <color key="textColor" name="systemColor"/>
                                 <nil key="highlightedColor"/>
@@ -48,7 +48,7 @@
                             <constraint firstItem="vaO-3D-VQe" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Pd9-02-2sq"/>
                             <constraint firstItem="9hB-2O-7Od" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="40" id="V8K-vN-hgo"/>
                             <constraint firstItem="9hB-2O-7Od" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="250" id="fsh-eo-H7U"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="vaO-3D-VQe" secondAttribute="bottom" constant="29" id="qwl-p3-aZO"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="vaO-3D-VQe" secondAttribute="bottom" constant="30" id="qwl-p3-aZO"/>
                         </constraints>
                     </view>
                     <connections>

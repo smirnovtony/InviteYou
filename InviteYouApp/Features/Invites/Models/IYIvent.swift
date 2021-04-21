@@ -20,5 +20,4 @@ struct IYIvent {
     let closedOrOpen: Int
     let subscribe: Bool
     let unsubscribe: Bool
-    let think: Bool
 }
