@@ -16,10 +16,10 @@
 		EA14798625FBDD2900A03DCD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EA14798525FBDD2900A03DCD /* SnapKit */; };
 		EA1562CA262EA231004751C3 /* IYLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1562C9262EA231004751C3 /* IYLoadingViewController.swift */; };
 		EA200AE7261083610087E792 /* IYResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA200AE6261083610087E792 /* IYResetPasswordViewController.swift */; };
+		EA2219432630EA5E004DDD9C /* 8711.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA2219422630EA5E004DDD9C /* 8711.ttf */; };
 		EA281A0A2611A64D00674722 /* СustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA281A092611A64D00674722 /* СustomLabel.swift */; };
 		EA281A0D2611AB7700674722 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA281A0C2611AB7700674722 /* CustomButton.swift */; };
 		EA29522F260C939F00B4523A /* IYNumberOfPersons.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA29522E260C939F00B4523A /* IYNumberOfPersons.swift */; };
-		EA2B93EB260CFF29007D3AA9 /* 8711.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA2B93EA260CFF29007D3AA9 /* 8711.ttf */; };
 		EA62074125F8F09E00AF8E01 /* IYTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA62074025F8F09E00AF8E01 /* IYTabBarViewController.swift */; };
 		EA64BAC62625694400192F01 /* IYRegistrationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BAC52625694400192F01 /* IYRegistrationStack.swift */; };
 		EA64BAC926256CB100192F01 /* UIView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BAC826256CB100192F01 /* UIView+Ex.swift */; };
@@ -59,10 +59,10 @@
 		EA13486D261DE5550022E78E /* IYIvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYIvent.swift; sourceTree = "<group>"; };
 		EA1562C9262EA231004751C3 /* IYLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYLoadingViewController.swift; sourceTree = "<group>"; };
 		EA200AE6261083610087E792 /* IYResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYResetPasswordViewController.swift; sourceTree = "<group>"; };
+		EA2219422630EA5E004DDD9C /* 8711.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 8711.ttf; sourceTree = "<group>"; };
 		EA281A092611A64D00674722 /* СustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СustomLabel.swift"; sourceTree = "<group>"; };
 		EA281A0C2611AB7700674722 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		EA29522E260C939F00B4523A /* IYNumberOfPersons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYNumberOfPersons.swift; sourceTree = "<group>"; };
-		EA2B93EA260CFF29007D3AA9 /* 8711.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = 8711.ttf; path = ../../../../../../Downloads/8711.ttf; sourceTree = "<group>"; };
 		EA62074025F8F09E00AF8E01 /* IYTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYTabBarViewController.swift; sourceTree = "<group>"; };
 		EA64BAC52625694400192F01 /* IYRegistrationStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IYRegistrationStack.swift; sourceTree = "<group>"; };
 		EA64BAC826256CB100192F01 /* UIView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ex.swift"; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 		EA2B93E9260CFF0F007D3AA9 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				EA2B93EA260CFF29007D3AA9 /* 8711.ttf */,
+				EA2219422630EA5E004DDD9C /* 8711.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -428,8 +428,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA2B93EB260CFF29007D3AA9 /* 8711.ttf in Resources */,
 				EA7B64482622DEE60048F783 /* GoogleService-Info.plist in Resources */,
+				EA2219432630EA5E004DDD9C /* 8711.ttf in Resources */,
 				EAFFAA7B25F891B0003A610E /* LaunchScreen.storyboard in Resources */,
 				EAFFAA7825F891AF003A610E /* Assets.xcassets in Resources */,
 			);
