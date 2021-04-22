@@ -58,7 +58,6 @@ class IYLoadingViewController: IYViewController {
         ])
         setUpConstraintsFunction()
     }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.indicator.startAnimating()

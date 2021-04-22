@@ -171,11 +171,11 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
                     self.navigationController?.pushViewController(IYLoadingViewController(), animated: true)
                     UserDefaults.standard.set(true, forKey: "userLoggedBool")
                 } else {
-                    self.showAlertError()
+                    self.errorAlert(title: "Error", message: "Сheck the entered information")
                 }
             }
         } else {
-            self.showAlertError()
+            self.errorAlert(title: "Error", message: "Сheck the entered information")
         }
     }
 
@@ -185,10 +185,6 @@ class IYInitViewController: IYViewController, UITextFieldDelegate {
 
     @objc private func resetPasswordButtonTapped() {
         self.navigationController?.pushViewController(IYResetPasswordViewController(), animated: true)
-    }
-
-    private func showAlertError() {
-        self.errorAlert(title: "Error", message: "Сheck the entered information")
     }
 
     private func errorAlert(title: String, message: String) {

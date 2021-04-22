@@ -121,7 +121,7 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
         self.customizationStack()
     }
 
-    func customizationStack() {
+    private func customizationStack() {
         numberOfPersonsTextField.inputView = numberOfPersonsPicker
         numberOfPersonsTextField.inputAccessoryView = doneToolBar
         numberOfPersonsPicker.dataSource = self
@@ -145,6 +145,7 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
             guard let id = Auth.auth().currentUser?.uid else { return }
             guard let logo = logoView.image else { return }
             guard let nameOfEvent = nameOfEventTextField.text else { return }
+            guard let organizerName = nameOrganizerTextField.text else { return }
             guard let person = numberOfPersonsTextField.text else { return }
             guard let time = timeTextField.text else { return }
             guard let typeOfIvent = typeOfEventTextField.text else { return }
@@ -153,6 +154,7 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
                                                   "date": date,
                                                   "id": id,
                                                   "nameOfEvent": nameOfEvent,
+                                                  "organizerName": organizerName,
                                                   "person": person,
                                                   "time": time,
                                                   "typeOfIvent": typeOfIvent]
@@ -219,7 +221,6 @@ class IYCreateInviteViewController: IYViewController, UITextViewDelegate {
                     completion(url)
                 }
             } else {
-                // failed
                 completion(nil)
             }
         }
