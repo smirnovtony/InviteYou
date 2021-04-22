@@ -56,7 +56,7 @@ class IYLoadingViewController: IYViewController {
             self.indicator,
             self.byTonyLabel
         ])
-        setUpConstraintsFunction()
+        self.setUpConstraintsFunction()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -65,11 +65,20 @@ class IYLoadingViewController: IYViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             self.indicator.stopAnimating()
             if IYSharedData.sh.collectionInvites.count != 0 {
                 let tabBarController = IYTabBarViewController()
                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+            } else {
+                let alertController = UIAlertController(title: "Error",
+                                                        message: "Network connection error",
+                                                        preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .destructive) { _ in
+                    self.navigationController?.pushViewController(IYInitViewController(), animated: true)
+                }
+                self.present(alertController, animated: true)
+                alertController.addAction(okAction)
             }
         }
     }
